@@ -12,7 +12,9 @@ DROP TABLE medicamento;
 
 --Criação de tabelas
 
-CREATE TABLE pessoa (cpf NUMBER, nome VARCHAR2(30) NOT NULL, CONSTRAINT pessoa_pk PRIMARY KEY (cpf));
+CREATE TABLE pessoa (cpf NUMBER,
+                     nome VARCHAR2(30) NOT NULL,
+                     CONSTRAINT pessoa_pk PRIMARY KEY (cpf));
 
 CREATE TABLE paciente (cpf NUMBER,
                        nome VARCHAR2(30) NOT NULL,
