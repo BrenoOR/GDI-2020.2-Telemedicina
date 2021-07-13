@@ -21,7 +21,7 @@ CREATE TABLE paciente (cpf NUMBER,
                        prioridade NUMBER,
                        n_sus NUMBER,
                        plano VARCHAR2(30),
-                       CONSTRAINT paciente_pk PRIMARY KEY (cpf)
+                       CONSTRAINT paciente_pk PRIMARY KEY (cpf),
                        CONSTRAINT paciente_plano_ck CHECK (plano IN ('SIMPLES', 'FAMILIA', 'ESPECIAL', 'PRIME')));
 
 CREATE TABLE medico (cpf NUMBER,
