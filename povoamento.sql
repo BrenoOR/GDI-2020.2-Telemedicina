@@ -55,6 +55,16 @@ INSERT INTO  consulta   VALUES ( 'https://meet.google.com/hsd-kfdj-uot',536.650.
 
 -- Povoando marcacao
 INSERT INTO marcacao VALUES (2021-07-13);
+INSERT INTO marcacao VALUES (2021-05-03);
+INSERT INTO marcacao VALUES (2021-07-11);
+INSERT INTO marcacao VALUES (2021-06-03);
+INSERT INTO marcacao VALUES (2021-06-13);
+INSERT INTO marcacao VALUES (2020-12-23);
+INSERT INTO marcacao VALUES (2021-02-01);
+INSERT INTO marcacao VALUES (2021-03-25);
+INSERT INTO marcacao VALUES (2021-05-03);
+INSERT INTO marcacao VALUES (2021-05-15);
+
 
 
 -- Povoando telefone
@@ -77,6 +87,15 @@ INSERT INTO telefone   VALUES (536.650.360-46,'(12) 9 1376-6526');
 
 -- Povoando medicamento
 INSERT INTO medicamento VALUES (55, 'Paracetamol');
+INSERT INTO medicamento VALUES (55, 'Xarelto');
+INSERT INTO medicamento VALUES (55, 'Puran');
+INSERT INTO medicamento VALUES (55, 'Puran');
+INSERT INTO medicamento VALUES (55, 'Victoza');
+INSERT INTO medicamento VALUES (55, 'Torsilax');
+INSERT INTO medicamento VALUES (55, 'Addera D3');
+INSERT INTO medicamento VALUES (55, 'Dorflex');
+INSERT INTO medicamento VALUES (55, 'Anthelios');
+INSERT INTO medicamento VALUES (55, 'Victoza');
 
 -- Povoando exame
 INSERT INTO exame VALUES (906.274.860-02, 48, 'Acuidade Visual', 'Ok', 2021-07-13);
