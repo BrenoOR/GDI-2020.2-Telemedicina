@@ -72,4 +72,18 @@ INSERT INTO medicamento VALUES (55, 'Paracetamol');
 INSERT INTO exame VALUES (96385274112, 35, 'Acuidade Visual', 'Ok', 2021-07-13);
 
 -- Povoando receita
-INSERT INTO receita VALUES (546, 'Sheyla Lima', 2021-07-13);
+INSERT INTO receita VALUES (546, 'Sheyla Lima', 2021-07-12);
+INSERT INTO receita VALUES (874, 'José Henrique', 2021-07-12);
+INSERT INTO receita VALUES (221, 'Lucas Alfredo', 2021-07-12);
+INSERT INTO receita VALUES (372, 'Lara Maria', 2021-07-12);
+INSERT INTO receita VALUES (996, 'Alberto Roberto', 2021-07-12);
+INSERT INTO receita VALUES (481, 'Josué Aguiar', 2021-07-13);
+INSERT INTO receita VALUES (015, 'Ana Souza', 2021-07-13);
+INSERT INTO receita VALUES (542, 'João Kléber', 2021-07-13);
+INSERT INTO receita VALUES (671, 'Arthur da Silva', 2021-07-13);
+INSERT INTO receita VALUES (778, 'Roberta Lorena', 2021-07-13);
+INSERT INTO receita VALUES (926, 'Agostinho Carrara', 2021-07-14);
+INSERT INTO receita VALUES (450, 'Sheyla Carvalho', 2021-07-14);
+INSERT INTO receita VALUES (119, 'Ronaldo Alves', 2021-07-14);
+INSERT INTO receita VALUES (207, 'Ed Motta', 2021-07-14);
+INSERT INTO receita VALUES (599, 'Carla Perez', 2021-07-14);
