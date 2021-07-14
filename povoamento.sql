@@ -24,7 +24,17 @@ INSERT INTO paciente (cpf, nome, prioridade, n_sus, nome_plano) VALUES ('008.111
 INSERT INTO paciente (cpf, nome, prioridade, n_sus, nome_plano) VALUES ('009.111.222-44', 'Hiago', 10, 4151, 'SulAmérica');
 
 -- Medico
-INSERT INTO medico VALUES (00000000000, 'Eduardo', 3565, 'Oftalmologia', 11111111111);
+INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) VALUES ('000.452.074-98', 'Eduardo', 3565, 'Oftalmologia', '111.111.111-12');
+INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) VALUES ('000.546.321-00', 'Mário', 3512, 'Dermatologista', '111.111.111-15');
+INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) VALUES ('157.302.254-80', 'Ana', 3025, 'Clínico Geral', '111.222.111-89');
+INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) VALUES ('001.002.003-00', 'Maria', 4565, 'Endocrinologista', '112.654.312-11');
+INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) VALUES ('202.000.604-01', 'Eduarda', 6365, 'Cardiologista', '111.741.000-11');
+INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) VALUES ('000.555.444-00', 'Felicity', 9633, 'Oftalmologia', '214.865.111-10');
+INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) VALUES ('545.636.978-45', 'Crislaine', 3567, 'Clínico Geral', '111.545.921-11');
+INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) VALUES ('545.231.852-74', 'Samuel', 3522, 'Dermatologista', '525.963.159-11');
+INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) VALUES ('101.202.303-98', 'Sara', 3305, 'Endocrinologista', '951.654.753-02');
+INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) VALUES ('101.202.654-87', 'Alexandre', 3405, 'Oftalmologia', '123.654.987-05');
+
 
 -- Povoando consulta
 INSERT INTO  consulta   VALUES ( 'https://meet.google.com/cfp-biki-icz',906.274.860-02);
