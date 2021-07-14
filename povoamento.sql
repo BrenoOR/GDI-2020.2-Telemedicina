@@ -27,21 +27,21 @@ INSERT INTO paciente (cpf, nome, prioridade, n_sus, nome_plano) VALUES ('009.111
 INSERT INTO medico VALUES (00000000000, 'Eduardo', 3565, 'Oftalmologia', 11111111111);
 
 -- Povoando consulta
-INSERT INTO  consulta   VALUES ( 'https://meet.google.com/cfp-biki-icz',906.274.860-02;
-INSERT INTO  consulta   VALUES ( 'https://meet.google.com/pdh-ryth-kwc',688.789.920-54;
-INSERT INTO  consulta   VALUES ( 'https://meet.google.com/ith-gere-kio',824.874.820-01;
-INSERT INTO  consulta   VALUES ( 'https://meet.google.com/tvh-sdfq-wck',612.636.730-82;
-INSERT INTO  consulta   VALUES ( 'https://meet.google.com/vht-bqwz-wtk',830.286.750-05;
-INSERT INTO  consulta   VALUES ( 'https://meet.google.com/ojh-dgad-wep',596.004.180-47;
-INSERT INTO  consulta   VALUES ( 'https://meet.google.com/lht-adfw-sdf',976.310.480-70;
-INSERT INTO  consulta   VALUES ( 'https://meet.google.com/tvh-cvbb-cas',912.878.930-07;
-INSERT INTO  consulta   VALUES ( 'https://meet.google.com/ath-hgjd-lok',066.989.880-57;
-INSERT INTO  consulta   VALUES ( 'https://meet.google.com/thz-hjgy-jhn',737.129.450-51;
-INSERT INTO  consulta   VALUES ( 'https://meet.google.com/ath-fgse-cfs',737.543.550-23;
-INSERT INTO  consulta   VALUES ( 'https://meet.google.com/bhy-asda-ujf',494.073.100-60;
-INSERT INTO  consulta   VALUES ( 'https://meet.google.com/cht-bsdf-qer',485.476.990-40;
-INSERT INTO  consulta   VALUES ( 'https://meet.google.com/phg-djjd-urr',212.139.580-67;
-INSERT INTO  consulta   VALUES ( 'https://meet.google.com/hsd-kfdj-uot',536.650.360-46;
+INSERT INTO  consulta   VALUES ( 'https://meet.google.com/cfp-biki-icz',906.274.860-02);
+INSERT INTO  consulta   VALUES ( 'https://meet.google.com/pdh-ryth-kwc',688.789.920-54);
+INSERT INTO  consulta   VALUES ( 'https://meet.google.com/ith-gere-kio',824.874.820-01);
+INSERT INTO  consulta   VALUES ( 'https://meet.google.com/tvh-sdfq-wck',612.636.730-82);
+INSERT INTO  consulta   VALUES ( 'https://meet.google.com/vht-bqwz-wtk',830.286.750-05);
+INSERT INTO  consulta   VALUES ( 'https://meet.google.com/ojh-dgad-wep',596.004.180-47);
+INSERT INTO  consulta   VALUES ( 'https://meet.google.com/lht-adfw-sdf',976.310.480-70);
+INSERT INTO  consulta   VALUES ( 'https://meet.google.com/tvh-cvbb-cas',912.878.930-07);
+INSERT INTO  consulta   VALUES ( 'https://meet.google.com/ath-hgjd-lok',066.989.880-57);
+INSERT INTO  consulta   VALUES ( 'https://meet.google.com/thz-hjgy-jhn',737.129.450-51);
+INSERT INTO  consulta   VALUES ( 'https://meet.google.com/ath-fgse-cfs',737.543.550-23);
+INSERT INTO  consulta   VALUES ( 'https://meet.google.com/bhy-asda-ujf',494.073.100-60);
+INSERT INTO  consulta   VALUES ( 'https://meet.google.com/cht-bsdf-qer',485.476.990-40);
+INSERT INTO  consulta   VALUES ( 'https://meet.google.com/phg-djjd-urr',212.139.580-67);
+INSERT INTO  consulta   VALUES ( 'https://meet.google.com/hsd-kfdj-uot',536.650.360-46);
 
 -- Povoando marcacao
 INSERT INTO marcacao VALUES (2021-07-13);
