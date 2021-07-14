@@ -1,20 +1,15 @@
 -- Povoando Pessoas
 
-INSERT INTO pessoa (cpf, nome) VALUES (53214,'José Henrique');
-INSERT INTO pessoa (cpf, nome) VALUES (83927,'Lucas Alfredo');
-INSERT INTO pessoa (cpf, nome) VALUES (15313,'Lara Maria');
-INSERT INTO pessoa (cpf, nome) VALUES (98647,'Alberto Roberto');
-INSERT INTO pessoa (cpf, nome) VALUES (92385,'Josué Aguiar');
-INSERT INTO pessoa (cpf, nome) VALUES (15938,'Ana Souza');
-INSERT INTO pessoa (cpf, nome) VALUES (10598,'João Kléber');
-INSERT INTO pessoa (cpf, nome) VALUES (57438,'Arthur da Silva');
-INSERT INTO pessoa (cpf, nome) VALUES (74515,'Roberta Lorena');
-INSERT INTO pessoa (cpf, nome) VALUES (25694,'Agostinho Carrara');
-INSERT INTO pessoa (cpf, nome) VALUES (95871,'Samira Matias');
-INSERT INTO pessoa (cpf, nome) VALUES (56238,'Hernando Rodrigues');
-INSERT INTO pessoa (cpf, nome) VALUES (13519,'Camila Arruda');
-INSERT INTO pessoa (cpf, nome) VALUES (57324,'Silvio Castro');
-INSERT INTO pessoa (cpf, nome) VALUES (12345678902, 'Breno');
+INSERT INTO pessoa (cpf, nome) VALUES ('000.532.546-14','José Henrique');
+INSERT INTO pessoa (cpf, nome) VALUES ('839.274.863-02','Lucas Alfredo');
+INSERT INTO pessoa (cpf, nome) VALUES ('153.545.987-13','Lara Maria');
+INSERT INTO pessoa (cpf, nome) VALUES ('986.647.000-87','Alberto Roberto');
+INSERT INTO pessoa (cpf, nome) VALUES ('923.782.185-87','Josué Aguiar');
+INSERT INTO pessoa (cpf, nome) VALUES ('159.738.879-12','Ana Souza');
+INSERT INTO pessoa (cpf, nome) VALUES ('025.105.198-45','João Kléber');
+INSERT INTO pessoa (cpf, nome) VALUES ('012.654.574-38','Arthur da Silva');
+INSERT INTO pessoa (cpf, nome) VALUES ('145.896.745-15','Roberta Lorena');
+INSERT INTO pessoa (cpf, nome) VALUES ('256.941.852-06','Agostinho Carrara');
 
 -- Paciente
 INSERT INTO paciente (cpf, nome, prioridade, n_sus, nome_plano) VALUES ('000.111.222-44', 'Igor', 1, 4546, 'Bradesco');
