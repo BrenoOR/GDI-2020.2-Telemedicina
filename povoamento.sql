@@ -94,6 +94,9 @@ INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe)
 SELECT cpf, nome, 3405, 'Oftalmologia', '256.941.852-06' FROM pessoa WHERE cpf = '145.896.745-15';
 
 INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) 
+SELECT cpf, nome, 6573, 'Nutricionista', '256.941.852-06' FROM pessoa WHERE cpf = '723.963.381-43';
+
+INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) 
 SELECT cpf, nome, 6834, 'Fisioterapia', '256.941.852-06' FROM pessoa WHERE cpf = '985.531.992-06';
 
 INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) 
@@ -144,6 +147,9 @@ SELECT 'https://meet.google.com/cht-bsdf-qer', cpf FROM medico WHERE crm = 6834;
 
 INSERT INTO  consulta (link_chamada, cpf_medico)
 SELECT 'https://meet.google.com/has-zahg-gui', cpf FROM medico WHERE crm = 7325;
+
+INSERT INTO  consulta (link_chamada, cpf_medico)
+SELECT 'https://meet.google.com/sho-rieg-edo', cpf FROM medico WHERE crm = 6573;
 
 -- Povoando marcacao
 INSERT INTO marcacao VALUES (TO_DATE ('2021-07-13 14:00', 'yyyy-mm-dd hh24:mi'));
