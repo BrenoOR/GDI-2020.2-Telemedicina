@@ -29,11 +29,10 @@ CREATE TABLE pessoa (cpf VARCHAR2(14),
 
 CREATE TABLE paciente (cpf VARCHAR2(14),
                        nome VARCHAR2(30) NOT NULL,
-                       prioridade NUMBER,
                        n_sus NUMBER,
                        nome_plano VARCHAR2(30),
                        CONSTRAINT paciente_pk PRIMARY KEY (cpf),
-                       CONSTRAINT paciente_plano_ck CHECK (nome_plano IN ('SIMPLES', 'FAMILIA', 'ESPECIAL', 'PRIME')),
+                       CONSTRAINT paciente_plano_ck CHECK (nome_plano IN ('Bradesco', 'Unimed', 'Hapvida', 'SulAmérica', 'Smile Saúde', 'Cassi', 'Amil')),
                        CONSTRAINT paciente_cpf_ck CHECK (cpf LIKE ('___.___.___-__')));
 
 CREATE TABLE medico (cpf VARCHAR(14),
@@ -57,14 +56,10 @@ CREATE TABLE marcacao (data_hora DATE,
                        CONSTRAINT marcacao_pk PRIMARY KEY (data_hora));
                        
 CREATE TABLE telefone (cpf_pessoa VARCHAR2(14) NOT NULL,
-                       num_telefone VARCHAR2(11),
+                       num_telefone VARCHAR2(16),
                        CONSTRAINT telefone_pk PRIMARY KEY (cpf_pessoa, num_telefone),
                        CONSTRAINT telefone_cpf_pessoa_ck CHECK (cpf_pessoa LIKE ('___.___.___-__')),
                        CONSTRAINT telefone_num_telefone_ck CHECK (num_telefone LIKE ('(__) _ ____-____')));
-                       
-CREATE TABLE medicamento (cod_verif_receita NUMBER NOT NULL,
-                          nome_medicamento VARCHAR2(30),
-                          CONSTRAINT medicamento_pk PRIMARY KEY (cod_verif_receita, nome_medicamento));
                           
 CREATE TABLE exame (cpf_paciente VARCHAR2(14),
                     numero NUMBER NOT NULL,
@@ -81,6 +76,10 @@ CREATE TABLE receita (cod_verificacao NUMBER NOT NULL,
                       CONSTRAINT receita_pk PRIMARY KEY (cod_verificacao),
                       CONSTRAINT receira_marcacao_fk FOREIGN KEY (data_hora_marcacao) REFERENCES marcacao (data_hora));
 
+CREATE TABLE medicamento (nome_medicamento VARCHAR2(30),
+                          cod_verif_receita NUMBER NOT NULL,
+                          CONSTRAINT medicamento_pk PRIMARY KEY (nome_medicamento),
+                          CONSTRAINT medicamento_cod_verif_receita_fk FOREIGN KEY (cod_verif_receita) REFERENCES receita(cod_verificacao));
 
 -- Criação de sequências
                         

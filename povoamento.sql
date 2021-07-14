@@ -1,6 +1,6 @@
 -- Povoando Pessoas
-
-INSERT INTO pessoa (cpf, nome) VALUES ('000.532.546-14','José Henrique');
+INSERT INTO pessoa (cpf, nome) VALUES ('053.142.336-88','Sheyla Lima');
+INSERT INTO pessoa (cpf, nome) VALUES ('010.532.546-14','José Henrique');
 INSERT INTO pessoa (cpf, nome) VALUES ('839.274.863-02','Lucas Alfredo');
 INSERT INTO pessoa (cpf, nome) VALUES ('153.545.987-13','Lara Maria');
 INSERT INTO pessoa (cpf, nome) VALUES ('986.647.000-87','Alberto Roberto');
@@ -10,123 +10,266 @@ INSERT INTO pessoa (cpf, nome) VALUES ('025.105.198-45','João Kléber');
 INSERT INTO pessoa (cpf, nome) VALUES ('012.654.574-38','Arthur da Silva');
 INSERT INTO pessoa (cpf, nome) VALUES ('145.896.745-15','Roberta Lorena');
 INSERT INTO pessoa (cpf, nome) VALUES ('256.941.852-06','Agostinho Carrara');
+INSERT INTO pessoa (cpf, nome) VALUES ('985.531.992-06','Sheyla Carvalho');
+INSERT INTO pessoa (cpf, nome) VALUES ('723.963.381-43','Ronaldo Alves');
+INSERT INTO pessoa (cpf, nome) VALUES ('301.460.684-13','Ed Motta');
+INSERT INTO pessoa (cpf, nome) VALUES ('743.516.623-64','Carla Perez');
+INSERT INTO pessoa (cpf, nome) VALUES ('581.051.853-57','Igor Mascarenhas');
+INSERT INTO pessoa (cpf, nome) VALUES ('375.583.690-63','Breno Rodrigues');
+INSERT INTO pessoa (cpf, nome) VALUES ('537.098.853-62','Natan Neto');
+INSERT INTO pessoa (cpf, nome) VALUES ('864.652.931-82','Felipe França');
+INSERT INTO pessoa (cpf, nome) VALUES ('583.451.591-57','Pedro Henrique');
+INSERT INTO pessoa (cpf, nome) VALUES ('841.915.678-03','Eduardo Conti');
+INSERT INTO pessoa (cpf, nome) VALUES ('642.351.905-84','Rose Galdino');
+INSERT INTO pessoa (cpf, nome) VALUES ('158.910.538-32','Cassi Avelar');
+INSERT INTO pessoa (cpf, nome) VALUES ('689.539.958-23','Cortana da Silva');
+INSERT INTO pessoa (cpf, nome) VALUES ('786.962.193-38','Larissa da Costa');
 
 -- Paciente
-INSERT INTO paciente (cpf, nome, prioridade, n_sus, nome_plano) VALUES ('000.111.222-44', 'Igor', 1, 4546, 'Bradesco');
-INSERT INTO paciente (cpf, nome, prioridade, n_sus, nome_plano) VALUES ('001.111.222-44', 'Laura', 2, 4586, 'Unimed');
-INSERT INTO paciente (cpf, nome, prioridade, n_sus, nome_plano) VALUES ('002.115.222-44', 'Lucas', 3, 4510, 'Hapvida');
-INSERT INTO paciente (cpf, nome, prioridade, n_sus, nome_plano) VALUES ('003.117.222-44', 'Hugo', 4, 4154, 'SulAmérica');
-INSERT INTO paciente (cpf, nome, prioridade, n_sus, nome_plano) VALUES ('004.111.252-44', 'Cristina', 5, 4582, 'Smile Saúde');
-INSERT INTO paciente (cpf, nome, prioridade, n_sus, nome_plano) VALUES ('005.111.222-44', 'Rose', 6, 4896, 'Bradesco');
-INSERT INTO paciente (cpf, nome, prioridade, n_sus, nome_plano) VALUES ('006.111.222-44', 'Maria', 7, 4543, 'Cassi');
-INSERT INTO paciente (cpf, nome, prioridade, n_sus, nome_plano) VALUES ('007.111.222-44', 'Ricardo', 8, 4012, 'Amil');
-INSERT INTO paciente (cpf, nome, prioridade, n_sus, nome_plano) VALUES ('008.111.202-44', 'Eduardo', 9, 4023, 'Bradesco');
-INSERT INTO paciente (cpf, nome, prioridade, n_sus, nome_plano) VALUES ('009.111.222-44', 'Hiago', 10, 4151, 'SulAmérica');
+INSERT INTO paciente (cpf, nome, n_sus, nome_plano)
+SELECT cpf, nome, 4546, 'Bradesco' FROM pessoa WHERE cpf = '581.051.853-57';
+
+INSERT INTO paciente (cpf, nome, n_sus, nome_plano)
+SELECT cpf, nome, 4586, 'Unimed' FROM pessoa WHERE cpf = '375.583.690-63';
+
+INSERT INTO paciente (cpf, nome, n_sus, nome_plano)
+SELECT cpf, nome, 4510, 'Hapvida' FROM pessoa WHERE cpf = '537.098.853-62';
+
+INSERT INTO paciente (cpf, nome, n_sus, nome_plano)
+SELECT cpf, nome, 4154, 'SulAmérica' FROM pessoa WHERE cpf = '864.652.931-82';
+
+INSERT INTO paciente (cpf, nome, n_sus, nome_plano)
+SELECT cpf, nome, 4582, 'Smile Saúde' FROM pessoa WHERE cpf = '583.451.591-57';
+
+INSERT INTO paciente (cpf, nome, n_sus, nome_plano)
+SELECT cpf, nome, 4012, 'Amil' FROM pessoa WHERE cpf = '841.915.678-03';
+
+INSERT INTO paciente (cpf, nome, n_sus, nome_plano)
+SELECT cpf, nome, 4896, 'Bradesco' FROM pessoa WHERE cpf = '642.351.905-84';
+
+INSERT INTO paciente (cpf, nome, n_sus, nome_plano)
+SELECT cpf, nome, 4543, 'Cassi' FROM pessoa WHERE cpf = '158.910.538-32';
+
+INSERT INTO paciente (cpf, nome, n_sus, nome_plano)
+SELECT cpf, nome, 4023, 'Bradesco' FROM pessoa WHERE cpf = '689.539.958-23';
+
+INSERT INTO paciente (cpf, nome, n_sus, nome_plano)
+SELECT cpf, nome, 4151, 'SulAmérica' FROM pessoa WHERE cpf = '786.962.193-38';
 
 -- Medico
-INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) VALUES ('000.452.074-98', 'Eduardo', 3565, 'Oftalmologia', '111.111.111-12');
-INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) VALUES ('000.546.321-00', 'Mário', 3512, 'Dermatologista', '111.111.111-15');
-INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) VALUES ('157.302.254-80', 'Ana', 3025, 'Clínico Geral', '111.222.111-89');
-INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) VALUES ('001.002.003-00', 'Maria', 4565, 'Endocrinologista', '112.654.312-11');
-INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) VALUES ('202.000.604-01', 'Eduarda', 6365, 'Cardiologista', '111.741.000-11');
-INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) VALUES ('000.555.444-00', 'Felicity', 9633, 'Oftalmologia', '214.865.111-10');
-INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) VALUES ('545.636.978-45', 'Crislaine', 3567, 'Clínico Geral', '111.545.921-11');
-INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) VALUES ('545.231.852-74', 'Samuel', 3522, 'Dermatologista', '525.963.159-11');
-INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) VALUES ('101.202.303-98', 'Sara', 3305, 'Endocrinologista', '951.654.753-02');
-INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) VALUES ('101.202.654-87', 'Alexandre', 3405, 'Oftalmologia', '123.654.987-05');
+-- Chefe
 
+INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) 
+SELECT cpf, nome, 2094, 'Psicologia', '' FROM pessoa WHERE cpf = '256.941.852-06';
+
+-- Funcionários
+INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) 
+SELECT cpf, nome, 3565, 'Oftalmologia', '256.941.852-06' FROM pessoa WHERE cpf = '053.142.336-88';
+
+INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) 
+SELECT cpf, nome, 3512, 'Dermatologista', '256.941.852-06' FROM pessoa WHERE cpf = '010.532.546-14';
+
+INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) 
+SELECT cpf, nome, 3025, 'Clínico Geral', '256.941.852-06' FROM pessoa WHERE cpf = '839.274.863-02';
+
+INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) 
+SELECT cpf, nome, 4565, 'Endocrinologista', '256.941.852-06' FROM pessoa WHERE cpf = '153.545.987-13';
+
+INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) 
+SELECT cpf, nome, 6365, 'Cardiologista', '256.941.852-06' FROM pessoa WHERE cpf = '986.647.000-87';
+
+INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) 
+SELECT cpf, nome, 9633, 'Oftalmologia', '256.941.852-06' FROM pessoa WHERE cpf = '923.782.185-87';
+
+INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) 
+SELECT cpf, nome, 3567, 'Clínico Geral', '256.941.852-06' FROM pessoa WHERE cpf = '159.738.879-12';
+
+INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) 
+SELECT cpf, nome, 3522, 'Dermatologista', '256.941.852-06' FROM pessoa WHERE cpf = '025.105.198-45';
+
+INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) 
+SELECT cpf, nome, 3305, 'Endocrinologista', '256.941.852-06' FROM pessoa WHERE cpf = '012.654.574-38';
+
+INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) 
+SELECT cpf, nome, 3405, 'Oftalmologia', '256.941.852-06' FROM pessoa WHERE cpf = '145.896.745-15';
+
+INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) 
+SELECT cpf, nome, 6834, 'Fisioterapia', '256.941.852-06' FROM pessoa WHERE cpf = '985.531.992-06';
+
+INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) 
+SELECT cpf, nome, 2350, 'Nutricionista', '256.941.852-06' FROM pessoa WHERE cpf = '301.460.684-13';
+
+INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) 
+SELECT cpf, nome, 7325, 'Otorrino', '256.941.852-06' FROM pessoa WHERE cpf = '743.516.623-64';
 
 -- Povoando consulta
-INSERT INTO  consulta   VALUES ( 'https://meet.google.com/cfp-biki-icz',906.274.860-02);
-INSERT INTO  consulta   VALUES ( 'https://meet.google.com/pdh-ryth-kwc',688.789.920-54);
-INSERT INTO  consulta   VALUES ( 'https://meet.google.com/ith-gere-kio',824.874.820-01);
-INSERT INTO  consulta   VALUES ( 'https://meet.google.com/tvh-sdfq-wck',612.636.730-82);
-INSERT INTO  consulta   VALUES ( 'https://meet.google.com/vht-bqwz-wtk',830.286.750-05);
-INSERT INTO  consulta   VALUES ( 'https://meet.google.com/ojh-dgad-wep',596.004.180-47);
-INSERT INTO  consulta   VALUES ( 'https://meet.google.com/lht-adfw-sdf',976.310.480-70);
-INSERT INTO  consulta   VALUES ( 'https://meet.google.com/tvh-cvbb-cas',912.878.930-07);
-INSERT INTO  consulta   VALUES ( 'https://meet.google.com/ath-hgjd-lok',066.989.880-57);
-INSERT INTO  consulta   VALUES ( 'https://meet.google.com/thz-hjgy-jhn',737.129.450-51);
-INSERT INTO  consulta   VALUES ( 'https://meet.google.com/ath-fgse-cfs',737.543.550-23);
-INSERT INTO  consulta   VALUES ( 'https://meet.google.com/bhy-asda-ujf',494.073.100-60);
-INSERT INTO  consulta   VALUES ( 'https://meet.google.com/cht-bsdf-qer',485.476.990-40);
-INSERT INTO  consulta   VALUES ( 'https://meet.google.com/phg-djjd-urr',212.139.580-67);
-INSERT INTO  consulta   VALUES ( 'https://meet.google.com/hsd-kfdj-uot',536.650.360-46);
+INSERT INTO  consulta (link_chamada, cpf_medico)
+SELECT 'https://meet.google.com/cfp-biki-icz', cpf FROM medico WHERE crm = 2350;
+
+INSERT INTO  consulta (link_chamada, cpf_medico)
+SELECT 'https://meet.google.com/pdh-ryth-kwc', cpf FROM medico WHERE crm = 2094;
+
+INSERT INTO  consulta (link_chamada, cpf_medico)
+SELECT 'https://meet.google.com/ith-gere-kio', cpf FROM medico WHERE crm = 3305;
+
+INSERT INTO  consulta (link_chamada, cpf_medico)
+SELECT 'https://meet.google.com/tvh-sdfq-wck', cpf FROM medico WHERE crm = 3405;
+
+INSERT INTO  consulta (link_chamada, cpf_medico)
+SELECT 'https://meet.google.com/vht-bqwz-wtk', cpf FROM medico WHERE crm = 3567;
+
+INSERT INTO  consulta (link_chamada, cpf_medico)
+SELECT 'https://meet.google.com/ojh-dgad-wep', cpf FROM medico WHERE crm = 6365;
+
+INSERT INTO  consulta (link_chamada, cpf_medico)
+SELECT 'https://meet.google.com/lht-adfw-sdf', cpf FROM medico WHERE crm = 4565;
+
+INSERT INTO  consulta (link_chamada, cpf_medico)
+SELECT 'https://meet.google.com/tvh-cvbb-cas', cpf FROM medico WHERE crm = 9633;
+
+INSERT INTO  consulta (link_chamada, cpf_medico)
+SELECT 'https://meet.google.com/ath-hgjd-lok', cpf FROM medico WHERE crm = 3565;
+
+INSERT INTO  consulta (link_chamada, cpf_medico)
+SELECT 'https://meet.google.com/thz-hjgy-jhn', cpf FROM medico WHERE crm = 3512;
+
+INSERT INTO  consulta (link_chamada, cpf_medico)
+SELECT 'https://meet.google.com/ath-fgse-cfs', cpf FROM medico WHERE crm = 3025;
+
+INSERT INTO  consulta (link_chamada, cpf_medico)
+SELECT 'https://meet.google.com/bhy-asda-ujf', cpf FROM medico WHERE crm = 3522;
+
+INSERT INTO  consulta (link_chamada, cpf_medico)
+SELECT 'https://meet.google.com/cht-bsdf-qer', cpf FROM medico WHERE crm = 6834;
+
+INSERT INTO  consulta (link_chamada, cpf_medico)
+SELECT 'https://meet.google.com/has-zahg-gui', cpf FROM medico WHERE crm = 7325;
 
 -- Povoando marcacao
-INSERT INTO marcacao VALUES (2021-07-13);
-INSERT INTO marcacao VALUES (2021-05-03);
-INSERT INTO marcacao VALUES (2021-07-11);
-INSERT INTO marcacao VALUES (2021-06-03);
-INSERT INTO marcacao VALUES (2021-06-13);
-INSERT INTO marcacao VALUES (2020-12-23);
-INSERT INTO marcacao VALUES (2021-02-01);
-INSERT INTO marcacao VALUES (2021-03-25);
-INSERT INTO marcacao VALUES (2021-05-03);
-INSERT INTO marcacao VALUES (2021-05-15);
-
-
+INSERT INTO marcacao VALUES (TO_DATE ('2021-07-13 14:00', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO marcacao VALUES (TO_DATE ('2020-08-14 15:30', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO marcacao VALUES (TO_DATE ('2020-09-21 09:30', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO marcacao VALUES (TO_DATE ('2020-10-24 10:00', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO marcacao VALUES (TO_DATE ('2020-11-30 08:40', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO marcacao VALUES (TO_DATE ('2021-06-14 10:15', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO marcacao VALUES (TO_DATE ('2021-06-21 14:20', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO marcacao VALUES (TO_DATE ('2021-04-03 16:20', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO marcacao VALUES (TO_DATE ('2021-02-17 09:25', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO marcacao VALUES (TO_DATE ('2021-02-28 14:00', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO marcacao VALUES (TO_DATE ('2020-06-21 15:10', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO marcacao VALUES (TO_DATE ('2021-05-01 10:00', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO marcacao VALUES (TO_DATE ('2021-04-04 08:30', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO marcacao VALUES (TO_DATE ('2021-03-09 09:20', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO marcacao VALUES (TO_DATE ('2021-01-27 15:50', 'yyyy-mm-dd hh24:mi'));
 
 -- Povoando telefone
-INSERT INTO telefone   VALUES (906.274.860-02,'(81)9 9999-5555');
-INSERT INTO telefone   VALUES (688.789.920-54,'(14) 9 3193-8477');
-INSERT INTO telefone   VALUES (824.874.820-01,'(52) 9 8282-5729');
-INSERT INTO telefone   VALUES (612.636.730-82,'(19) 9 2856-1077');
-INSERT INTO telefone   VALUES (830.286.750-05,'(88) 9 8513-4740');
-INSERT INTO telefone   VALUES (596.004.180-47,'(27) 9 9644-2468');
-INSERT INTO telefone   VALUES (976.310.480-70,'(38) 9 0362-3351');
-INSERT INTO telefone   VALUES (912.878.930-07,'(48) 9 1200-4900');
-INSERT INTO telefone   VALUES (066.989.880-57,'(61) 9 9203-0994');
-INSERT INTO telefone   VALUES (737.129.450-51,'(25) 9 0203-7190');
-INSERT INTO telefone   VALUES (737.543.550-23,'(39) 9 8310-4750');
-INSERT INTO telefone   VALUES (494.073.100-60,'(55) 9 0116-1728');
-INSERT INTO telefone   VALUES (485.476.990-40,'(56) 9 7396-1081');
-INSERT INTO telefone   VALUES (212.139.580-67,'(60) 9 1745-0317');
-INSERT INTO telefone   VALUES (536.650.360-46,'(12) 9 1376-6526');
-
-
--- Povoando medicamento
-INSERT INTO medicamento VALUES (55, 'Paracetamol');
-INSERT INTO medicamento VALUES (55, 'Xarelto');
-INSERT INTO medicamento VALUES (55, 'Puran');
-INSERT INTO medicamento VALUES (55, 'Puran');
-INSERT INTO medicamento VALUES (55, 'Victoza');
-INSERT INTO medicamento VALUES (55, 'Torsilax');
-INSERT INTO medicamento VALUES (55, 'Addera D3');
-INSERT INTO medicamento VALUES (55, 'Dorflex');
-INSERT INTO medicamento VALUES (55, 'Anthelios');
-INSERT INTO medicamento VALUES (55, 'Victoza');
+INSERT INTO telefone SELECT cpf, '(81) 9 9999-5555' FROM pessoa WHERE cpf = '053.142.336-88';
+INSERT INTO telefone SELECT cpf, '(14) 9 3193-8477' FROM pessoa WHERE cpf = '010.532.546-14';
+INSERT INTO telefone SELECT cpf, '(52) 9 8282-5729' FROM pessoa WHERE cpf = '839.274.863-02';
+INSERT INTO telefone SELECT cpf, '(19) 9 2856-1077' FROM pessoa WHERE cpf = '153.545.987-13';
+INSERT INTO telefone SELECT cpf, '(88) 9 8513-4740' FROM pessoa WHERE cpf = '986.647.000-87';
+INSERT INTO telefone SELECT cpf, '(27) 9 9644-2468' FROM pessoa WHERE cpf = '923.782.185-87';
+INSERT INTO telefone SELECT cpf, '(38) 9 0362-3351' FROM pessoa WHERE cpf = '159.738.879-12';
+INSERT INTO telefone SELECT cpf, '(48) 9 1200-4900' FROM pessoa WHERE cpf = '025.105.198-45';
+INSERT INTO telefone SELECT cpf, '(61) 9 9203-0994' FROM pessoa WHERE cpf = '012.654.574-38';
+INSERT INTO telefone SELECT cpf, '(25) 9 0203-7190' FROM pessoa WHERE cpf = '145.896.745-15';
+INSERT INTO telefone SELECT cpf, '(39) 9 8310-4750' FROM pessoa WHERE cpf = '256.941.852-06';
+INSERT INTO telefone SELECT cpf, '(55) 9 0116-1728' FROM pessoa WHERE cpf = '985.531.992-06';
+INSERT INTO telefone SELECT cpf, '(56) 9 7396-1081' FROM pessoa WHERE cpf = '723.963.381-43';
+INSERT INTO telefone SELECT cpf, '(60) 9 1745-0317' FROM pessoa WHERE cpf = '301.460.684-13';
+INSERT INTO telefone SELECT cpf, '(12) 9 1376-6526' FROM pessoa WHERE cpf = '743.516.623-64';
 
 -- Povoando exame
-INSERT INTO exame VALUES (906.274.860-02, 48, 'Acuidade Visual', 'Ok', 2021-07-13);
-INSERT INTO exame VALUES (688.789.920-54, 96, 'Hemograma', 'Ok', 2020-08-14);
-INSERT INTO exame VALUES (824.874.820-01, 22, 'Glicemia em jejum', 'Ok', 2020-09-21);
-INSERT INTO exame VALUES (612.636.730-82, 75, 'Colesterol e Triglicerídeos', 'Ok', 2020-10-24);
-INSERT INTO exame VALUES (830.286.750-05, 63, 'TGO (AST) e TGP (ALT)', 'Ok', 2020-11-30);
-INSERT INTO exame VALUES (596.004.180-47, 89, 'TSH e T4 livre', 'Ok', 2021-06-14);
-INSERT INTO exame VALUES (976.310.480-70, 14, 'Ácido Úrico', 'Ok', 2021-06-21);
-INSERT INTO exame VALUES (912.878.930-07, 38, 'Mamografia', 'Ok', 2021-04-05);
-INSERT INTO exame VALUES (066.989.880-57, 75, 'Teste cardiopulmonar', 'Ok', 2021-02-17);
-INSERT INTO exame VALUES (737.129.450-51, 96, 'Anamnese clínica e esportiva', 'Ok', 2021-02-28);
-INSERT INTO exame VALUES (737.543.550-23, 24, 'Dosagem de PSA', 'Ok', 2020-06-21);
-INSERT INTO exame VALUES (494.073.100-60, 32, 'Avaliação física completa', 'Ok', 2021-05-01);
-INSERT INTO exame VALUES (485.476.990-40, 21, 'Ressonância Magnética', 'Ok', 2021-04-04);
-INSERT INTO exame VALUES (212.139.580-67, 17, 'Tomografia Computadorizada', 'Ok', 2021-03-09);
-INSERT INTO exame VALUES (536.650.360-46, 11, 'Ultra-sonografia', 'Ok', 2021-01-27);
+INSERT INTO exame VALUES ('906.274.860-02', exame_numero.NEXTVAL, 'Acuidade Visual', 'Ok', TO_DATE ('2021-07-13 14:00', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO exame VALUES ('688.789.920-54', exame_numero.NEXTVAL, 'Hemograma', 'Ok', TO_DATE ('2020-08-14 15:30', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO exame VALUES ('824.874.820-01', exame_numero.NEXTVAL, 'Glicemia em jejum', 'Ok', TO_DATE ('2020-09-21 09:30', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO exame VALUES ('612.636.730-82', exame_numero.NEXTVAL, 'Colesterol e Triglicerídeos', 'Ok', TO_DATE ('2020-10-24 10:00', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO exame VALUES ('830.286.750-05', exame_numero.NEXTVAL, 'TGO (AST) e TGP (ALT)', 'Ok', TO_DATE ('2020-11-30 08:40', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO exame VALUES ('596.004.180-47', exame_numero.NEXTVAL, 'TSH e T4 livre', 'Ok', TO_DATE ('2021-06-14 10:15', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO exame VALUES ('976.310.480-70', exame_numero.NEXTVAL, 'Ácido Úrico', 'Ok', TO_DATE ('2021-06-21 14:20', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO exame VALUES ('912.878.930-07', exame_numero.NEXTVAL, 'Mamografia', 'Ok', TO_DATE ('2021-04-03 16:20', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO exame VALUES ('066.989.880-57', exame_numero.NEXTVAL, 'Teste cardiopulmonar', 'Ok', TO_DATE ('2021-02-17 09:25', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO exame VALUES ('737.129.450-51', exame_numero.NEXTVAL, 'Anamnese clínica e esportiva', 'Ok', TO_DATE ('2021-02-28 14:00', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO exame VALUES ('737.543.550-23', exame_numero.NEXTVAL, 'Dosagem de PSA', 'Ok', TO_DATE ('2020-06-21 15:10', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO exame VALUES ('494.073.100-60', exame_numero.NEXTVAL, 'Avaliação física completa', 'Ok', TO_DATE ('2021-05-01 10:00', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO exame VALUES ('485.476.990-40', exame_numero.NEXTVAL, 'Ressonância Magnética', 'Ok', TO_DATE ('2021-04-04 08:30', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO exame VALUES ('212.139.580-67', exame_numero.NEXTVAL, 'Tomografia Computadorizada', 'Ok', TO_DATE ('2021-03-09 09:20', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO exame VALUES ('536.650.360-46', exame_numero.NEXTVAL, 'Ultra-sonografia', 'Ok', TO_DATE ('2021-01-27 15:50', 'yyyy-mm-dd hh24:mi'));
 
 -- Povoando receita
-INSERT INTO receita VALUES (546, 'Sheyla Lima', 2021-07-12);
-INSERT INTO receita VALUES (874, 'José Henrique', 2021-07-12);
-INSERT INTO receita VALUES (221, 'Lucas Alfredo', 2021-07-12);
-INSERT INTO receita VALUES (372, 'Lara Maria', 2021-07-12);
-INSERT INTO receita VALUES (996, 'Alberto Roberto', 2021-07-12);
-INSERT INTO receita VALUES (481, 'Josué Aguiar', 2021-07-13);
-INSERT INTO receita VALUES (015, 'Ana Souza', 2021-07-13);
-INSERT INTO receita VALUES (542, 'João Kléber', 2021-07-13);
-INSERT INTO receita VALUES (671, 'Arthur da Silva', 2021-07-13);
-INSERT INTO receita VALUES (778, 'Roberta Lorena', 2021-07-13);
-INSERT INTO receita VALUES (926, 'Agostinho Carrara', 2021-07-14);
-INSERT INTO receita VALUES (450, 'Sheyla Carvalho', 2021-07-14);
-INSERT INTO receita VALUES (119, 'Ronaldo Alves', 2021-07-14);
-INSERT INTO receita VALUES (207, 'Ed Motta', 2021-07-14);
-INSERT INTO receita VALUES (599, 'Carla Perez', 2021-07-14);
+INSERT INTO receita VALUES (receita_cod_verificacao.NEXTVAL, 'Sheyla Lima', TO_DATE ('2021-07-13 14:00', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO receita VALUES (receita_cod_verificacao.NEXTVAL, 'José Henrique', TO_DATE ('2020-08-14 15:30', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO receita VALUES (receita_cod_verificacao.NEXTVAL, 'Lucas Alfredo',  TO_DATE ('2020-09-21 09:30', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO receita VALUES (receita_cod_verificacao.NEXTVAL, 'Lara Maria', TO_DATE ('2020-10-24 10:00', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO receita VALUES (receita_cod_verificacao.NEXTVAL, 'Alberto Roberto', TO_DATE ('2020-11-30 08:40', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO receita VALUES (receita_cod_verificacao.NEXTVAL, 'Josué Aguiar', TO_DATE ('2021-06-14 10:15', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO receita VALUES (receita_cod_verificacao.NEXTVAL, 'Ana Souza', TO_DATE ('2021-06-21 14:20', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO receita VALUES (receita_cod_verificacao.NEXTVAL, 'João Kléber', TO_DATE ('2021-04-03 16:20', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO receita VALUES (receita_cod_verificacao.NEXTVAL, 'Arthur da Silva', TO_DATE ('2021-02-17 09:25', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO receita VALUES (receita_cod_verificacao.NEXTVAL, 'Roberta Lorena', TO_DATE ('2021-02-28 14:00', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO receita VALUES (receita_cod_verificacao.NEXTVAL, 'Agostinho Carrara', TO_DATE ('2020-06-21 15:10', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO receita VALUES (receita_cod_verificacao.NEXTVAL, 'Sheyla Carvalho', TO_DATE ('2021-05-01 10:00', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO receita VALUES (receita_cod_verificacao.NEXTVAL, 'Ronaldo Alves', TO_DATE ('2021-04-04 08:30', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO receita VALUES (receita_cod_verificacao.NEXTVAL, 'Ed Motta', TO_DATE ('2021-03-09 09:20', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO receita VALUES (receita_cod_verificacao.NEXTVAL, 'Carla Perez', TO_DATE ('2021-01-27 15:50', 'yyyy-mm-dd hh24:mi'));
+
+-- Povoando medicamento
+INSERT INTO medicamento 
+SELECT 'Paracetamol', cod_verificacao
+FROM receita WHERE data_hora_marcacao = TO_DATE ('2021-07-13 14:00', 'yyyy-mm-dd hh24:mi');
+
+INSERT INTO medicamento 
+SELECT 'Xarelto', cod_verificacao
+FROM receita WHERE data_hora_marcacao = TO_DATE ('2020-08-14 15:30', 'yyyy-mm-dd hh24:mi');
+
+INSERT INTO medicamento 
+SELECT 'Albendazol', cod_verificacao
+FROM receita WHERE data_hora_marcacao = TO_DATE ('2020-09-21 09:30', 'yyyy-mm-dd hh24:mi');
+
+INSERT INTO medicamento 
+SELECT 'Puran', cod_verificacao
+FROM receita WHERE data_hora_marcacao = TO_DATE ('2020-10-24 10:00', 'yyyy-mm-dd hh24:mi');
+
+INSERT INTO medicamento 
+SELECT 'Victoza', cod_verificacao
+FROM receita WHERE data_hora_marcacao = TO_DATE ('2020-11-30 08:40', 'yyyy-mm-dd hh24:mi');
+
+INSERT INTO medicamento 
+SELECT 'Torsilax', cod_verificacao
+FROM receita WHERE data_hora_marcacao = TO_DATE ('2021-06-14 10:15', 'yyyy-mm-dd hh24:mi');
+
+INSERT INTO medicamento 
+SELECT 'Addera D3', cod_verificacao
+FROM receita WHERE data_hora_marcacao = TO_DATE ('2021-06-21 14:20', 'yyyy-mm-dd hh24:mi');
+
+INSERT INTO medicamento 
+SELECT 'Dorflex', cod_verificacao
+FROM receita WHERE data_hora_marcacao = TO_DATE ('2021-04-03 16:20', 'yyyy-mm-dd hh24:mi');
+
+INSERT INTO medicamento 
+SELECT 'Anthelios', cod_verificacao
+FROM receita WHERE data_hora_marcacao = TO_DATE ('2021-02-17 09:25', 'yyyy-mm-dd hh24:mi');
+
+INSERT INTO medicamento 
+SELECT 'Bromazepam', cod_verificacao
+FROM receita WHERE data_hora_marcacao = TO_DATE ('2021-02-28 14:00', 'yyyy-mm-dd hh24:mi');
+
+INSERT INTO medicamento 
+SELECT 'Diazepam', cod_verificacao
+FROM receita WHERE data_hora_marcacao = TO_DATE ('2020-06-21 15:10', 'yyyy-mm-dd hh24:mi');
+
+INSERT INTO medicamento 
+SELECT 'Gardenal', cod_verificacao
+FROM receita WHERE data_hora_marcacao = TO_DATE ('2021-05-01 10:00', 'yyyy-mm-dd hh24:mi');
+
+INSERT INTO medicamento 
+SELECT 'Rivotril', cod_verificacao
+FROM receita WHERE data_hora_marcacao = TO_DATE ('2021-04-04 08:30', 'yyyy-mm-dd hh24:mi');
+
+INSERT INTO medicamento 
+SELECT 'Imipramina', cod_verificacao
+FROM receita WHERE data_hora_marcacao = TO_DATE ('2021-03-09 09:20', 'yyyy-mm-dd hh24:mi');
+
+INSERT INTO medicamento 
+SELECT 'Ivermectina', cod_verificacao
+FROM receita WHERE data_hora_marcacao = TO_DATE ('2021-01-27 15:50', 'yyyy-mm-dd hh24:mi');
