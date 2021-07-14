@@ -69,7 +69,21 @@ INSERT INTO telefone   VALUES (536.650.360-46,'(12) 9 1376-6526');
 INSERT INTO medicamento VALUES (55, 'Paracetamol');
 
 -- Povoando exame
-INSERT INTO exame VALUES (96385274112, 35, 'Acuidade Visual', 'Ok', 2021-07-13);
+INSERT INTO exame VALUES (906.274.860-02, 48, 'Acuidade Visual', 'Ok', 2021-07-13);
+INSERT INTO exame VALUES (688.789.920-54, 96, 'Hemograma', 'Ok', 2020-08-14);
+INSERT INTO exame VALUES (824.874.820-01, 22, 'Glicemia em jejum', 'Ok', 2020-09-21);
+INSERT INTO exame VALUES (612.636.730-82, 75, 'Colesterol e Triglicerídeos', 'Ok', 2020-10-24);
+INSERT INTO exame VALUES (830.286.750-05, 63, 'TGO (AST) e TGP (ALT)', 'Ok', 2020-11-30);
+INSERT INTO exame VALUES (596.004.180-47, 89, 'TSH e T4 livre', 'Ok', 2021-06-14);
+INSERT INTO exame VALUES (976.310.480-70, 14, 'Ácido Úrico', 'Ok', 2021-06-21);
+INSERT INTO exame VALUES (912.878.930-07, 38, 'Mamografia', 'Ok', 2021-04-05);
+INSERT INTO exame VALUES (066.989.880-57, 75, 'Teste cardiopulmonar', 'Ok', 2021-02-17);
+INSERT INTO exame VALUES (737.129.450-51, 96, 'Anamnese clínica e esportiva', 'Ok', 2021-02-28);
+INSERT INTO exame VALUES (737.543.550-23, 24, 'Dosagem de PSA', 'Ok', 2020-06-21);
+INSERT INTO exame VALUES (494.073.100-60, 32, 'Avaliação física completa', 'Ok', 2021-05-01);
+INSERT INTO exame VALUES (485.476.990-40, 21, 'Ressonância Magnética', 'Ok', 2021-04-04);
+INSERT INTO exame VALUES (212.139.580-67, 17, 'Tomografia Computadorizada', 'Ok', 2021-03-09);
+INSERT INTO exame VALUES (536.650.360-46, 11, 'Ultra-sonografia', 'Ok', 2021-01-27);
 
 -- Povoando receita
 INSERT INTO receita VALUES (546, 'Sheyla Lima', 2021-07-13);
