@@ -17,8 +17,16 @@ INSERT INTO pessoa (cpf, nome) VALUES (57324,'Silvio Castro');
 INSERT INTO pessoa (cpf, nome) VALUES (12345678902, 'Breno');
 
 -- Paciente
-INSERT INTO paciente VALUES (00011122244, 'Igor', 1, 4546, 'Bradesco');
-
+INSERT INTO paciente (cpf, nome, prioridade, n_sus, nome_plano) VALUES ('000.111.222-44', 'Igor', 1, 4546, 'Bradesco');
+INSERT INTO paciente (cpf, nome, prioridade, n_sus, nome_plano) VALUES ('001.111.222-44', 'Laura', 2, 4586, 'Unimed');
+INSERT INTO paciente (cpf, nome, prioridade, n_sus, nome_plano) VALUES ('002.115.222-44', 'Lucas', 3, 4510, 'Hapvida');
+INSERT INTO paciente (cpf, nome, prioridade, n_sus, nome_plano) VALUES ('003.117.222-44', 'Hugo', 4, 4154, 'SulAmérica');
+INSERT INTO paciente (cpf, nome, prioridade, n_sus, nome_plano) VALUES ('004.111.252-44', 'Cristina', 5, 4582, 'Smile Saúde');
+INSERT INTO paciente (cpf, nome, prioridade, n_sus, nome_plano) VALUES ('005.111.222-44', 'Rose', 6, 4896, 'Bradesco');
+INSERT INTO paciente (cpf, nome, prioridade, n_sus, nome_plano) VALUES ('006.111.222-44', 'Maria', 7, 4543, 'Cassi');
+INSERT INTO paciente (cpf, nome, prioridade, n_sus, nome_plano) VALUES ('007.111.222-44', 'Ricardo', 8, 4012, 'Amil');
+INSERT INTO paciente (cpf, nome, prioridade, n_sus, nome_plano) VALUES ('008.111.202-44', 'Eduardo', 9, 4023, 'Bradesco');
+INSERT INTO paciente (cpf, nome, prioridade, n_sus, nome_plano) VALUES ('009.111.222-44', 'Hiago', 10, 4151, 'SulAmérica');
 
 -- Medico
 INSERT INTO medico VALUES (00000000000, 'Eduardo', 3565, 'Oftalmologia', 11111111111);
