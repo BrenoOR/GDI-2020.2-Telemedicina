@@ -26,6 +26,11 @@ INSERT INTO pessoa (cpf, nome) VALUES ('158.910.538-32','Cassi Avelar');
 INSERT INTO pessoa (cpf, nome) VALUES ('689.539.958-23','Cortana da Silva');
 INSERT INTO pessoa (cpf, nome) VALUES ('786.962.193-38','Larissa da Costa');
 
+INSERT INTO pessoa (cpf, nome) VALUES ('135.581.486-85','Abraão Bezerra');
+INSERT INTO pessoa (cpf, nome) VALUES ('440.581.784-01','Isaque Farias');
+INSERT INTO pessoa (cpf, nome) VALUES ('232.101.104-00','Raquel Teixeira');
+INSERT INTO pessoa (cpf, nome) VALUES ('400.898.482-31','Josué Matias');
+
 -- Paciente
 INSERT INTO paciente (cpf, nome, n_sus, nome_plano)
 SELECT cpf, nome, 4546, 'Bradesco' FROM pessoa WHERE cpf = '581.051.853-57';
@@ -56,6 +61,12 @@ SELECT cpf, nome, 4023, 'Bradesco' FROM pessoa WHERE cpf = '689.539.958-23';
 
 INSERT INTO paciente (cpf, nome, n_sus, nome_plano)
 SELECT cpf, nome, 4151, 'SulAmérica' FROM pessoa WHERE cpf = '786.962.193-38';
+
+INSERT INTO paciente (cpf, nome, n_sus, nome_plano)
+SELECT cpf, nome, 3241, 'Hapvida' FROM pessoa WHERE cpf = '135.581.486-85';
+
+INSERT INTO paciente (cpf, nome, n_sus, nome_plano)
+SELECT cpf, nome, 3247, 'Unimed' FROM pessoa WHERE cpf = '440.581.784-01';
 
 -- Medico
 -- Chefe
@@ -106,6 +117,12 @@ SELECT cpf, nome, 2350, 'Nutricionista', '256.941.852-06' FROM pessoa WHERE cpf 
 INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) 
 SELECT cpf, nome, 7325, 'Otorrino', '256.941.852-06' FROM pessoa WHERE cpf = '743.516.623-64';
 
+INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) 
+SELECT cpf, nome, 8234, 'Neurologista', '256.941.852-06' FROM pessoa WHERE cpf = '232.101.104-00';
+
+INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) 
+SELECT cpf, nome, 4436, 'Clínico Geral', '256.941.852-06' FROM pessoa WHERE cpf = '400.898.482-31';
+
 -- Povoando consulta
 INSERT INTO  consulta (link_chamada, cpf_medico)
 SELECT 'https://meet.google.com/cfp-biki-icz', cpf FROM medico WHERE crm = 2350;
@@ -152,6 +169,12 @@ SELECT 'https://meet.google.com/has-zahg-gui', cpf FROM medico WHERE crm = 7325;
 INSERT INTO  consulta (link_chamada, cpf_medico)
 SELECT 'https://meet.google.com/sho-rieg-edo', cpf FROM medico WHERE crm = 6573;
 
+INSERT INTO  consulta (link_chamada, cpf_medico)
+SELECT 'https://meet.google.com/xin-zhao-jng', cpf FROM medico WHERE crm = 8234;
+
+INSERT INTO  consulta (link_chamada, cpf_medico)
+SELECT 'https://meet.google.com/sha-cori-nga', cpf FROM medico WHERE crm = 4436;
+
 -- Povoando marcacao
 INSERT INTO marcacao VALUES (TO_DATE ('2021-07-13 14:00', 'yyyy-mm-dd hh24:mi'));
 INSERT INTO marcacao VALUES (TO_DATE ('2020-08-14 15:30', 'yyyy-mm-dd hh24:mi'));
@@ -168,6 +191,8 @@ INSERT INTO marcacao VALUES (TO_DATE ('2021-05-01 10:00', 'yyyy-mm-dd hh24:mi'))
 INSERT INTO marcacao VALUES (TO_DATE ('2021-04-04 08:30', 'yyyy-mm-dd hh24:mi'));
 INSERT INTO marcacao VALUES (TO_DATE ('2021-03-09 09:20', 'yyyy-mm-dd hh24:mi'));
 INSERT INTO marcacao VALUES (TO_DATE ('2021-01-27 15:50', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO marcacao VALUES (TO_DATE ('2021-07-19 09:20', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO marcacao VALUES (TO_DATE ('2021-09-07 15:50', 'yyyy-mm-dd hh24:mi'));
 
 -- Povoando telefone
 INSERT INTO telefone SELECT cpf, '(81) 9 9999-5555' FROM pessoa WHERE cpf = '053.142.336-88';
