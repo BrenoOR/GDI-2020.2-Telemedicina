@@ -14,6 +14,7 @@ INSERT INTO pessoa (cpf, nome) VALUES ('985.531.992-06','Sheyla Carvalho');
 INSERT INTO pessoa (cpf, nome) VALUES ('723.963.381-43','Ronaldo Alves');
 INSERT INTO pessoa (cpf, nome) VALUES ('301.460.684-13','Ed Motta');
 INSERT INTO pessoa (cpf, nome) VALUES ('743.516.623-64','Carla Perez');
+
 INSERT INTO pessoa (cpf, nome) VALUES ('581.051.853-57','Igor Mascarenhas');
 INSERT INTO pessoa (cpf, nome) VALUES ('375.583.690-63','Breno Rodrigues');
 INSERT INTO pessoa (cpf, nome) VALUES ('537.098.853-62','Natan Neto');
@@ -186,21 +187,65 @@ INSERT INTO telefone SELECT cpf, '(60) 9 1745-0317' FROM pessoa WHERE cpf = '301
 INSERT INTO telefone SELECT cpf, '(12) 9 1376-6526' FROM pessoa WHERE cpf = '743.516.623-64';
 
 -- Povoando exame
-INSERT INTO exame VALUES ('906.274.860-02', exame_numero.NEXTVAL, 'Acuidade Visual', 'Ok', TO_DATE ('2021-07-13 14:00', 'yyyy-mm-dd hh24:mi'));
-INSERT INTO exame VALUES ('688.789.920-54', exame_numero.NEXTVAL, 'Hemograma', 'Ok', TO_DATE ('2020-08-14 15:30', 'yyyy-mm-dd hh24:mi'));
-INSERT INTO exame VALUES ('824.874.820-01', exame_numero.NEXTVAL, 'Glicemia em jejum', 'Ok', TO_DATE ('2020-09-21 09:30', 'yyyy-mm-dd hh24:mi'));
-INSERT INTO exame VALUES ('612.636.730-82', exame_numero.NEXTVAL, 'Colesterol e Triglicerídeos', 'Ok', TO_DATE ('2020-10-24 10:00', 'yyyy-mm-dd hh24:mi'));
-INSERT INTO exame VALUES ('830.286.750-05', exame_numero.NEXTVAL, 'TGO (AST) e TGP (ALT)', 'Ok', TO_DATE ('2020-11-30 08:40', 'yyyy-mm-dd hh24:mi'));
-INSERT INTO exame VALUES ('596.004.180-47', exame_numero.NEXTVAL, 'TSH e T4 livre', 'Ok', TO_DATE ('2021-06-14 10:15', 'yyyy-mm-dd hh24:mi'));
-INSERT INTO exame VALUES ('976.310.480-70', exame_numero.NEXTVAL, 'Ácido Úrico', 'Ok', TO_DATE ('2021-06-21 14:20', 'yyyy-mm-dd hh24:mi'));
-INSERT INTO exame VALUES ('912.878.930-07', exame_numero.NEXTVAL, 'Mamografia', 'Ok', TO_DATE ('2021-04-03 16:20', 'yyyy-mm-dd hh24:mi'));
-INSERT INTO exame VALUES ('066.989.880-57', exame_numero.NEXTVAL, 'Teste cardiopulmonar', 'Ok', TO_DATE ('2021-02-17 09:25', 'yyyy-mm-dd hh24:mi'));
-INSERT INTO exame VALUES ('737.129.450-51', exame_numero.NEXTVAL, 'Anamnese clínica e esportiva', 'Ok', TO_DATE ('2021-02-28 14:00', 'yyyy-mm-dd hh24:mi'));
-INSERT INTO exame VALUES ('737.543.550-23', exame_numero.NEXTVAL, 'Dosagem de PSA', 'Ok', TO_DATE ('2020-06-21 15:10', 'yyyy-mm-dd hh24:mi'));
-INSERT INTO exame VALUES ('494.073.100-60', exame_numero.NEXTVAL, 'Avaliação física completa', 'Ok', TO_DATE ('2021-05-01 10:00', 'yyyy-mm-dd hh24:mi'));
-INSERT INTO exame VALUES ('485.476.990-40', exame_numero.NEXTVAL, 'Ressonância Magnética', 'Ok', TO_DATE ('2021-04-04 08:30', 'yyyy-mm-dd hh24:mi'));
-INSERT INTO exame VALUES ('212.139.580-67', exame_numero.NEXTVAL, 'Tomografia Computadorizada', 'Ok', TO_DATE ('2021-03-09 09:20', 'yyyy-mm-dd hh24:mi'));
-INSERT INTO exame VALUES ('536.650.360-46', exame_numero.NEXTVAL, 'Ultra-sonografia', 'Ok', TO_DATE ('2021-01-27 15:50', 'yyyy-mm-dd hh24:mi'));
+INSERT INTO exame 
+SELECT cpf, exame_numero.NEXTVAL, 'Acuidade Visual', 'Ok', TO_DATE ('2021-07-13 14:00', 'yyyy-mm-dd hh24:mi')
+FROM paciente WHERE cpf = '581.051.853-57';
+
+INSERT INTO exame
+SELECT cpf, exame_numero.NEXTVAL, 'Hemograma', 'Ok', TO_DATE ('2020-08-14 15:30', 'yyyy-mm-dd hh24:mi')
+FROM paciente WHERE cpf = '841.915.678-03';
+
+INSERT INTO exame
+SELECT cpf, exame_numero.NEXTVAL, 'Glicemia em jejum', 'Ok', TO_DATE ('2020-09-21 09:30', 'yyyy-mm-dd hh24:mi')
+FROM paciente WHERE cpf = '841.915.678-03';
+
+INSERT INTO exame
+SELECT cpf, exame_numero.NEXTVAL, 'Colesterol e Triglicerídeos', 'Ok', TO_DATE ('2020-10-24 10:00', 'yyyy-mm-dd hh24:mi')
+FROM paciente WHERE cpf = '158.910.538-32';
+
+INSERT INTO exame
+SELECT cpf, exame_numero.NEXTVAL, 'TGO (AST) e TGP (ALT)', 'Ok', TO_DATE ('2020-11-30 08:40', 'yyyy-mm-dd hh24:mi')
+FROM paciente WHERE cpf = '375.583.690-63';
+
+INSERT INTO exame
+SELECT cpf, exame_numero.NEXTVAL, 'TSH e T4 livre', 'Ok', TO_DATE ('2021-06-14 10:15', 'yyyy-mm-dd hh24:mi')
+FROM paciente WHERE cpf = '537.098.853-62';
+
+INSERT INTO exame
+SELECT cpf, exame_numero.NEXTVAL, 'Ácido Úrico', 'Ok', TO_DATE ('2021-06-21 14:20', 'yyyy-mm-dd hh24:mi')
+FROM paciente WHERE cpf = '864.652.931-82';
+
+INSERT INTO exame
+SELECT cpf, exame_numero.NEXTVAL, 'Mamografia', 'Ok', TO_DATE ('2021-04-03 16:20', 'yyyy-mm-dd hh24:mi')
+FROM paciente WHERE cpf = '786.962.193-38';
+
+INSERT INTO exame
+SELECT cpf, exame_numero.NEXTVAL, 'Teste cardiopulmonar', 'Ok', TO_DATE ('2021-02-17 09:25', 'yyyy-mm-dd hh24:mi')
+FROM paciente WHERE cpf = '689.539.958-23';
+
+INSERT INTO exame
+SELECT cpf, exame_numero.NEXTVAL, 'Anamnese clínica e esportiva', 'Ok', TO_DATE ('2021-02-28 14:00', 'yyyy-mm-dd hh24:mi')
+FROM paciente WHERE cpf = '158.910.538-32';
+
+INSERT INTO exame
+SELECT cpf, exame_numero.NEXTVAL, 'Dosagem de PSA', 'Ok', TO_DATE ('2020-06-21 15:10', 'yyyy-mm-dd hh24:mi')
+FROM paciente WHERE cpf = '642.351.905-84';
+
+INSERT INTO exame
+SELECT cpf, exame_numero.NEXTVAL, 'Avaliação física completa', 'Ok', TO_DATE ('2021-05-01 10:00', 'yyyy-mm-dd hh24:mi')
+FROM paciente WHERE cpf = '841.915.678-03';
+
+INSERT INTO exame
+SELECT cpf, exame_numero.NEXTVAL, 'Ressonância Magnética', 'Ok', TO_DATE ('2021-04-04 08:30', 'yyyy-mm-dd hh24:mi')
+FROM paciente WHERE cpf = '583.451.591-57';
+
+INSERT INTO exame
+SELECT cpf, exame_numero.NEXTVAL, 'Tomografia Computadorizada', 'Ok', TO_DATE ('2021-03-09 09:20', 'yyyy-mm-dd hh24:mi')
+FROM paciente WHERE cpf = '642.351.905-84';
+
+INSERT INTO exame
+SELECT cpf, exame_numero.NEXTVAL, 'Ultra-sonografia', 'Ok', TO_DATE ('2021-01-27 15:50', 'yyyy-mm-dd hh24:mi')
+FROM paciente WHERE cpf = '537.098.853-62';
 
 -- Povoando receita
 INSERT INTO receita VALUES (receita_cod_verificacao.NEXTVAL, 'Sheyla Lima', TO_DATE ('2021-07-13 14:00', 'yyyy-mm-dd hh24:mi'));
