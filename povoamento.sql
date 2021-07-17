@@ -124,56 +124,73 @@ INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe)
 SELECT cpf, nome, 4436, 'Clínico Geral', '256.941.852-06' FROM pessoa WHERE cpf = '400.898.482-31';
 
 -- Povoando consulta
-INSERT INTO  consulta (link_chamada, cpf_medico)
-SELECT 'https://meet.google.com/cfp-biki-icz', cpf FROM medico WHERE crm = 2350;
+INSERT INTO  consulta (link_chamada, cpf_medico, cpf_paciente)
+SELECT 'https://meet.google.com/cfp-biki-icz', medico.cpf, paciente.cpf
+FROM medico, paciente WHERE crm = 2350, n_sus = 4546;
 
-INSERT INTO  consulta (link_chamada, cpf_medico)
-SELECT 'https://meet.google.com/pdh-ryth-kwc', cpf FROM medico WHERE crm = 2094;
+INSERT INTO  consulta (link_chamada, cpf_medico, cpf_paciente)
+SELECT 'https://meet.google.com/pdh-ryth-kwc', medico.cpf, paciente.cpf
+FROM medico WHERE crm = 2094, n_sus = 4586;
 
-INSERT INTO  consulta (link_chamada, cpf_medico)
-SELECT 'https://meet.google.com/ith-gere-kio', cpf FROM medico WHERE crm = 3305;
+INSERT INTO  consulta (link_chamada, cpf_medico, cpf_paciente)
+SELECT 'https://meet.google.com/ith-gere-kio', medico.cpf, paciente.cpf
+FROM medico WHERE crm = 3305, n_sus = 4510;
 
-INSERT INTO  consulta (link_chamada, cpf_medico)
-SELECT 'https://meet.google.com/tvh-sdfq-wck', cpf FROM medico WHERE crm = 3405;
+INSERT INTO  consulta (link_chamada, cpf_medico, cpf_paciente)
+SELECT 'https://meet.google.com/tvh-sdfq-wck', medico.cpf, paciente.cpf
+FROM medico WHERE crm = 3405, n_sus = 4154;
 
-INSERT INTO  consulta (link_chamada, cpf_medico)
-SELECT 'https://meet.google.com/vht-bqwz-wtk', cpf FROM medico WHERE crm = 3567;
+INSERT INTO  consulta (link_chamada, cpf_medico, cpf_paciente)
+SELECT 'https://meet.google.com/vht-bqwz-wtk', medico.cpf, paciente.cpf
+FROM medico WHERE crm = 3567, n_sus = 4582;
 
-INSERT INTO  consulta (link_chamada, cpf_medico)
-SELECT 'https://meet.google.com/ojh-dgad-wep', cpf FROM medico WHERE crm = 6365;
+INSERT INTO  consulta (link_chamada, cpf_medico, cpf_paciente)
+SELECT 'https://meet.google.com/ojh-dgad-wep', medico.cpf, paciente.cpf
+FROM medico WHERE crm = 6365, n_sus = 4012;
 
-INSERT INTO  consulta (link_chamada, cpf_medico)
-SELECT 'https://meet.google.com/lht-adfw-sdf', cpf FROM medico WHERE crm = 4565;
+INSERT INTO  consulta (link_chamada, cpf_medico, cpf_paciente)
+SELECT 'https://meet.google.com/lht-adfw-sdf', medico.cpf, paciente.cpf
+FROM medico WHERE crm = 4565, n_sus = 4896;
 
-INSERT INTO  consulta (link_chamada, cpf_medico)
-SELECT 'https://meet.google.com/tvh-cvbb-cas', cpf FROM medico WHERE crm = 9633;
+INSERT INTO  consulta (link_chamada, cpf_medico, cpf_paciente)
+SELECT 'https://meet.google.com/tvh-cvbb-cas', medico.cpf, paciente.cpf
+FROM medico WHERE crm = 9633, n_sus = 4543;
 
-INSERT INTO  consulta (link_chamada, cpf_medico)
-SELECT 'https://meet.google.com/ath-hgjd-lok', cpf FROM medico WHERE crm = 3565;
+INSERT INTO  consulta (link_chamada, cpf_medico, cpf_paciente)
+SELECT 'https://meet.google.com/ath-hgjd-lok', medico.cpf, paciente.cpf
+FROM medico WHERE crm = 3565, n_sus = 4023;
 
-INSERT INTO  consulta (link_chamada, cpf_medico)
-SELECT 'https://meet.google.com/thz-hjgy-jhn', cpf FROM medico WHERE crm = 3512;
+INSERT INTO  consulta (link_chamada, cpf_medico, cpf_paciente)
+SELECT 'https://meet.google.com/thz-hjgy-jhn', medico.cpf, paciente.cpf
+FROM medico WHERE crm = 3512, n_sus = 4151;
 
-INSERT INTO  consulta (link_chamada, cpf_medico)
-SELECT 'https://meet.google.com/ath-fgse-cfs', cpf FROM medico WHERE crm = 3025;
+INSERT INTO  consulta (link_chamada, cpf_medico, cpf_paciente)
+SELECT 'https://meet.google.com/ath-fgse-cfs', medico.cpf, paciente.cpf
+FROM medico WHERE crm = 3025, n_sus = 3241;
 
-INSERT INTO  consulta (link_chamada, cpf_medico)
-SELECT 'https://meet.google.com/bhy-asda-ujf', cpf FROM medico WHERE crm = 3522;
+INSERT INTO  consulta (link_chamada, cpf_medico, cpf_paciente)
+SELECT 'https://meet.google.com/bhy-asda-ujf', medico.cpf, paciente.cpf
+FROM medico WHERE crm = 3522, n_sus = 3247;
 
-INSERT INTO  consulta (link_chamada, cpf_medico)
-SELECT 'https://meet.google.com/cht-bsdf-qer', cpf FROM medico WHERE crm = 6834;
+INSERT INTO  consulta (link_chamada, cpf_medico, cpf_paciente)
+SELECT 'https://meet.google.com/cht-bsdf-qer', medico.cpf, paciente.cpf
+FROM medico WHERE crm = 6834, n_sus = 4896;
 
-INSERT INTO  consulta (link_chamada, cpf_medico)
-SELECT 'https://meet.google.com/has-zahg-gui', cpf FROM medico WHERE crm = 7325;
+INSERT INTO  consulta (link_chamada, cpf_medico, cpf_paciente)
+SELECT 'https://meet.google.com/has-zahg-gui', medico.cpf, paciente.cpf
+FROM medico WHERE crm = 7325, n_sus = 4154;
 
-INSERT INTO  consulta (link_chamada, cpf_medico)
-SELECT 'https://meet.google.com/sho-rieg-edo', cpf FROM medico WHERE crm = 6573;
+INSERT INTO  consulta (link_chamada, cpf_medico, cpf_paciente)
+SELECT 'https://meet.google.com/sho-rieg-edo', medico.cpf, paciente.cpf
+FROM medico WHERE crm = 6573, n_sus = 4586;
 
-INSERT INTO  consulta (link_chamada, cpf_medico)
-SELECT 'https://meet.google.com/xin-zhao-jng', cpf FROM medico WHERE crm = 8234;
+INSERT INTO  consulta (link_chamada, cpf_medico, cpf_paciente)
+SELECT 'https://meet.google.com/xin-zhao-jng', medico.cpf, paciente.cpf
+FROM medico WHERE crm = 8234, n_sus = 4546;
 
-INSERT INTO  consulta (link_chamada, cpf_medico)
-SELECT 'https://meet.google.com/sha-cori-nga', cpf FROM medico WHERE crm = 4436;
+INSERT INTO  consulta (link_chamada, cpf_medico, cpf_paciente)
+SELECT 'https://meet.google.com/sha-cori-nga', medico.cpf, paciente.cpf
+FROM medico WHERE crm = 4436, n_sus = 4543;
 
 -- Povoando marcacao
 INSERT INTO marcacao VALUES (TO_DATE ('2021-07-13 14:00', 'yyyy-mm-dd hh24:mi'));
