@@ -1,38 +1,28 @@
 --Evitar duplicação de tabelas
 
-DROP TABLE pessoa;
-DROP TABLE paciente;
-DROP TABLE medico;
-DROP TABLE exame;
-DROP TABLE receita;
-DROP TABLE consulta;
-DROP TABLE marcacao;
-DROP TABLE telefone;
 DROP TABLE medicamento;
-
-DROP TABLE pessoa;
-DROP TABLE paciente;
-DROP TABLE medico;
-DROP TABLE exame;
 DROP TABLE receita;
-DROP TABLE consulta;
-DROP TABLE marcacao;
+DROP TABLE exame;
 DROP TABLE telefone;
-DROP TABLE medicamento;
+DROP TABLE marcacao;
+DROP TABLE consulta;
+DROP TABLE medico;
+DROP TABLE paciente;
+DROP TABLE pessoa;
 
 --Criação de tabelas
 
 CREATE TABLE pessoa (cpf VARCHAR2(14),
                      nome VARCHAR2(30) NOT NULL,
-                     CONSTRAINT pessoa_pk_ck PRIMARY KEY (cpf),
-                     CONSTRAINT pessoa_ck CHECK (cpf LIKE ('___.___.___-__')));
+                     CONSTRAINT pessoa_pk PRIMARY KEY (cpf),
+                     CONSTRAINT pessoa_cpf_ck CHECK (cpf LIKE ('___.___.___-__')));
 
 CREATE TABLE paciente (cpf VARCHAR2(14),
                        nome VARCHAR2(30) NOT NULL,
                        n_sus NUMBER,
                        nome_plano VARCHAR2(30),
                        CONSTRAINT paciente_pk PRIMARY KEY (cpf),
-                       CONSTRAINT paciente_plano_ck CHECK (nome_plano IN ('Bradesco', 'Unimed', 'Hapvida', 'SulAmérica', 'Smile Saúde', 'Cassi', 'Amil')),
+                       CONSTRAINT paciente_nome_plano_ck CHECK (nome_plano IN ('Bradesco', 'Unimed', 'Hapvida', 'SulAmérica', 'Smile Saúde', 'Cassi', 'Amil')),
                        CONSTRAINT paciente_cpf_ck CHECK (cpf LIKE ('___.___.___-__')));
 
 CREATE TABLE medico (cpf VARCHAR(14),
@@ -77,7 +67,7 @@ CREATE TABLE receita (cod_verificacao NUMBER NOT NULL,
                       assinatura VARCHAR2(30),
                       data_hora_marcacao DATE NOT NULL,
                       CONSTRAINT receita_pk PRIMARY KEY (cod_verificacao),
-                      CONSTRAINT receira_marcacao_fk FOREIGN KEY (data_hora_marcacao) REFERENCES marcacao (data_hora));
+                      CONSTRAINT receira_data_hora_marcacao_fk FOREIGN KEY (data_hora_marcacao) REFERENCES marcacao (data_hora));
 
 CREATE TABLE medicamento (nome_medicamento VARCHAR2(30),
                           cod_verif_receita NUMBER NOT NULL,
