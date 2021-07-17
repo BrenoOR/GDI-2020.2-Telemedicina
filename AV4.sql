@@ -4,6 +4,11 @@
 ALTER TABLE paciente RENAME COLUMN nome TO nome2;
 ALTER TABLE paciente RENAME COLUMN nome2 TO nome;
 
+
+--Selecionar médico chefe da clínica ou selecionar empregados
+SELECT nome, cpf, crm FROM medico WHERE cpf_chefe IS NULL;
+SELECT nome, cpf, crm FROM medico WHERE cpf_chefe IS NOT NULL; 
+
 --Selecionar todas as consultas de 2021, e seus respectivos pacientes, médicos, e links da chamada
 SELECT DISTINCT paciente.nome, medico.nome, consulta.link_chamada, receita.data_hora_marcacao
 FROM paciente, medico, consulta, receita, marcacao
