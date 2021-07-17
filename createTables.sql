@@ -48,9 +48,12 @@ CREATE TABLE medico (cpf VARCHAR(14),
                       
 CREATE TABLE consulta (link_chamada VARCHAR2(50),
                        cpf_medico VARCHAR2(14),
+                       cpf_paciente VARCHAR2(14),
                        CONSTRAINT consulta_pk PRIMARY KEY (link_chamada),
                        CONSTRAINT consulta_medico_fk FOREIGN KEY (cpf_medico) REFERENCES medico (cpf),
-                       CONSTRAINT consulta_cpf_medico_ck CHECK (cpf_medico LIKE ('___.___.___-__')));
+                       CONSTRAINT consulta_paciente_fk FOREIGN KEY (cpf_paciente) REFERENCES paciente (cpf),
+                       CONSTRAINT consulta_cpf_medico_ck CHECK (cpf_medico LIKE ('___.___.___-__')),
+                       CONSTRAINT consulta_cpf_paciente_ck CHECK (cpf_paciente LIKE ('___.___.___-__')));
                        
 CREATE TABLE marcacao (data_hora DATE,
                        CONSTRAINT marcacao_pk PRIMARY KEY (data_hora));
