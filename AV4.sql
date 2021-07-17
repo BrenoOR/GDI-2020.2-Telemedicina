@@ -1,5 +1,9 @@
 --Script da AV4
 
+--Alterar a coluna nome para nome2 e vice-versa
+ALTER TABLE paciente RENAME COLUMN nome TO nome2;
+ALTER TABLE paciente RENAME COLUMN nome2 TO nome;
+
 --Selecionar todas as consultas de 2021, e seus respectivos pacientes, médicos, e links da chamada
 SELECT DISTINCT paciente.nome, medico.nome, consulta.link_chamada, receita.data_hora_marcacao
 FROM paciente, medico, consulta, receita, marcacao
