@@ -15,6 +15,12 @@ ON (exame.cpf_paciente = paciente.cpf);
 SELECT nome, num_telefone FROM telefone LEFT OUTER JOIN medico
 ON (cpf_pessoa = medico.cpf);
 
+-- Selecionar todos os números de telefone de cada pessoa
+-- deixando NULL caso não haja.
+-- RIGHT OUTER JOIN
+SELECT nome, num_telefone FROM telefone RIGHT OUTER JOIN pessoa
+ON (cpf_pessoa = pessoa.cpf);
+
 -- Selecionar médico chefe da clínica ou selecionar empregados
 -- IS NULL
 SELECT nome, cpf, crm FROM medico WHERE cpf_chefe IS NULL;
