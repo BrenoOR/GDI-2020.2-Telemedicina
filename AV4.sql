@@ -4,6 +4,9 @@
 ALTER TABLE paciente RENAME COLUMN nome TO nome2;
 ALTER TABLE paciente RENAME COLUMN nome2 TO nome;
 
+-- Cruzar dados dos exames com os pacientes
+SELECT * FROM exame INNER JOIN paciente
+ON (exame.cpf_paciente = paciente.cpf);
 
 --Selecionar médico chefe da clínica ou selecionar empregados
 SELECT nome, cpf, crm FROM medico WHERE cpf_chefe IS NULL;
