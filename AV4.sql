@@ -94,8 +94,16 @@ GROUP BY idade;
 -- COUNT: retorna a quantidade total de pacientes contando a partir dos cpfs
 SELECT COUNT (cpf) FROM paciente;
 
+-- SUBCONSULTA IN seleciona o nome e a idade do paciente para idade >= 24
+SELECT nome, idade FROM paciente WHERE idade IN (SELECT idade from paciente WHERE idade >= 24);
+
+
 -- SUBCONSULTA ANY seleciona o nome e a idade do paciente para qualquer idade > 24
 SELECT nome, idade FROM paciente WHERE idade > ANY (SELECT idade from paciente WHERE idade = 24);
+
+
+-- SUBCONSULTA ALL seleciona o nome e a idade do paciente para qualquer idade > 10
+SELECT nome, idade FROM paciente WHERE idade > ALL (SELECT idade from paciente WHERE idade = 10);
 
 
 -- Procedimento de cadastro de pessoa
