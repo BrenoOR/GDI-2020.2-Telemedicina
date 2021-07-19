@@ -79,7 +79,7 @@ FROM medico;
 
 -- Procedimento de cadastro de pessoa
 -- CREATE PROCEDURE
-PROCEDURE add_pessoa (novo_cpf VARCHAR2, novo_nome VARCHAR2) IS  
+CREATE OR REPLACE PROCEDURE add_pessoa (novo_cpf VARCHAR2, novo_nome VARCHAR2) IS  
     new_cpf VARCHAR2(14); 
     new_nome VARCHAR2(30); 
     addCpf pessoa.cpf%TYPE; 
@@ -88,3 +88,29 @@ PROCEDURE add_pessoa (novo_cpf VARCHAR2, novo_nome VARCHAR2) IS
         new_nome := novo_nome; 
         INSERT INTO pessoa VALUES (add_pessoa.new_cpf, add_pessoa.new_nome); 
     END;
+/
+-- Para testar e visualizar o resultado do procedimento acima
+EXECUTE add_pessoa ('432.675.839-21', 'Januário Olímpio');
+SELECT * from pessoa WHERE cpf = '432.675.839-21'; 
+
+-- Função que retorna o link de uma consulta
+-- CREATE FUNCTION
+CREATE OR REPLACE FUNCTION get_link_consulta (pessoa_cpf IN VARCHAR2) 
+    RETURN VARCHAR2 
+    IS resp_link VARCHAR2(50); 
+    BEGIN 
+        SELECT DISTINCT consulta.link_chamada 
+        INTO resp_link 
+        FROM consulta, pessoa 
+        WHERE ((consulta.cpf_medico = pessoa.cpf) AND (consulta.cpf_medico = pessoa_cpf)) OR ((consulta.cpf_paciente = pessoa.cpf) AND (consulta.cpf_medico = pessoa_cpf)); 
+        RETURN (resp_link); 
+    END;
+/
+
+-- Para testar a função criada acima
+DECLARE result_link VARCHAR2(50);
+BEGIN
+    result_link := get_link_consulta('986.647.000-87');
+    DBMS_OUTPUT.PUT_LINE('Link: ' || result_link);
+END;
+/
