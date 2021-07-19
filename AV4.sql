@@ -72,10 +72,24 @@ WHERE especialidade IN ('Oftalmologia', 'Clínico Geral', 'Nutricionista');
 SELECT * FROM pessoa
 WHERE nome LIKE 'A%';
 
--- MAX: selecionar o médico com o maior número de crm:
-SELECT MAX(crm) AS MaiorCRM
-FROM medico;
+-- MAX: retorna a idade máxima de paciente
+SELECT MAX(idade) AS maior_idade
+FROM paciente;
 
+
+-- MIN: retorna a idade mínima de paciente
+SELECT MIN(idade) AS menor_idade
+FROM paciente;
+
+
+-- AVG: retorna a média de idade dos pacientes
+SELECT AVG (idade) AS media_idade
+FROM paciente;
+
+
+-- COUNT: retorna a quantidade total de pacientes e lista os nomes
+SELECT (nome) AS qtde_paciente
+FROM pessoa;
 
 -- Procedimento de cadastro de pessoa
 -- CREATE PROCEDURE
