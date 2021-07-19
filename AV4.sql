@@ -48,3 +48,36 @@ SELECT DISTINCT paciente.nome, medico.nome, consulta.link_chamada, receita.data_
 FROM paciente, medico, consulta, receita, marcacao
 WHERE (consulta.cpf_paciente = paciente.cpf) AND (consulta.cpf_medico = medico.cpf) AND (medico.nome = receita.assinatura)
 AND (TO_CHAR(receita.data_hora_marcacao, 'yyyy') = '2021') ORDER BY receita.data_hora_marcacao;
+
+
+
+-- UPDATE: atualizar o plano de saúde de Igor Mascarenhas:
+
+UPDATE paciente SET nome_plano = 'Unimed' WHERE cpf = '581.051.853-57';
+
+-- DELETE: deletar médico Lucas Alfredo:
+
+DELETE FROM medico WHERE crm ='3025';
+
+-- SELECT-FROM-WHERE: selecionar o nome e crm de todos os oftalmologistas:
+
+SELECT nome, crm FROM medico WHERE especialidade = 'Oftalmologia'
+
+-- BETWEEN: selecionar todos os médicos com crm entre 1000 e 4000:
+
+SELECT * FROM medico WHERE crm BETWEEN '1000' AND '4000';
+
+-- IN: selecionar todos os médicos oftalmologistas, clinicos gerais e nutricionistas:
+
+SELECT * FROM medico
+WHERE especialidade IN ('Oftalmologia', 'Clínico Geral', 'Nutricionista');
+
+-- LIKE: selecionar todas pessoas com nome iniciado em A:
+
+SELECT * FROM pessoa
+WHERE nome LIKE 'A%';
+
+-- MAX: selecionar o médico com o maior número de crm:
+
+SELECT MAX(crm) AS MaiorCRM
+FROM medico;
