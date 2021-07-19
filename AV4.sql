@@ -150,13 +150,10 @@ ON table_pess(nome[,cpf,telefone]);
 /
 -- Inserir um um ou mais registro
 -- INSERT INTO 
-INSERT INTO pessoa
-(cpf,nome);
-VALUES 
-(135.581.486-85,'Abraão Bezerra');
+INSERT INTO pesso VALUES (add_pessoa.new_cpf,add_pessoa.new_pessoa);
 -- Criar views
 -- CREATE views
-CREATE ViEW Medico
+CREATE VIEW Medico
 AS SELECT nome,crm
 FROM nome
 INNER JOIN crm
@@ -170,8 +167,15 @@ BEGIN
 END;
 
 -- HAVING
-SELECT pessoa, COUNT(*)
-FROM paciente
-GROUP BY pessoa
-HAVING COUNT(*) > 1;
+SELECT idade, COUNT(idade)
+FROM pessoa
+GROUP BY idade
+HAVING COUNT(idade) > 0;
 
+-- SUBCONSULTA COM ALL
+SELECT nome
+FROM PACIENTE
+WHERE idade = ALL
+    (SELECT idade
+    FROM PACIENTE
+    WHERE idade < 80);
