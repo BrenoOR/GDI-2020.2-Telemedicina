@@ -1,5 +1,3 @@
---Evitar duplicação de tabelas
-
 DROP TABLE medicamento;
 DROP TABLE receita;
 DROP TABLE exame;
@@ -14,11 +12,13 @@ DROP TABLE pessoa;
 
 CREATE TABLE pessoa (cpf VARCHAR2(14),
                      nome VARCHAR2(30) NOT NULL,
+                     idade NUMBER NOT NULL,
                      CONSTRAINT pessoa_pk PRIMARY KEY (cpf),
                      CONSTRAINT pessoa_cpf_ck CHECK (cpf LIKE ('___.___.___-__')));
 
 CREATE TABLE paciente (cpf VARCHAR2(14),
                        nome VARCHAR2(30) NOT NULL,
+                       idade NUMBER NOT NULL,
                        n_sus NUMBER,
                        nome_plano VARCHAR2(30),
                        CONSTRAINT paciente_pk PRIMARY KEY (cpf),
@@ -27,6 +27,7 @@ CREATE TABLE paciente (cpf VARCHAR2(14),
 
 CREATE TABLE medico (cpf VARCHAR(14),
                      nome VARCHAR2(30) NOT NULL,
+                     idade NUMBER NOT NULL,
                      crm NUMBER,
                      especialidade VARCHAR2(50),
                      cpf_chefe VARCHAR2(14),
