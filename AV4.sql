@@ -86,6 +86,10 @@ FROM paciente;
 SELECT AVG (idade) AS media_idade
 FROM paciente;
 
+-- GROUP BY conta a quantidade de pessoas por grupo de idade
+SELECT idade, COUNT(idade)
+FROM pessoa
+GROUP BY idade;
 
 -- COUNT: retorna a quantidade total de pacientes contando a partir dos cpfs
 SELECT COUNT (cpf) FROM paciente;
