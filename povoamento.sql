@@ -1,127 +1,127 @@
 -- Povoando Pessoas
-INSERT INTO pessoa (cpf, nome) VALUES ('053.142.336-88','Sheyla Lima');
-INSERT INTO pessoa (cpf, nome) VALUES ('010.532.546-14','José Henrique');
-INSERT INTO pessoa (cpf, nome) VALUES ('839.274.863-02','Lucas Alfredo');
-INSERT INTO pessoa (cpf, nome) VALUES ('153.545.987-13','Lara Maria');
-INSERT INTO pessoa (cpf, nome) VALUES ('986.647.000-87','Alberto Roberto');
-INSERT INTO pessoa (cpf, nome) VALUES ('923.782.185-87','Josué Aguiar');
-INSERT INTO pessoa (cpf, nome) VALUES ('159.738.879-12','Ana Souza');
-INSERT INTO pessoa (cpf, nome) VALUES ('025.105.198-45','João Kléber');
-INSERT INTO pessoa (cpf, nome) VALUES ('012.654.574-38','Arthur da Silva');
-INSERT INTO pessoa (cpf, nome) VALUES ('145.896.745-15','Roberta Lorena');
-INSERT INTO pessoa (cpf, nome) VALUES ('256.941.852-06','Agostinho Carrara');
-INSERT INTO pessoa (cpf, nome) VALUES ('985.531.992-06','Sheyla Carvalho');
-INSERT INTO pessoa (cpf, nome) VALUES ('723.963.381-43','Ronaldo Alves');
-INSERT INTO pessoa (cpf, nome) VALUES ('301.460.684-13','Ed Motta');
-INSERT INTO pessoa (cpf, nome) VALUES ('743.516.623-64','Carla Perez');
+INSERT INTO pessoa (cpf, nome, idade) VALUES ('053.142.336-88','Sheyla Lima', 15);
+INSERT INTO pessoa (cpf, nome, idade) VALUES ('010.532.546-14','José Henrique', 20);
+INSERT INTO pessoa (cpf, nome, idade) VALUES ('839.274.863-02','Lucas Alfredo', 21);
+INSERT INTO pessoa (cpf, nome, idade) VALUES ('153.545.987-13','Lara Maria', 22);
+INSERT INTO pessoa (cpf, nome, idade) VALUES ('986.647.000-87','Alberto Roberto', 30);
+INSERT INTO pessoa (cpf, nome, idade) VALUES ('923.782.185-87','Josué Aguiar', 35);
+INSERT INTO pessoa (cpf, nome, idade) VALUES ('159.738.879-12','Ana Souza', 14);
+INSERT INTO pessoa (cpf, nome, idade) VALUES ('025.105.198-45','João Kléber', 50);
+INSERT INTO pessoa (cpf, nome, idade) VALUES ('012.654.574-38','Arthur da Silva', 18);
+INSERT INTO pessoa (cpf, nome, idade) VALUES ('145.896.745-15','Roberta Lorena', 22);
+INSERT INTO pessoa (cpf, nome, idade) VALUES ('256.941.852-06','Agostinho Carrara', 45);
+INSERT INTO pessoa (cpf, nome, idade) VALUES ('985.531.992-06','Sheyla Carvalho', 31);
+INSERT INTO pessoa (cpf, nome, idade) VALUES ('723.963.381-43','Ronaldo Alves', 29);
+INSERT INTO pessoa (cpf, nome, idade) VALUES ('301.460.684-13','Ed Motta', 22);
+INSERT INTO pessoa (cpf, nome, idade) VALUES ('743.516.623-64','Carla Perez', 44);
 
-INSERT INTO pessoa (cpf, nome) VALUES ('581.051.853-57','Igor Mascarenhas');
-INSERT INTO pessoa (cpf, nome) VALUES ('375.583.690-63','Breno Rodrigues');
-INSERT INTO pessoa (cpf, nome) VALUES ('537.098.853-62','Natan Neto');
-INSERT INTO pessoa (cpf, nome) VALUES ('864.652.931-82','Felipe França');
-INSERT INTO pessoa (cpf, nome) VALUES ('583.451.591-57','Pedro Henrique');
-INSERT INTO pessoa (cpf, nome) VALUES ('841.915.678-03','Eduardo Conti');
-INSERT INTO pessoa (cpf, nome) VALUES ('642.351.905-84','Rose Galdino');
-INSERT INTO pessoa (cpf, nome) VALUES ('158.910.538-32','Cassi Avelar');
-INSERT INTO pessoa (cpf, nome) VALUES ('689.539.958-23','Cortana da Silva');
-INSERT INTO pessoa (cpf, nome) VALUES ('786.962.193-38','Larissa da Costa');
+INSERT INTO pessoa (cpf, nome, idade) VALUES ('581.051.853-57','Igor Mascarenhas', 38);
+INSERT INTO pessoa (cpf, nome, idade) VALUES ('375.583.690-63','Breno Rodrigues', 35);
+INSERT INTO pessoa (cpf, nome, idade) VALUES ('537.098.853-62','Natan Neto', 15);
+INSERT INTO pessoa (cpf, nome, idade) VALUES ('864.652.931-82','Felipe França', 18);
+INSERT INTO pessoa (cpf, nome, idade) VALUES ('583.451.591-57','Pedro Henrique', 20);
+INSERT INTO pessoa (cpf, nome, idade) VALUES ('841.915.678-03','Eduardo Conti', 34);
+INSERT INTO pessoa (cpf, nome, idade) VALUES ('642.351.905-84','Rose Galdino', 45);
+INSERT INTO pessoa (cpf, nome, idade) VALUES ('158.910.538-32','Cassi Avelar', 20);
+INSERT INTO pessoa (cpf, nome, idade) VALUES ('689.539.958-23','Cortana da Silva', 70);
+INSERT INTO pessoa (cpf, nome, idade) VALUES ('786.962.193-38','Larissa da Costa', 75);
 
-INSERT INTO pessoa (cpf, nome) VALUES ('135.581.486-85','Abraão Bezerra');
-INSERT INTO pessoa (cpf, nome) VALUES ('440.581.784-01','Isaque Farias');
-INSERT INTO pessoa (cpf, nome) VALUES ('232.101.104-00','Raquel Teixeira');
-INSERT INTO pessoa (cpf, nome) VALUES ('400.898.482-31','Josué Matias');
+INSERT INTO pessoa (cpf, nome, idade) VALUES ('135.581.486-85','Abraão Bezerra', 24);
+INSERT INTO pessoa (cpf, nome, idade) VALUES ('440.581.784-01','Isaque Farias', 30);
+INSERT INTO pessoa (cpf, nome, idade) VALUES ('232.101.104-00','Raquel Teixeira', 63);
+INSERT INTO pessoa (cpf, nome, idade) VALUES ('400.898.482-31','Josué Matias', 82);
 
 -- Paciente
-INSERT INTO paciente (cpf, nome, n_sus, nome_plano)
-SELECT cpf, nome, 4546, 'Bradesco' FROM pessoa WHERE cpf = '581.051.853-57';
+INSERT INTO paciente (cpf, nome, idade, n_sus, nome_plano)
+SELECT cpf, nome, idade, 4546, 'Bradesco' FROM pessoa WHERE cpf = '581.051.853-57';
 
-INSERT INTO paciente (cpf, nome, n_sus, nome_plano)
-SELECT cpf, nome, 4586, 'Unimed' FROM pessoa WHERE cpf = '375.583.690-63';
+INSERT INTO paciente (cpf, nome, idade, n_sus, nome_plano)
+SELECT cpf, nome, idade, 4586, 'Unimed' FROM pessoa WHERE cpf = '375.583.690-63';
 
-INSERT INTO paciente (cpf, nome, n_sus, nome_plano)
-SELECT cpf, nome, 4510, 'Hapvida' FROM pessoa WHERE cpf = '537.098.853-62';
+INSERT INTO paciente (cpf, nome, idade, n_sus, nome_plano)
+SELECT cpf, nome, idade, 4510, 'Hapvida' FROM pessoa WHERE cpf = '537.098.853-62';
 
-INSERT INTO paciente (cpf, nome, n_sus, nome_plano)
-SELECT cpf, nome, 4154, 'SulAmérica' FROM pessoa WHERE cpf = '864.652.931-82';
+INSERT INTO paciente (cpf, nome, idade, n_sus, nome_plano)
+SELECT cpf, nome, idade, 4154, 'SulAmérica' FROM pessoa WHERE cpf = '864.652.931-82';
 
-INSERT INTO paciente (cpf, nome, n_sus, nome_plano)
-SELECT cpf, nome, 4582, 'Smile Saúde' FROM pessoa WHERE cpf = '583.451.591-57';
+INSERT INTO paciente (cpf, nome, idade, n_sus, nome_plano)
+SELECT cpf, nome, idade, 4582, 'Smile Saúde' FROM pessoa WHERE cpf = '583.451.591-57';
 
-INSERT INTO paciente (cpf, nome, n_sus, nome_plano)
-SELECT cpf, nome, 4012, 'Amil' FROM pessoa WHERE cpf = '841.915.678-03';
+INSERT INTO paciente (cpf, nome, idade, n_sus, nome_plano)
+SELECT cpf, nome, idade, 4012, 'Amil' FROM pessoa WHERE cpf = '841.915.678-03';
 
-INSERT INTO paciente (cpf, nome, n_sus, nome_plano)
-SELECT cpf, nome, 4896, 'Bradesco' FROM pessoa WHERE cpf = '642.351.905-84';
+INSERT INTO paciente (cpf, nome, idade, n_sus, nome_plano)
+SELECT cpf, nome, idade, 4896, 'Bradesco' FROM pessoa WHERE cpf = '642.351.905-84';
 
-INSERT INTO paciente (cpf, nome, n_sus, nome_plano)
-SELECT cpf, nome, 4543, 'Cassi' FROM pessoa WHERE cpf = '158.910.538-32';
+INSERT INTO paciente (cpf, nome, idade, n_sus, nome_plano)
+SELECT cpf, nome, idade, 4543, 'Cassi' FROM pessoa WHERE cpf = '158.910.538-32';
 
-INSERT INTO paciente (cpf, nome, n_sus, nome_plano)
-SELECT cpf, nome, 4023, 'Bradesco' FROM pessoa WHERE cpf = '689.539.958-23';
+INSERT INTO paciente (cpf, nome, idade, n_sus, nome_plano)
+SELECT cpf, nome, idade, 4023, 'Bradesco' FROM pessoa WHERE cpf = '689.539.958-23';
 
-INSERT INTO paciente (cpf, nome, n_sus, nome_plano)
-SELECT cpf, nome, 4151, 'SulAmérica' FROM pessoa WHERE cpf = '786.962.193-38';
+INSERT INTO paciente (cpf, nome, idade, n_sus, nome_plano)
+SELECT cpf, nome, idade, 4151, 'SulAmérica' FROM pessoa WHERE cpf = '786.962.193-38';
 
-INSERT INTO paciente (cpf, nome, n_sus, nome_plano)
-SELECT cpf, nome, 3241, 'Hapvida' FROM pessoa WHERE cpf = '135.581.486-85';
+INSERT INTO paciente (cpf, nome, idade, n_sus, nome_plano)
+SELECT cpf, nome, idade, 3241, 'Hapvida' FROM pessoa WHERE cpf = '135.581.486-85';
 
-INSERT INTO paciente (cpf, nome, n_sus, nome_plano)
-SELECT cpf, nome, 3247, 'Unimed' FROM pessoa WHERE cpf = '440.581.784-01';
+INSERT INTO paciente (cpf, nome, idade, n_sus, nome_plano)
+SELECT cpf, nome, idade, 3247, 'Unimed' FROM pessoa WHERE cpf = '440.581.784-01';
 
 -- Medico
 -- Chefe
 
-INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) 
-SELECT cpf, nome, 2094, 'Psicologia', '' FROM pessoa WHERE cpf = '256.941.852-06';
+INSERT INTO medico (cpf, nome, idade, crm, especialidade, cpf_chefe) 
+SELECT cpf, nome, idade, 2094, 'Psicologia', '' FROM pessoa WHERE cpf = '256.941.852-06';
 
 -- Funcionários
-INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) 
-SELECT cpf, nome, 3565, 'Oftalmologia', '256.941.852-06' FROM pessoa WHERE cpf = '053.142.336-88';
+INSERT INTO medico (cpf, nome, idade, crm, especialidade, cpf_chefe) 
+SELECT cpf, nome, idade, 3565, 'Oftalmologia', '256.941.852-06' FROM pessoa WHERE cpf = '053.142.336-88';
 
-INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) 
-SELECT cpf, nome, 3512, 'Dermatologista', '256.941.852-06' FROM pessoa WHERE cpf = '010.532.546-14';
+INSERT INTO medico (cpf, nome, idade, crm, especialidade, cpf_chefe) 
+SELECT cpf, nome, idade, 3512, 'Dermatologista', '256.941.852-06' FROM pessoa WHERE cpf = '010.532.546-14';
 
-INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) 
-SELECT cpf, nome, 3025, 'Clínico Geral', '256.941.852-06' FROM pessoa WHERE cpf = '839.274.863-02';
+INSERT INTO medico (cpf, nome, idade, crm, especialidade, cpf_chefe) 
+SELECT cpf, nome, idade, 3025, 'Clínico Geral', '256.941.852-06' FROM pessoa WHERE cpf = '839.274.863-02';
 
-INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) 
-SELECT cpf, nome, 4565, 'Endocrinologista', '256.941.852-06' FROM pessoa WHERE cpf = '153.545.987-13';
+INSERT INTO medico (cpf, nome, idade, crm, especialidade, cpf_chefe) 
+SELECT cpf, nome, idade, 4565, 'Endocrinologista', '256.941.852-06' FROM pessoa WHERE cpf = '153.545.987-13';
 
-INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) 
-SELECT cpf, nome, 6365, 'Cardiologista', '256.941.852-06' FROM pessoa WHERE cpf = '986.647.000-87';
+INSERT INTO medico (cpf, nome, idade, crm, especialidade, cpf_chefe) 
+SELECT cpf, nome, idade, 6365, 'Cardiologista', '256.941.852-06' FROM pessoa WHERE cpf = '986.647.000-87';
 
-INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) 
-SELECT cpf, nome, 9633, 'Oftalmologia', '256.941.852-06' FROM pessoa WHERE cpf = '923.782.185-87';
+INSERT INTO medico (cpf, nome, idade, crm, especialidade, cpf_chefe) 
+SELECT cpf, nome, idade, 9633, 'Oftalmologia', '256.941.852-06' FROM pessoa WHERE cpf = '923.782.185-87';
 
-INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) 
-SELECT cpf, nome, 3567, 'Clínico Geral', '256.941.852-06' FROM pessoa WHERE cpf = '159.738.879-12';
+INSERT INTO medico (cpf, nome, idade, crm, especialidade, cpf_chefe) 
+SELECT cpf, nome, idade, 3567, 'Clínico Geral', '256.941.852-06' FROM pessoa WHERE cpf = '159.738.879-12';
 
-INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) 
-SELECT cpf, nome, 3522, 'Dermatologista', '256.941.852-06' FROM pessoa WHERE cpf = '025.105.198-45';
+INSERT INTO medico (cpf, nome, idade, crm, especialidade, cpf_chefe) 
+SELECT cpf, nome, idade, 3522, 'Dermatologista', '256.941.852-06' FROM pessoa WHERE cpf = '025.105.198-45';
 
-INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) 
-SELECT cpf, nome, 3305, 'Endocrinologista', '256.941.852-06' FROM pessoa WHERE cpf = '012.654.574-38';
+INSERT INTO medico (cpf, nome, idade, crm, especialidade, cpf_chefe) 
+SELECT cpf, nome, idade, 3305, 'Endocrinologista', '256.941.852-06' FROM pessoa WHERE cpf = '012.654.574-38';
 
-INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) 
-SELECT cpf, nome, 3405, 'Oftalmologia', '256.941.852-06' FROM pessoa WHERE cpf = '145.896.745-15';
+INSERT INTO medico (cpf, nome, idade, crm, especialidade, cpf_chefe) 
+SELECT cpf, nome, idade, 3405, 'Oftalmologia', '256.941.852-06' FROM pessoa WHERE cpf = '145.896.745-15';
 
-INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) 
-SELECT cpf, nome, 6573, 'Nutricionista', '256.941.852-06' FROM pessoa WHERE cpf = '723.963.381-43';
+INSERT INTO medico (cpf, nome, idade, crm, especialidade, cpf_chefe) 
+SELECT cpf, nome, idade, 6573, 'Nutricionista', '256.941.852-06' FROM pessoa WHERE cpf = '723.963.381-43';
 
-INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) 
-SELECT cpf, nome, 6834, 'Fisioterapia', '256.941.852-06' FROM pessoa WHERE cpf = '985.531.992-06';
+INSERT INTO medico (cpf, nome, idade, crm, especialidade, cpf_chefe) 
+SELECT cpf, nome, idade, 6834, 'Fisioterapia', '256.941.852-06' FROM pessoa WHERE cpf = '985.531.992-06';
 
-INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) 
-SELECT cpf, nome, 2350, 'Nutricionista', '256.941.852-06' FROM pessoa WHERE cpf = '301.460.684-13';
+INSERT INTO medico (cpf, nome, idade, crm, especialidade, cpf_chefe) 
+SELECT cpf, nome, idade, 2350, 'Nutricionista', '256.941.852-06' FROM pessoa WHERE cpf = '301.460.684-13';
 
-INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) 
-SELECT cpf, nome, 7325, 'Otorrino', '256.941.852-06' FROM pessoa WHERE cpf = '743.516.623-64';
+INSERT INTO medico (cpf, nome, idade, crm, especialidade, cpf_chefe) 
+SELECT cpf, nome, idade, 7325, 'Otorrino', '256.941.852-06' FROM pessoa WHERE cpf = '743.516.623-64';
 
-INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) 
-SELECT cpf, nome, 8234, 'Neurologista', '256.941.852-06' FROM pessoa WHERE cpf = '232.101.104-00';
+INSERT INTO medico (cpf, nome, idade, crm, especialidade, cpf_chefe) 
+SELECT cpf, nome, idade, 8234, 'Neurologista', '256.941.852-06' FROM pessoa WHERE cpf = '232.101.104-00';
 
-INSERT INTO medico (cpf, nome, crm, especialidade, cpf_chefe) 
-SELECT cpf, nome, 4436, 'Clínico Geral', '256.941.852-06' FROM pessoa WHERE cpf = '400.898.482-31';
+INSERT INTO medico (cpf, nome, idade, crm, especialidade, cpf_chefe) 
+SELECT cpf, nome, idade, 4436, 'Clínico Geral', '256.941.852-06' FROM pessoa WHERE cpf = '400.898.482-31';
 
 -- Povoando consulta
 INSERT INTO  consulta (link_chamada, cpf_medico, cpf_paciente)
