@@ -183,3 +183,12 @@ WHERE idade = ALL
     FROM PACIENTE
     WHERE idade < 80);
 
+-- USO DE RECORD
+--DECLARE 
+--TYPE exame_tipo IS RECORD (
+--    tipoExame EXAME.TIPO%TYPE ,
+--    medicoSolicitante MEDICO.CRM%TYPE,
+--    dataSolicitacao DATE NOT NULL,
+--    dataResultado DATE NOT NULL
+--);
+
