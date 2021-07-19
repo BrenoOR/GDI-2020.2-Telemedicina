@@ -114,3 +114,35 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('Link: ' || result_link);
 END;
 /
+-- Cria um indice
+-- CREATE INDEX
+CREATE INDEX index_pessoa
+ON table_pess(nome[,cpf,telefone]);
+/
+-- Inserir um um ou mais registro
+-- INSERT INTO 
+INSERT INTO pessoa
+(cpf,nome);
+VALUES 
+(135.581.486-85,'Abraão Bezerra');
+-- Criar views
+-- CREATE views
+CREATE ViEW Medico
+AS SELECT nome,crm
+FROM nome
+INNER JOIN crm
+ON nome =crm;
+-- Bloco anonimo
+DECLARE
+    result_link VARCHAR2(50);
+BEGIN
+    result_link := get_link_consulta('159.738.879-12');
+    DBMS_OUTPUT.PUT_LINE('Link: ' || result_link);
+END;
+
+-- HAVING
+SELECT pessoa, COUNT(*)
+FROM paciente
+GROUP BY pessoa
+HAVING COUNT(*) > 1;
+
