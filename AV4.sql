@@ -94,6 +94,10 @@ GROUP BY idade;
 -- COUNT: retorna a quantidade total de pacientes contando a partir dos cpfs
 SELECT COUNT (cpf) FROM paciente;
 
+-- SUBCONSULTA ANY seleciona o nome e a idade do paciente para qualquer idade > 24
+SELECT nome, idade FROM paciente WHERE idade > ANY (SELECT idade from paciente WHERE idade = 24);
+
+
 -- Procedimento de cadastro de pessoa
 -- CREATE PROCEDURE
 CREATE OR REPLACE PROCEDURE add_pessoa (novo_cpf VARCHAR2, novo_nome VARCHAR2) IS  
