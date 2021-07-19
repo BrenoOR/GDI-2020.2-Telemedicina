@@ -159,3 +159,11 @@ FROM paciente
 GROUP BY pessoa
 HAVING COUNT(*) > 1;
 
+-- SUBCONSULTA COM ALL
+SELECT nome
+FROM PACIENTE
+WHERE idade = ALL
+    (SELECT idade
+    FROM PACIENTE
+    WHERE idade < 80);
+
