@@ -23,7 +23,8 @@ ON (cpf_pessoa = pessoa.cpf);
 
 -- Selecionar todos os números de telefone de cada pessoa
 -- deixando NULL caso não haja.
--- RIGHT OUTER JOIN
+-- Achei interessante a diferença nos selects entre o RIGHT e o FULL
+-- FULL OUTER JOIN
 SELECT nome, num_telefone FROM telefone FULL OUTER JOIN pessoa
 ON (cpf_pessoa = pessoa.cpf);
 
@@ -52,32 +53,38 @@ AND (TO_CHAR(receita.data_hora_marcacao, 'yyyy') = '2021') ORDER BY receita.data
 
 
 -- UPDATE: atualizar o plano de saúde de Igor Mascarenhas:
-
 UPDATE paciente SET nome_plano = 'Unimed' WHERE cpf = '581.051.853-57';
 
 -- DELETE: deletar médico Lucas Alfredo:
-
 DELETE FROM medico WHERE crm ='3025';
 
 -- SELECT-FROM-WHERE: selecionar o nome e crm de todos os oftalmologistas:
-
 SELECT nome, crm FROM medico WHERE especialidade = 'Oftalmologia'
 
 -- BETWEEN: selecionar todos os médicos com crm entre 1000 e 4000:
-
 SELECT * FROM medico WHERE crm BETWEEN '1000' AND '4000';
 
 -- IN: selecionar todos os médicos oftalmologistas, clinicos gerais e nutricionistas:
-
 SELECT * FROM medico
 WHERE especialidade IN ('Oftalmologia', 'Clínico Geral', 'Nutricionista');
 
 -- LIKE: selecionar todas pessoas com nome iniciado em A:
-
 SELECT * FROM pessoa
 WHERE nome LIKE 'A%';
 
 -- MAX: selecionar o médico com o maior número de crm:
-
 SELECT MAX(crm) AS MaiorCRM
 FROM medico;
+
+
+-- Procedimento de cadastro de pessoa
+-- CREATE PROCEDURE
+PROCEDURE add_pessoa (novo_cpf VARCHAR2, novo_nome VARCHAR2) IS  
+    new_cpf VARCHAR2(14); 
+    new_nome VARCHAR2(30); 
+    addCpf pessoa.cpf%TYPE; 
+    BEGIN  
+        new_cpf := novo_cpf; 
+        new_nome := novo_nome; 
+        INSERT INTO pessoa VALUES (add_pessoa.new_cpf, add_pessoa.new_nome); 
+    END;
