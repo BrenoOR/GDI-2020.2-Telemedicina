@@ -39,8 +39,8 @@ SELECT nome, cpf, crm FROM medico WHERE cpf_chefe IS NOT NULL;
 -- ou o número de médicos cadastrados
 -- COUNT
 SELECT COUNT(nome) FROM pessoa;
-SELECT COUNT(paciente.nome) FROM paciente INNER JOIN pessoa ON pessoa.cpf = paciente.cpf;
-SELECT COUNT(medico.nome) FROM medico INNER JOIN pessoa ON pessoa.cpf = medico.cpf;
+SELECT COUNT(pessoa.nome) FROM pessoa INNER JOIN medico ON pessoa.cpf = paciente.cpf;
+SELECT COUNT(pessoa.nome) FROM pessoa INNER JOIN medico ON pessoa.cpf = medico.cpf;
 
 -- Selecionar todas as consultas de 2021, e seus respectivos pacientes, médicos, e links da chamada
 -- ORDER BY
