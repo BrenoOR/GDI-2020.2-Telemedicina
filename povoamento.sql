@@ -79,49 +79,49 @@ INSERT INTO medico (cpf, nome, idade, crm, especialidade, cpf_chefe)
 SELECT cpf, nome, idade, 3565, 'Oftalmologia', '256.941.852-06' FROM pessoa WHERE cpf = '053.142.336-88';
 
 INSERT INTO medico (cpf, nome, idade, crm, especialidade, cpf_chefe) 
-SELECT cpf, nome, idade, 3512, 'Dermatologista', '256.941.852-06' FROM pessoa WHERE cpf = '010.532.546-14';
+SELECT cpf, nome, idade, 3512, 'Dermatologia', '256.941.852-06' FROM pessoa WHERE cpf = '010.532.546-14';
 
 INSERT INTO medico (cpf, nome, idade, crm, especialidade, cpf_chefe) 
-SELECT cpf, nome, idade, 3025, 'Clínico Geral', '256.941.852-06' FROM pessoa WHERE cpf = '839.274.863-02';
+SELECT cpf, nome, idade, 3025, 'Clínica Médica', '256.941.852-06' FROM pessoa WHERE cpf = '839.274.863-02';
 
 INSERT INTO medico (cpf, nome, idade, crm, especialidade, cpf_chefe) 
-SELECT cpf, nome, idade, 4565, 'Endocrinologista', '256.941.852-06' FROM pessoa WHERE cpf = '153.545.987-13';
+SELECT cpf, nome, idade, 4565, 'Endocrinologia', '256.941.852-06' FROM pessoa WHERE cpf = '153.545.987-13';
 
 INSERT INTO medico (cpf, nome, idade, crm, especialidade, cpf_chefe) 
-SELECT cpf, nome, idade, 6365, 'Cardiologista', '256.941.852-06' FROM pessoa WHERE cpf = '986.647.000-87';
+SELECT cpf, nome, idade, 6365, 'Cardiologia', '256.941.852-06' FROM pessoa WHERE cpf = '986.647.000-87';
 
 INSERT INTO medico (cpf, nome, idade, crm, especialidade, cpf_chefe) 
 SELECT cpf, nome, idade, 9633, 'Oftalmologia', '256.941.852-06' FROM pessoa WHERE cpf = '923.782.185-87';
 
 INSERT INTO medico (cpf, nome, idade, crm, especialidade, cpf_chefe) 
-SELECT cpf, nome, idade, 3567, 'Clínico Geral', '256.941.852-06' FROM pessoa WHERE cpf = '159.738.879-12';
+SELECT cpf, nome, idade, 3567, 'Clínica Médica', '256.941.852-06' FROM pessoa WHERE cpf = '159.738.879-12';
 
 INSERT INTO medico (cpf, nome, idade, crm, especialidade, cpf_chefe) 
-SELECT cpf, nome, idade, 3522, 'Dermatologista', '256.941.852-06' FROM pessoa WHERE cpf = '025.105.198-45';
+SELECT cpf, nome, idade, 3522, 'Dermatologia', '256.941.852-06' FROM pessoa WHERE cpf = '025.105.198-45';
 
 INSERT INTO medico (cpf, nome, idade, crm, especialidade, cpf_chefe) 
-SELECT cpf, nome, idade, 3305, 'Endocrinologista', '256.941.852-06' FROM pessoa WHERE cpf = '012.654.574-38';
+SELECT cpf, nome, idade, 3305, 'Endocrinologia', '256.941.852-06' FROM pessoa WHERE cpf = '012.654.574-38';
 
 INSERT INTO medico (cpf, nome, idade, crm, especialidade, cpf_chefe) 
 SELECT cpf, nome, idade, 3405, 'Oftalmologia', '256.941.852-06' FROM pessoa WHERE cpf = '145.896.745-15';
 
 INSERT INTO medico (cpf, nome, idade, crm, especialidade, cpf_chefe) 
-SELECT cpf, nome, idade, 6573, 'Nutricionista', '256.941.852-06' FROM pessoa WHERE cpf = '723.963.381-43';
+SELECT cpf, nome, idade, 6573, 'Nutrologia', '256.941.852-06' FROM pessoa WHERE cpf = '723.963.381-43';
 
 INSERT INTO medico (cpf, nome, idade, crm, especialidade, cpf_chefe) 
-SELECT cpf, nome, idade, 6834, 'Fisioterapia', '256.941.852-06' FROM pessoa WHERE cpf = '985.531.992-06';
+SELECT cpf, nome, idade, 6834, 'Psiquiatria', '256.941.852-06' FROM pessoa WHERE cpf = '985.531.992-06';
 
 INSERT INTO medico (cpf, nome, idade, crm, especialidade, cpf_chefe) 
-SELECT cpf, nome, idade, 2350, 'Nutricionista', '256.941.852-06' FROM pessoa WHERE cpf = '301.460.684-13';
+SELECT cpf, nome, idade, 2350, 'Nutrologia', '256.941.852-06' FROM pessoa WHERE cpf = '301.460.684-13';
 
 INSERT INTO medico (cpf, nome, idade, crm, especialidade, cpf_chefe) 
-SELECT cpf, nome, idade, 7325, 'Otorrino', '256.941.852-06' FROM pessoa WHERE cpf = '743.516.623-64';
+SELECT cpf, nome, idade, 7325, 'Nefrologia', '256.941.852-06' FROM pessoa WHERE cpf = '743.516.623-64';
 
 INSERT INTO medico (cpf, nome, idade, crm, especialidade, cpf_chefe) 
-SELECT cpf, nome, idade, 8234, 'Neurologista', '256.941.852-06' FROM pessoa WHERE cpf = '232.101.104-00';
+SELECT cpf, nome, idade, 8234, 'Neurologia', '256.941.852-06' FROM pessoa WHERE cpf = '232.101.104-00';
 
 INSERT INTO medico (cpf, nome, idade, crm, especialidade, cpf_chefe) 
-SELECT cpf, nome, idade, 4436, 'Clínico Geral', '256.941.852-06' FROM pessoa WHERE cpf = '400.898.482-31';
+SELECT cpf, nome, idade, 4436, 'Neurologia', '256.941.852-06' FROM pessoa WHERE cpf = '400.898.482-31';
 
 -- Povoando consulta
 INSERT INTO  consulta (link_chamada, cpf_medico, cpf_paciente)
