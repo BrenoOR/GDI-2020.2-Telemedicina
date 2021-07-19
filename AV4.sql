@@ -189,3 +189,13 @@ WHERE idade = ALL
 --    dataResultado DATE NOT NULL
 --);
 
+--USO DE EXCEPTION WHEN PL#15
+
+DECLARE -- Olha o cpf de um pessoa que tem o nome Igor Mascarenhas.
+    cpf2 pessoa.cpf%type;
+BEGIN
+    SELECT P.cpf into cpf2 FROM pessoa P WHERE P.nome = 'Igor Mascarenhas'; 
+    DBMS_OUTPUT.PUT_LINE('o cpf do pessoa é: ' || cpf2);
+EXCEPTION
+    WHEN TOO_MANY_ROWS THEN RAISE_APPLICATION_ERROR (-20404 ,'mais de uma pessoa retornada');
+END;
