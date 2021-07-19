@@ -87,9 +87,8 @@ SELECT AVG (idade) AS media_idade
 FROM paciente;
 
 
--- COUNT: retorna a quantidade total de pacientes e lista os nomes
-SELECT (nome) AS qtde_paciente
-FROM pessoa;
+-- COUNT: retorna a quantidade total de pacientes contando a partir dos cpfs
+SELECT COUNT (cpf) FROM paciente;
 
 -- Procedimento de cadastro de pessoa
 -- CREATE PROCEDURE
