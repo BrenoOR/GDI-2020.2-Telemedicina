@@ -14,7 +14,7 @@ INSERT INTO pessoa (cpf, nome, idade) VALUES ('985.531.992-06','Sheyla Carvalho'
 INSERT INTO pessoa (cpf, nome, idade) VALUES ('723.963.381-43','Ronaldo Alves', 29);
 INSERT INTO pessoa (cpf, nome, idade) VALUES ('301.460.684-13','Ed Motta', 22);
 INSERT INTO pessoa (cpf, nome, idade) VALUES ('743.516.623-64','Carla Perez', 44);
-
+INSERT INTO pessoa (cpf, nome, idade) VALUES ('997.081.354-35','Igor Mascarenhas', 84);
 INSERT INTO pessoa (cpf, nome, idade) VALUES ('581.051.853-57','Igor Mascarenhas', 38);
 INSERT INTO pessoa (cpf, nome, idade) VALUES ('375.583.690-63','Breno Rodrigues', 35);
 INSERT INTO pessoa (cpf, nome, idade) VALUES ('537.098.853-62','Natan Neto', 15);
