@@ -191,6 +191,7 @@ WHERE idade = ALL
 
 --USO DE EXCEPTION WHEN PL#15
 
+--INSERT INTO pessoa (cpf, nome, idade) VALUES ('997.081.354-35','Igor Mascarenhas', 84);
 DECLARE -- Olha o cpf de um pessoa que tem o nome Igor Mascarenhas.
     cpf2 pessoa.cpf%type;
 BEGIN
