@@ -122,25 +122,25 @@ CREATE OR REPLACE PROCEDURE add_pessoa (novo_cpf VARCHAR2, novo_nome VARCHAR2) I
 EXECUTE add_pessoa ('432.675.839-21', 'Januário Olímpio');
 SELECT * from pessoa WHERE cpf = '432.675.839-21'; 
 
--- Função que retorna o link de uma consulta
+-- Função que retorna o número de um exame
 -- CREATE FUNCTION
-CREATE OR REPLACE FUNCTION get_telefone_nome (pessoa_cpf IN VARCHAR2) 
-    RETURN VARCHAR2
-    IS resp_final VARCHAR2(60); 
+CREATE OR REPLACE FUNCTION get_exame_num (paciente_cpf IN VARCHAR2) 
+    RETURN NUMBER
+    IS resp_exame_num NUMBER; 
     BEGIN 
-        SELECT DISTINCT CONCAT (CONCAT (CONCAT ('Nome: ', pessoa.nome), ' Telefone: '), telefone.num_telefone) AS "Nome e Telefone"
-        INTO resp_final
-        FROM telefone, pessoa 
-        WHERE (telefone.cpf_pessoa = pessoa_cpf) AND (telefone.cpf_pessoa = pessoa.cpf);
-        RETURN resp_final; 
+        SELECT DISTINCT numero
+        INTO resp_exame_num
+        FROM exame, paciente 
+        WHERE (paciente_cpf = paciente.cpf) AND (paciente.cpf = exame.cpf_paciente);
+        RETURN resp_exame_num; 
     END;
 /
 
 -- Para testar a função criada acima
-DECLARE result_tel VARCHAR2(60);
+DECLARE result_exame NUMBER;
 BEGIN
-    result_tel := get_telefone_nome('159.738.879-12');
-    DBMS_OUTPUT.PUT_LINE('Encontrado -> ' || result_tel);
+    result_exame := get_exame_num('375.583.690-63');
+    DBMS_OUTPUT.PUT_LINE('Num: ' || result_exame);
 END;
 /
 -- Cria um indice
