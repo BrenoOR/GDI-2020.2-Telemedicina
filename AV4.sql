@@ -357,3 +357,7 @@ FROM paciente
 MINUS
 SELECT cpf_pessoa
 FROM telefone
+
+-- Seleciona quais médicos são mais velhos que o paciente mais velho.
+-- SUBCONSULTA COM OPERADOR RELACIONAL
+SELECT * FROM medico WHERE idade > (SELECT MAX(idade) FROM paciente) ORDER BY nome;
