@@ -172,14 +172,24 @@ FROM pessoa
 GROUP BY idade
 HAVING COUNT(idade) > 0;
 
+-- Criando uma variável do tipo record com dados sobre um exame que já possui resultado,
+-- o atributo validadeExame pode ser usado em alguma verificação para estabelecer se o paciente
+-- precisa realizar um novo exame antes de marcar uma nova consulta.
 -- USO DE RECORD
---DECLARE 
---TYPE exame_tipo IS RECORD (
---    tipoExame EXAME.TIPO%TYPE ,
---    medicoSolicitante MEDICO.CRM%TYPE,
---    dataSolicitacao DATE NOT NULL,
---    dataResultado DATE NOT NULL
---);
+DECLARE
+    TYPE ExameRecTipo IS RECORD (
+        tipoExame exame.tipo%type,
+        medicoSolicitante medico.crm%type,
+        dataSolicitacao DATE NOT NULL := TO_DATE('2021-01-01 08:00', 'yyyy-mm-dd hh24:mi'),
+        validadeExame DATE NOT NULL := TO_DATE('2021-01-01 08:00', 'yyyy-mm-dd hh24:mi'));
+    exame_rec ExameRecTipo;
+BEGIN
+    exame_rec.tipoExame := 'Hemograma';
+    exame_rec.medicoSolicitante := 533;
+    exame_rec.dataSolicitacao := TO_DATE('2021-01-01 08:00', 'yyyy-mm-dd hh24:mi');
+    exame_rec.validadeExame := TO_DATE('2021-10-01 08:00', 'yyyy-mm-dd hh24:mi');
+END;
+/
 
 -- Cria um subset com pacientes que possuem plano de saúde do Bradesco,
 -- percorre esse subset verificando se a idade deles é maior do que 40 anos,
@@ -221,7 +231,6 @@ BEGIN
   dbms_output.put_line( medico_nome );
 END;
 
-<<<<<<< HEAD
 -- Criando uma trigger que é disparada ao tentar incluir ou editar uma marcação com uma data anterior à presente.
 -- CREATE OR REPLACE TRIGGER (LINHA)
 CREATE OR REPLACE TRIGGER remarcacao
@@ -233,7 +242,6 @@ CREATE OR REPLACE TRIGGER remarcacao
         END IF;
     END remarcacao;
 /
-=======
 
 
 -- USO DE IF ELSIF PL#8
@@ -260,4 +268,3 @@ BEGIN
         SELECT especialidade INTO med_espe FROM medico WHERE nome = 'Agostinho Carrara';
     dbms_output.put_line(med_espe);
 END;
->>>>>>> c7750cd211836bdc4118a66c0bb235ba2061ea76
