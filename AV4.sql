@@ -329,3 +329,31 @@ UNION
 SELECT nome
 FROM paciente
 ORDER BY nome;
+
+-- Filtrando os cpfs de medicos / pacientes que têm um telefone cadastrado
+-- INTERSECT
+SELECT cpf
+FROM medico
+INTERSECT
+SELECT cpf_pessoa
+FROM telefone
+
+SELECT cpf
+FROM paciente
+INTERSECT
+SELECT cpf_pessoa
+FROM telefone
+
+-- Filtrando os cpfs de medicos / pacientes que não têm um telefone cadastrado
+-- MINUS
+SELECT cpf
+FROM medico
+MINUS
+SELECT cpf_pessoa
+FROM telefone
+
+SELECT cpf
+FROM paciente
+MINUS
+SELECT cpf_pessoa
+FROM telefone
