@@ -124,23 +124,23 @@ SELECT * from pessoa WHERE cpf = '432.675.839-21';
 
 -- Função que retorna o link de uma consulta
 -- CREATE FUNCTION
-CREATE OR REPLACE FUNCTION get_link_consulta (pessoa_cpf IN VARCHAR2) 
-    RETURN VARCHAR2 
-    IS resp_link VARCHAR2(50); 
+CREATE OR REPLACE FUNCTION get_telefone_nome (pessoa_cpf IN VARCHAR2) 
+    RETURN VARCHAR2
+    IS resp_final VARCHAR2(60); 
     BEGIN 
-        SELECT DISTINCT consulta.link_chamada 
-        INTO resp_link 
-        FROM consulta, pessoa 
-        WHERE ((consulta.cpf_medico = pessoa.cpf) AND (consulta.cpf_medico = pessoa_cpf)) OR ((consulta.cpf_paciente = pessoa.cpf) AND (consulta.cpf_medico = pessoa_cpf)); 
-        RETURN (resp_link); 
+        SELECT DISTINCT CONCAT (CONCAT (CONCAT ('Nome: ', pessoa.nome), ' Telefone: '), telefone.num_telefone) AS "Nome e Telefone"
+        INTO resp_final
+        FROM telefone, pessoa 
+        WHERE (telefone.cpf_pessoa = pessoa_cpf) AND (telefone.cpf_pessoa = pessoa.cpf);
+        RETURN resp_final; 
     END;
 /
 
 -- Para testar a função criada acima
-DECLARE result_link VARCHAR2(50);
+DECLARE result_tel VARCHAR2(60);
 BEGIN
-    result_link := get_link_consulta('986.647.000-87');
-    DBMS_OUTPUT.PUT_LINE('Link: ' || result_link);
+    result_tel := get_telefone_nome('159.738.879-12');
+    DBMS_OUTPUT.PUT_LINE('Encontrado -> ' || result_tel);
 END;
 /
 -- Cria um indice
