@@ -257,3 +257,13 @@ BEGIN
         SELECT especialidade INTO med_espe FROM medico WHERE nome = 'Agostinho Carrara';
     dbms_output.put_line(med_espe);
 END;
+
+-- CASE WHEN
+
+SELECT * FROM medico
+ORDER BY
+(CASE
+    WHEN medico.crm < 5000 THEN medico.crm
+    WHEN medico.especialidade = 'Neurologia' THEN medico.nome
+    ELSE medico.especialidade
+END);
