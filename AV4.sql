@@ -221,7 +221,6 @@ BEGIN
   dbms_output.put_line( medico_nome );
 END;
 
-<<<<<<< HEAD
 -- Criando uma trigger que é disparada ao tentar incluir ou editar uma marcação com uma data anterior à presente.
 -- CREATE OR REPLACE TRIGGER (LINHA)
 CREATE OR REPLACE TRIGGER remarcacao
@@ -233,8 +232,6 @@ CREATE OR REPLACE TRIGGER remarcacao
         END IF;
     END remarcacao;
 /
-=======
-
 
 -- USO DE IF ELSIF PL#8
 DECLARE -- olha se tem mais Medicos que Pacientes
@@ -260,4 +257,3 @@ BEGIN
         SELECT especialidade INTO med_espe FROM medico WHERE nome = 'Agostinho Carrara';
     dbms_output.put_line(med_espe);
 END;
->>>>>>> c7750cd211836bdc4118a66c0bb235ba2061ea76
