@@ -122,25 +122,25 @@ CREATE OR REPLACE PROCEDURE add_pessoa (novo_cpf VARCHAR2, novo_nome VARCHAR2) I
 EXECUTE add_pessoa ('432.675.839-21', 'Januário Olímpio');
 SELECT * from pessoa WHERE cpf = '432.675.839-21'; 
 
--- Função que retorna o link de uma consulta
+-- Função que retorna o número de um exame
 -- CREATE FUNCTION
-CREATE OR REPLACE FUNCTION get_link_consulta (pessoa_cpf IN VARCHAR2) 
-    RETURN VARCHAR2 
-    IS resp_link VARCHAR2(50); 
+CREATE OR REPLACE FUNCTION get_exame_num (paciente_cpf IN VARCHAR2) 
+    RETURN NUMBER
+    IS resp_exame_num NUMBER; 
     BEGIN 
-        SELECT DISTINCT consulta.link_chamada 
-        INTO resp_link 
-        FROM consulta, pessoa 
-        WHERE ((consulta.cpf_medico = pessoa.cpf) AND (consulta.cpf_medico = pessoa_cpf)) OR ((consulta.cpf_paciente = pessoa.cpf) AND (consulta.cpf_medico = pessoa_cpf)); 
-        RETURN (resp_link); 
+        SELECT DISTINCT numero
+        INTO resp_exame_num
+        FROM exame, paciente 
+        WHERE (paciente_cpf = paciente.cpf) AND (paciente.cpf = exame.cpf_paciente);
+        RETURN resp_exame_num; 
     END;
 /
 
 -- Para testar a função criada acima
-DECLARE result_link VARCHAR2(50);
+DECLARE result_exame NUMBER;
 BEGIN
-    result_link := get_link_consulta('986.647.000-87');
-    DBMS_OUTPUT.PUT_LINE('Link: ' || result_link);
+    result_exame := get_exame_num('375.583.690-63');
+    DBMS_OUTPUT.PUT_LINE('Num: ' || result_exame);
 END;
 /
 -- Cria um indice
@@ -221,6 +221,7 @@ BEGIN
   dbms_output.put_line( medico_nome );
 END;
 
+<<<<<<< HEAD
 -- Criando uma trigger que é disparada ao tentar incluir ou editar uma marcação com uma data anterior à presente.
 -- CREATE OR REPLACE TRIGGER (LINHA)
 CREATE OR REPLACE TRIGGER remarcacao
@@ -232,3 +233,31 @@ CREATE OR REPLACE TRIGGER remarcacao
         END IF;
     END remarcacao;
 /
+=======
+
+
+-- USO DE IF ELSIF PL#8
+DECLARE -- olha se tem mais Medicos que Pacientes
+ total1 number;
+ total2 number;
+BEGIN
+ SELECT COUNT(*) INTO total1 FROM medico;
+ SELECT COUNT(*) INTO total2 FROM paciente;
+ IF(total1 > total2) THEN
+     dbms_output.put_line('Mais Medicos que Pacientes');
+ ELSIF(total1 < total2) THEN
+    dbms_output.put_line('Mais Pacientes que Medicos');
+ ELSE
+    dbms_output.put_line('Numero de Medicos e Pacientes iguais');
+ END IF;
+END;
+
+
+--USO de %TYPE PL#6
+DECLARE -- criando uma variavel do mesmo tipo que medico.especialidade
+    med_espe medico.especialidade%TYPE;
+BEGIN
+        SELECT especialidade INTO med_espe FROM medico WHERE nome = 'Agostinho Carrara';
+    dbms_output.put_line(med_espe);
+END;
+>>>>>>> c7750cd211836bdc4118a66c0bb235ba2061ea76
