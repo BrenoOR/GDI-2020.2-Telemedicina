@@ -309,3 +309,14 @@ BEGIN
     END LOOP;
     CLOSE cPessoa;
 END;
+
+-- Criando trigger que dispara ao tentar inserir ou atualizar uma marcação em um final de semana.
+-- CREATE OR REPLACE TRIGGER (COMANDO)
+CREATE OR REPLACE TRIGGER diaMarcacao
+    BEFORE INSERT OR UPDATE ON marcacao
+    BEGIN
+        IF (TO_CHAR(SYSDATE, 'DY') in ('SAT', 'SUN')) THEN
+            RAISE_APPLICATION_ERROR (-20202,'Marcações só podem ser feitas em dias da semana.');
+        END IF;
+    END diaMarcacao;
+/
