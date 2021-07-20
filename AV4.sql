@@ -238,3 +238,12 @@ BEGIN
     dbms_output.put_line('Numero de Medicos e Pacientes iguais');
  END IF;
 END;
+
+
+--USO de %TYPE PL#6
+DECLARE -- criando uma variavel do mesmo tipo que medico.especialidade
+    med_espe medico.especialidade%TYPE;
+BEGIN
+        SELECT especialidade INTO med_espe FROM medico WHERE nome = 'Agostinho Carrara';
+    dbms_output.put_line(med_espe);
+END;
