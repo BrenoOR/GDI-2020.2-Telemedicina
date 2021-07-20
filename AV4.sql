@@ -320,3 +320,12 @@ CREATE OR REPLACE TRIGGER diaMarcacao
         END IF;
     END diaMarcacao;
 /
+
+-- Simulando um SELECT * FROM pessoa, combinando as tabelas paciente e medico
+-- UNION
+SELECT nome
+FROM medico
+UNION
+SELECT nome
+FROM paciente
+ORDER BY nome;
