@@ -185,7 +185,7 @@ DECLARE
     exame_rec ExameRecTipo;
 BEGIN
     exame_rec.tipoExame := 'Hemograma';
-    exame_rec.medicoSolicitante := 533;
+    exame_rec.medicoSolicitante := 6533;
     exame_rec.dataSolicitacao := TO_DATE('2021-01-01 08:00', 'yyyy-mm-dd hh24:mi');
     exame_rec.validadeExame := TO_DATE('2021-10-01 08:00', 'yyyy-mm-dd hh24:mi');
 END;
@@ -277,3 +277,13 @@ ORDER BY
     WHEN medico.especialidade = 'Neurologia' THEN medico.nome
     ELSE medico.especialidade
 END);
+
+-- Criando uma variável do tipo record usando %ROWTYPE, dessa forma, temos uma cópia exata de um registro
+-- de consulta que podemos "sujar" em alguma operação sem comprometer o estado do banco de dados.
+-- %ROWTYPE
+DECLARE
+    consulta_rec consulta%ROWTYPE;
+BEGIN
+    SELECT link_chamada, cpf_medico, cpf_paciente INTO consulta_rec FROM consulta WHERE consulta.link_chamada = 'https://meet.google.com/tvh-sdfq-wck';
+END;
+/
