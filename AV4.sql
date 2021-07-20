@@ -287,3 +287,25 @@ BEGIN
     SELECT link_chamada, cpf_medico, cpf_paciente INTO consulta_rec FROM consulta WHERE consulta.link_chamada = 'https://meet.google.com/tvh-sdfq-wck';
 END;
 /
+
+-- USO DO %ROWTYPE #PL7 , CURSOR (OPEN, FETCH e CLOSE) #PL14 , WHILE LOOP #PL11
+DECLARE 
+    cursor cPessoa IS
+    SELECT * from pessoa;
+    var_pessoa pessoa%ROWTYPE;
+    
+BEGIN
+    OPEN cPessoa;
+    FETCH cPessoa INTO var_pessoa;
+    WHILE cPessoa%FOUND 
+    LOOP
+        IF( var_pessoa.idade > 60) 
+        THEN
+            dbms_output.put_line('IDOSOS: '|| var_pessoa.nome || '- IDADE: ' || var_pessoa.idade);
+        ELSE
+            dbms_output.put_line('não idosos: ' || var_pessoa.nome || '- IDADE: ' || var_pessoa.idade);
+        END IF;
+        FETCH cPessoa INTO var_pessoa;
+    END LOOP;
+    CLOSE cPessoa;
+END;
