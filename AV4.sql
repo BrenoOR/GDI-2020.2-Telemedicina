@@ -220,3 +220,21 @@ BEGIN
   -- show the customer name
   dbms_output.put_line( medico_nome );
 END;
+
+
+
+-- USO DE IF ELSIF PL#8
+DECLARE -- olha se tem mais Medicos que Pacientes
+ total1 number;
+ total2 number;
+BEGIN
+ SELECT COUNT(*) INTO total1 FROM medico;
+ SELECT COUNT(*) INTO total2 FROM paciente;
+ IF(total1 > total2) THEN
+     dbms_output.put_line('Mais Medicos que Pacientes');
+ ELSIF(total1 < total2) THEN
+    dbms_output.put_line('Mais Pacientes que Medicos');
+ ELSE
+    dbms_output.put_line('Numero de Medicos e Pacientes iguais');
+ END IF;
+END;
