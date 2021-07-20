@@ -189,3 +189,19 @@ WHERE idade = ALL
 --    dataResultado DATE NOT NULL
 --);
 
+-- Cria um subset com pacientes que possuem plano de saúde do Bradesco,
+-- percorre esse subset verificando se a idade deles é maior do que 40 anos,
+-- se sim, troca o plano de saúde do paciente para Unimed.
+-- FOR IN LOOP
+DECLARE
+    CURSOR v_pacientes IS
+        SELECT * FROM paciente WHERE nome_plano = 'Bradesco';
+    v_paciente  paciente%ROWTYPE;
+BEGIN
+     FOR v_paciente IN v_pacientes LOOP
+        IF v_paciente.idade > 40 THEN
+            UPDATE paciente SET nome_plano = 'Unimed' WHERE cpf = v_paciente.cpf;
+        END IF;
+     END LOOP;
+END;
+/
