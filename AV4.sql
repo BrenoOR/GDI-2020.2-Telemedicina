@@ -172,14 +172,6 @@ FROM pessoa
 GROUP BY idade
 HAVING COUNT(idade) > 0;
 
--- SUBCONSULTA COM ALL
-SELECT nome
-FROM PACIENTE
-WHERE idade = ALL
-    (SELECT idade
-    FROM PACIENTE
-    WHERE idade < 80);
-
 -- USO DE RECORD
 --DECLARE 
 --TYPE exame_tipo IS RECORD (
@@ -205,3 +197,26 @@ BEGIN
      END LOOP;
 END;
 /
+--USO DE EXCEPTION WHEN PL#15
+--INSERT INTO pessoa (cpf, nome, idade) VALUES ('997.081.354-35','Igor Mascarenhas', 84);
+DECLARE -- Olha o cpf de um pessoa que tem o nome Igor Mascarenhas.
+    cpf2 pessoa.cpf%type;
+BEGIN
+    SELECT P.cpf into cpf2 FROM pessoa P WHERE P.nome = 'Igor Mascarenhas'; 
+    DBMS_OUTPUT.PUT_LINE('o cpf do pessoa é: ' || cpf2);
+EXCEPTION
+    WHEN TOO_MANY_ROWS THEN RAISE_APPLICATION_ERROR (-20404 ,'mais de uma pessoa retornada');
+END;
+
+-- USO DE SELECT … INTO PL#13
+--O exemplo a seguir usa uma SELECT INTO para obter o nome de um medico com base no seu CPF, que é a chave primária da tabela medico.
+DECLARE
+  medico_nome medico.nome%TYPE;
+BEGIN
+  -- get name of the customer 100 and assign it to l_customer_name
+  SELECT nome INTO medico_nome
+  FROM medico
+  WHERE cpf = '256.941.852-06';
+  -- show the customer name
+  dbms_output.put_line( medico_nome );
+END;
