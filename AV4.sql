@@ -220,3 +220,15 @@ BEGIN
   -- show the customer name
   dbms_output.put_line( medico_nome );
 END;
+
+-- Criando uma trigger que é disparada ao tentar incluir ou editar uma marcação com uma data anterior à presente.
+-- CREATE OR REPLACE TRIGGER (LINHA)
+CREATE OR REPLACE TRIGGER remarcacao
+    BEFORE INSERT OR UPDATE ON marcacao
+    FOR EACH ROW
+    BEGIN
+        IF (TO_DATE(:NEW.data_hora, 'yyyy-mm-dd') <= TO_DATE(SYSDATE, 'yyyy-mm-dd')) THEN
+            RAISE_APPLICATION_ERROR (-20202,'A nova data da consulta precisa ser posterior ao dia de hoje.');
+        END IF;
+    END remarcacao;
+/
