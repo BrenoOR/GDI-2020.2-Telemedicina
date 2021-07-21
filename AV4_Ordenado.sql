@@ -9,9 +9,7 @@ ALTER TABLE paciente RENAME COLUMN nome2 TO nome;
 
 -- #02 CREATE INDEX
 -- Cria um indice.
-CREATE INDEX index_pessoa
-ON table_pess(nome[,cpf,telefone]);
-/
+CREATE INDEX cpf_paciente ON paciente
 
 -- #03 INSERT INTO 
 -- Inserir um um ou mais registro.
