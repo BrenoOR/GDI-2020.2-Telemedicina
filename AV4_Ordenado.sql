@@ -1,6 +1,6 @@
 -- Script da AV4
 --(PRECISA REVISAR: #02, #25, #29, #35)
---(PRECISA FAZER: #28, #40, #43, #44)
+--(PRECISA FAZER: #28, #43, #44)
 
 -- #01 ALTER TABLE
 -- Alterar a coluna nome para nome2 e vice-versa.
