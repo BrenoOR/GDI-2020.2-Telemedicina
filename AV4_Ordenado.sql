@@ -1,6 +1,6 @@
 -- Script da AV4
 --(PRECISA REVISAR: #02, #25, #29, #35)
---(PRECISA FAZER: #26, #28, #36, #40, #43, #44)
+--(PRECISA FAZER: #28, #36, #40, #43, #44)
 
 -- #01 ALTER TABLE
 -- Alterar a coluna nome para nome2 e vice-versa.
@@ -169,7 +169,7 @@ INNER JOIN crm
 ON nome =crm;
 
 -- #26 GRANTE / REVOKE
--- Dando permissão publica para deletar e depois revogando essa permissão.
+-- Dando permissão publica para deletar na tabela telefone e depois revogando essa permissão.
 GRANT DELETE ON telefone TO public;
 REVOKE DELETE ON telefone FROM public;
 
@@ -290,7 +290,22 @@ ORDER BY
 END);
 
 -- #36 LOOP EXIT WHEN
--- PRECISA FAZER
+-- Varrendo a tabela de pacientes até encontrar um paciente com idade maior ou igual a 50 anos.
+DECLARE
+    CURSOR v_pacientes IS
+        SELECT * FROM paciente;
+    v_paciente  paciente%ROWTYPE;
+BEGIN
+    FOR v_paciente IN v_pacientes LOOP
+        IF v_paciente.idade < 50 THEN
+            dbms_output.put_line(v_paciente.nome || ' é muito novo para nossos testes.');
+        ELSE
+            dbms_output.put_line(v_paciente.nome || ' é um bom candidato para nossos testes.');
+        END IF;
+        EXIT WHEN v_paciente.idade >= 50;
+    END LOOP;
+END;
+/
 
 -- #37 WHILE LOOP
 -- Classificando entre idoso e não idoso.
