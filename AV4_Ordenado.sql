@@ -1,6 +1,6 @@
 -- Script da AV4
 --(PRECISA REVISAR: #02, #25, #29, #35)
---(PRECISA FAZER: #28, #43, #44)
+--(PRECISA FAZER: #28)
 
 -- #01 ALTER TABLE
 -- Alterar a coluna nome para nome2 e vice-versa.
@@ -422,7 +422,7 @@ DECLARE
 /
 
 --- #43 CREATE OR REPLACE PACKAGE
--- Package para cadastro de paciente
+-- Package para cadastro de paciente.
 CREATE OR REPLACE PACKAGE cadastrar_paciente AS
     PROCEDURE cad_pessoa (novo_cpf VARCHAR2, novo_nome VARCHAR2, nova_idade NUMBER);
     PROCEDURE cad_paciente (novo_cpf VARCHAR2, novo_n_sus NUMBER, novo_plano VARCHAR2);
@@ -432,9 +432,10 @@ END cadastrar_paciente;
 
 
 -- #44 CREATE OR REPLACE PACKAGE BODY
--- Package body para o package de cadastro de pacientes
+-- Package body para o package de cadastro de pacientes.
 CREATE OR REPLACE PACKAGE BODY cadastrar_paciente AS
     new_nome VARCHAR2(30);
+    novo_nome VARCHAR2(30);
     PROCEDURE cad_pessoa (novo_cpf VARCHAR2, novo_nome VARCHAR2, nova_idade NUMBER) AS
     BEGIN
         cadastrar_paciente.new_nome := novo_nome;
@@ -453,7 +454,6 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('Adicionado o paciente: ' || TO_CHAR(new_nome) );
 END cadastrar_paciente;
 /
-
 --Teste do package acima: Inserindo Genivaldo no banco de dados
 EXECUTE cadastrar_paciente.cad_pessoa ('523.748.235-53', 'Genivaldo Herrera', 20);
 EXECUTE cadastrar_paciente.cad_paciente('523.748.235-53', 6233, 'Cassi');
