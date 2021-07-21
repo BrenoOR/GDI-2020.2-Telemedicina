@@ -1,6 +1,6 @@
 -- Script da AV4
 --(PRECISA REVISAR: #02, #25, #29, #35)
---(PRECISA FAZER: #28, #36, #40, #43, #44)
+--(PRECISA FAZER: #28, #40, #43, #44)
 
 -- #01 ALTER TABLE
 -- Alterar a coluna nome para nome2 e vice-versa.
@@ -361,7 +361,31 @@ BEGIN
 END;
 
 -- #40 CURSOR (OPEN, FETCH e CLOSE)
--- PRECISA FAZER
+-- Verificando se uma linha telefônica é local ou de outro DDD.
+DECLARE
+    CURSOR v_telefones IS
+        SELECT * from telefone;
+    v_telefone telefone%ROWTYPE;
+
+BEGIN
+    OPEN v_telefones;
+    FETCH v_telefones INTO v_telefone;
+    WHILE v_telefones%FOUND
+    LOOP
+        IF(v_telefone.num_telefone LIKE '(81%') THEN
+            dbms_output.put_line('Esta é uma linha local, para chamar, disque: ' ||
+            SUBSTR(v_telefone.num_telefone, 6, 1) || SUBSTR(v_telefone.num_telefone, 8, 4) ||
+            SUBSTR(v_telefone.num_telefone, 13, 4) || '.');
+        ELSE
+            dbms_output.put_line('Esta linha pertence a outro DDD, para chamar, disque: 0 + código da operadora + ' ||
+            SUBSTR(v_telefone.num_telefone, 2, 2) || ' + ' || SUBSTR(v_telefone.num_telefone, 6, 1) ||
+            SUBSTR(v_telefone.num_telefone, 8, 4) || SUBSTR(v_telefone.num_telefone, 13, 4) || '.');
+        END IF;
+        FETCH v_telefones INTO v_telefone;
+    END LOOP;
+    CLOSE v_telefones;
+END;
+/
 
 -- #41 EXCEPTION WHEN
 -- INSERT INTO pessoa (cpf, nome, idade) VALUES ('997.081.354-35','Igor Mascarenhas', 84);
