@@ -145,12 +145,10 @@ END;
 /
 -- Cria um indice
 -- CREATE INDEX
-CREATE INDEX index_pessoa
-ON table_pess(nome[,cpf,telefone]);
-/
+CREATE INDEX cpf_paciente ON paciente
 -- Inserir um um ou mais registro
 -- INSERT INTO 
-INSERT INTO pesso VALUES (add_pessoa.new_cpf,add_pessoa.new_pessoa);
+INSERT INTO pessoa VALUES ("Josué Matias","400.898.482-31","82");
 -- Criar views
 -- CREATE views
 CREATE VIEW Medico
