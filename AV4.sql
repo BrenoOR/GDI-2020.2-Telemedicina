@@ -271,12 +271,11 @@ END;
 -- CASE WHEN
 
 SELECT * FROM medico
-ORDER BY
-(CASE
-    WHEN medico.crm < 5000 THEN medico.crm
-    WHEN medico.especialidade = 'Neurologia' THEN medico.nome
-    ELSE medico.especialidade
-END);
+CASE
+    WHEN medico.crm < 5000 THEN dbms_output.put_line(medico.crm)
+    WHEN medico.especialidade = 'Neurologia' THEN dbms_output.put_line(medico.nome)
+    ELSE dbms_output.put_line(medico.especialidade)
+END;
 
 -- Criando uma variável do tipo record usando %ROWTYPE, dessa forma, temos uma cópia exata de um registro
 -- de consulta que podemos "sujar" em alguma operação sem comprometer o estado do banco de dados.
