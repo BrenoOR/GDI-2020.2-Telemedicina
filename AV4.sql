@@ -153,17 +153,13 @@ CREATE INDEX cpf_paciente ON paciente
 INSERT INTO pessoa VALUES ('499.898.482-85', 'Josué Matias', '82');
 -- Criar views
 -- CREATE views
-CREATE VIEW Medico
-AS SELECT nome,crm
-FROM nome
-INNER JOIN crm
-ON nome =crm;
+CREATE VIEW dia_marcacao AS SELECT link_chamada, cpf_medico from consulta AS C WHERE data_hora_marcacao BETWEEN ('2021-09-07','dd-mm-yyyy') AND TO_DATE ('01-01-2022','dd-mm-yyyy')
 -- Bloco anonimo
 DECLARE
-    result_link VARCHAR2(50);
+    v_cpf_medico medico.cpf_medico%TYPE := '256.941.852-06';
+    v_cpf medico.cpf%TYPE := '256.941.852-06';
 BEGIN
-    result_link := get_link_consulta('159.738.879-12');
-    DBMS_OUTPUT.PUT_LINE('Link: ' || result_link);
+    UPDATE medico SET cpf_medico = v_cpf_medico WHERE cpf = v_cpf;
 END;
 
 -- HAVING
