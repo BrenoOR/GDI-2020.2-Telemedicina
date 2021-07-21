@@ -421,11 +421,44 @@ DECLARE
     END;
 /
 
--- #43 CREATE OR REPLACE PACKAGE
--- PRECISA FAZER
+--- #43 CREATE OR REPLACE PACKAGE
+-- Package para cadastro de paciente
+CREATE OR REPLACE PACKAGE cadastrar_paciente AS
+    PROCEDURE cad_pessoa (novo_cpf VARCHAR2, novo_nome VARCHAR2, nova_idade NUMBER);
+    PROCEDURE cad_paciente (novo_cpf VARCHAR2, novo_n_sus NUMBER, novo_plano VARCHAR2);
+END cadastrar_paciente;
+/
+
+
 
 -- #44 CREATE OR REPLACE PACKAGE BODY
--- PRECISA FAZER
+-- Package body para o package de cadastro de pacientes
+CREATE OR REPLACE PACKAGE BODY cadastrar_paciente AS
+    new_nome VARCHAR2(30);
+    PROCEDURE cad_pessoa (novo_cpf VARCHAR2, novo_nome VARCHAR2, nova_idade NUMBER) AS
+    BEGIN
+        cadastrar_paciente.new_nome := novo_nome;
+        INSERT INTO pessoa VALUES (novo_cpf, novo_nome, nova_idade);
+    END cad_pessoa;
+    
+    PROCEDURE cad_paciente (novo_cpf VARCHAR2, novo_n_sus NUMBER, novo_plano VARCHAR2) AS
+    BEGIN
+        cadastrar_paciente.new_nome := novo_nome;
+        INSERT INTO paciente (cpf, nome, idade, n_sus, nome_plano)
+        SELECT cpf, nome, idade, cad_paciente.novo_n_sus, cad_paciente.novo_plano
+        FROM pessoa WHERE cpf = novo_cpf; 
+    END cad_paciente;
+BEGIN 
+    DBMS_OUTPUT.PUT_LINE('Adicionado o pessoa: ' || TO_CHAR(new_nome) );
+    DBMS_OUTPUT.PUT_LINE('Adicionado o paciente: ' || TO_CHAR(new_nome) );
+END cadastrar_paciente;
+/
+
+--Teste do package acima: Inserindo Genivaldo no banco de dados
+EXECUTE cadastrar_paciente.cad_pessoa ('523.748.235-53', 'Genivaldo Herrera', 20);
+EXECUTE cadastrar_paciente.cad_paciente('523.748.235-53', 6233, 'Cassi');
+SELECT * FROM pessoa WHERE cpf = '523.748.235-53';
+SELECT * FROM paciente WHERE cpf = '523.748.235-53';
 
 -- #45 CREATE OR REPLACE TRIGGER (COMANDO)
 -- Criando trigger que dispara ao tentar inserir ou atualizar uma marcação em um final de semana.
