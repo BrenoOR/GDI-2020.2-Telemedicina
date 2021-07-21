@@ -108,18 +108,20 @@ SELECT nome, idade FROM paciente WHERE idade > ALL (SELECT idade from paciente W
 
 -- Procedimento de cadastro de pessoa
 -- CREATE PROCEDURE
-CREATE OR REPLACE PROCEDURE add_pessoa (novo_cpf VARCHAR2, novo_nome VARCHAR2) IS  
+CREATE OR REPLACE PROCEDURE add_pessoa (novo_cpf VARCHAR2, novo_nome VARCHAR2, nova_idade NUMBER) IS  
     new_cpf VARCHAR2(14); 
     new_nome VARCHAR2(30); 
+    new_idade NUMBER;
     addCpf pessoa.cpf%TYPE; 
     BEGIN  
         new_cpf := novo_cpf; 
         new_nome := novo_nome; 
-        INSERT INTO pessoa VALUES (add_pessoa.new_cpf, add_pessoa.new_nome); 
+        new_idade := nova_idade;
+        INSERT INTO pessoa VALUES (add_pessoa.new_cpf, add_pessoa.new_nome, add_pessoa.new_idade); 
     END;
 /
 -- Para testar e visualizar o resultado do procedimento acima
-EXECUTE add_pessoa ('432.675.839-21', 'Januário Olímpio');
+EXECUTE add_pessoa ('432.675.839-21', 'Januário Olímpio', 38);
 SELECT * from pessoa WHERE cpf = '432.675.839-21'; 
 
 -- Função que retorna o número de um exame
