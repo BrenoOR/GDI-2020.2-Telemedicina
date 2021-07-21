@@ -9,19 +9,20 @@ ALTER TABLE paciente RENAME COLUMN nome2 TO nome;
 
 -- #02 CREATE INDEX
 -- Cria um indice.
-CREATE INDEX cpf_paciente ON paciente
+/*Cria, mas não sabemos como verificar*/
+CREATE INDEX cpf_paciente ON paciente (cpf, nome);
 
 -- #03 INSERT INTO 
 -- Inserir um um ou mais registro.
-INSERT INTO pessoa VALUES ('499.898.482-85', 'Josué Matias', '82');
+INSERT INTO pessoa VALUES ('499.898.482-85', 'Josué Matias', 82);
 
 -- #04 UPDATE
 -- Atualizar o plano de saúde de Igor Mascarenhas.
 UPDATE paciente SET nome_plano = 'Unimed' WHERE cpf = '581.051.853-57';
 
 -- #05 DELETE
--- Deletar médico Lucas Alfredo.
-DELETE FROM medico WHERE crm ='3025';
+-- Deletar um número de telefone.
+DELETE FROM telefone WHERE num_telefone = '(81) 9 9999-5555';
 
 -- #06 SELECT-FROM-WHERE
 -- Selecionar o nome e crm de todos os oftalmologistas.
@@ -34,7 +35,7 @@ SELECT * FROM medico WHERE crm BETWEEN '1000' AND '4000';
 -- #08 IN
 -- Selecionar todos os médicos oftalmologistas, clinicos gerais e nutricionistas.
 SELECT * FROM medico
-WHERE especialidade IN ('Oftalmologia', 'Clínico Geral', 'Nutricionista');
+WHERE especialidade IN ('Oftalmologia', 'Clínica Médica', 'Nutrologia');
 
 -- #09 LIKE
 -- Selecionar todas pessoas com nome iniciado em A.
@@ -47,7 +48,7 @@ SELECT nome, cpf, crm FROM medico WHERE cpf_chefe IS NULL;
 SELECT nome, cpf, crm FROM medico WHERE cpf_chefe IS NOT NULL;
 
 -- #11 INNER JOIN
--- Cruzar dados dos exames com os pacientes.
+-- Cruzar (juntar) dados dos exames com os pacientes.
 SELECT * FROM exame INNER JOIN paciente
 ON (exame.cpf_paciente = paciente.cpf);
 
@@ -160,6 +161,7 @@ FROM telefone;
 
 -- #25 CREATE VIEW
 -- Criar views.
+/*Review it*/
 CREATE VIEW Medico
 AS SELECT nome,crm
 FROM nome
@@ -168,6 +170,7 @@ ON nome =crm;
 
 -- #26 GRANTE / REVOKE
 -- Dando permissão publica para deletar na tabela telefone e depois revogando essa permissão.
+/*Can't view on live sql*/
 GRANT DELETE ON telefone TO public;
 REVOKE DELETE ON telefone FROM public;
 
