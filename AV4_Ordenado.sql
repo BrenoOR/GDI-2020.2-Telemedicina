@@ -1,5 +1,5 @@
 -- Script da AV4
---(PRECISA REVISAR: #02, #25, #29, #35)
+--(PRECISA REVISAR: #25, #29, #35)
 --(PRECISA FAZER: #28)
 
 -- #01 ALTER TABLE
