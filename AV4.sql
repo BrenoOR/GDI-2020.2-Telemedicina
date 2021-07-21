@@ -40,7 +40,7 @@ SELECT nome, cpf, crm FROM medico WHERE cpf_chefe IS NOT NULL;
 -- ou o número de médicos cadastrados
 -- COUNT
 SELECT COUNT(nome) FROM pessoa;
-SELECT COUNT(pessoa.nome) FROM pessoa INNER JOIN medico ON pessoa.cpf = paciente.cpf;
+SELECT COUNT(pessoa.nome) FROM pessoa INNER JOIN paciente ON pessoa.cpf = paciente.cpf;
 SELECT COUNT(pessoa.nome) FROM pessoa INNER JOIN medico ON pessoa.cpf = medico.cpf;
 
 -- Selecionar todas as consultas de 2021, e seus respectivos pacientes, médicos, e links da chamada
@@ -148,7 +148,7 @@ END;
 CREATE INDEX cpf_paciente ON paciente
 -- Inserir um um ou mais registro
 -- INSERT INTO 
-INSERT INTO pessoa VALUES ("Josué Matias","400.898.482-31","82");
+INSERT INTO pessoa VALUES ('499.898.482-85', 'Josué Matias', '82');
 -- Criar views
 -- CREATE views
 CREATE VIEW Medico
@@ -168,7 +168,7 @@ END;
 SELECT idade, COUNT(idade)
 FROM pessoa
 GROUP BY idade
-HAVING COUNT(idade) > 0;
+HAVING idade > 18;
 
 -- Criando uma variável do tipo record com dados sobre um exame que já possui resultado,
 -- o atributo validadeExame pode ser usado em alguma verificação para estabelecer se o paciente
@@ -334,13 +334,13 @@ SELECT cpf
 FROM medico
 INTERSECT
 SELECT cpf_pessoa
-FROM telefone
+FROM telefone;
 
 SELECT cpf
 FROM paciente
 INTERSECT
 SELECT cpf_pessoa
-FROM telefone
+FROM telefone;
 
 -- Filtrando os cpfs de medicos / pacientes que não têm um telefone cadastrado
 -- MINUS
@@ -348,13 +348,13 @@ SELECT cpf
 FROM medico
 MINUS
 SELECT cpf_pessoa
-FROM telefone
+FROM telefone;
 
 SELECT cpf
 FROM paciente
 MINUS
 SELECT cpf_pessoa
-FROM telefone
+FROM telefone;
 
 -- Seleciona quais médicos são mais velhos que o paciente mais velho.
 -- SUBCONSULTA COM OPERADOR RELACIONAL
