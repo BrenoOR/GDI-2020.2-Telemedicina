@@ -169,7 +169,9 @@ INNER JOIN crm
 ON nome =crm;
 
 -- #26 GRANTE / REVOKE
--- PRECISA FAZER
+-- Dando permissão publica para deletar e depois revogando essa permissão.
+GRANT DELETE ON telefone TO public;
+REVOKE DELETE ON telefone FROM public;
 
 -- #27 USO DE RECORD
 -- Criando uma variável do tipo record com dados sobre um exame que já possui resultado,
