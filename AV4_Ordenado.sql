@@ -185,11 +185,17 @@ DECLARE
         dataSolicitacao DATE NOT NULL := TO_DATE('2021-01-01 08:00', 'yyyy-mm-dd hh24:mi'),
         validadeExame DATE NOT NULL := TO_DATE('2021-01-01 08:00', 'yyyy-mm-dd hh24:mi'));
     exame_rec ExameRecTipo;
+    m_nome medico.nome%TYPE;
 BEGIN
     exame_rec.tipoExame := 'Hemograma';
-    exame_rec.medicoSolicitante := 6533;
+    exame_rec.medicoSolicitante := 3305;
     exame_rec.dataSolicitacao := TO_DATE('2021-01-01 08:00', 'yyyy-mm-dd hh24:mi');
     exame_rec.validadeExame := TO_DATE('2021-10-01 08:00', 'yyyy-mm-dd hh24:mi');
+    SELECT nome INTO m_nome FROM medico WHERE crm = exame_rec.medicoSolicitante;
+    DBMS_OUTPUT.PUT_LINE('Exame: ' || exame_rec.tipoExame);
+    DBMS_OUTPUT.PUT_LINE('Médico solicitante: ' || m_nome);
+    DBMS_OUTPUT.PUT_LINE('Data da solicitação: ' || exame_rec.dataSolicitacao);
+    DBMS_OUTPUT.PUT_LINE('Validade do exama: ' || exame_rec.validadeExame);
 END;
 /
 
