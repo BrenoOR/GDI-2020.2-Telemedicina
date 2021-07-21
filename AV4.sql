@@ -361,3 +361,25 @@ FROM telefone
 -- Seleciona quais médicos são mais velhos que o paciente mais velho.
 -- SUBCONSULTA COM OPERADOR RELACIONAL
 SELECT * FROM medico WHERE idade > (SELECT MAX(idade) FROM paciente) ORDER BY nome;
+
+-- Procedimento que retorna o nome e o telefone do médico que atenderá uma consulta.
+-- USO DE PAR METROS (IN, OUT ou IN OUT)
+CREATE OR REPLACE PROCEDURE tel_med (lk_chm IN consulta.link_chamada%TYPE,
+    m_cpf IN OUT consulta.cpf_medico%TYPE, m_nome OUT medico.nome%TYPE,
+    tel_m OUT telefone.num_telefone%TYPE) IS
+    BEGIN
+        SELECT cpf_medico INTO m_cpf FROM consulta WHERE link_chamada = lk_chm;
+        SELECT nome INTO m_nome FROM medico WHERE cpf = m_cpf;
+        SELECT num_telefone INTO tel_m FROM telefone WHERE cpf_pessoa = m_cpf;
+    END;
+/
+-- Código para testar o procedimento acima.
+DECLARE
+    m_cpf consulta.cpf_medico%TYPE;
+    m_nome medico.nome%TYPE;
+    tel_m telefone.num_telefone%TYPE;
+    BEGIN
+    tel_med('https://meet.google.com/cfp-biki-icz', m_cpf, m_nome, tel_m);
+    dbms_output.put_line('Dr. ' || m_nome || '. Tel.: ' || tel_m);
+    END;
+/
