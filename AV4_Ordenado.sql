@@ -160,13 +160,17 @@ SELECT cpf_pessoa
 FROM telefone;
 
 -- #25 CREATE VIEW
--- Criar views.
-/*Review it*/
-CREATE VIEW Medico
-AS SELECT nome,crm
-FROM nome
-INNER JOIN crm
-ON nome =crm;
+-- Criaando uma view que mostra os médicos que também são pacientes.
+-- DROP VIEW medicoP;
+CREATE VIEW medicoP AS
+    SELECT medico.nome, medico.crm
+    FROM medico
+    INNER JOIN paciente
+    ON (medico.cpf = paciente.cpf);
+-- Testando a view.
+INSERT INTO paciente (cpf, nome, idade, n_sus, nome_plano)
+SELECT cpf, nome, idade, 2222, 'Unimed' FROM pessoa WHERE cpf = '256.941.852-06';
+SELECT * FROM medicoP;
 
 -- #26 GRANTE / REVOKE
 -- Dando permissão publica para deletar na tabela telefone e depois revogando essa permissão.

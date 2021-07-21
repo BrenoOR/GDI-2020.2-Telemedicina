@@ -67,6 +67,9 @@ SELECT cpf, nome, idade, 3241, 'Hapvida' FROM pessoa WHERE cpf = '135.581.486-85
 INSERT INTO paciente (cpf, nome, idade, n_sus, nome_plano)
 SELECT cpf, nome, idade, 3247, 'Unimed' FROM pessoa WHERE cpf = '440.581.784-01';
 
+INSERT INTO paciente (cpf, nome, idade, n_sus, nome_plano)
+SELECT cpf, nome, idade, 2222, 'Unimed' FROM pessoa WHERE cpf = '256.941.852-06';
+
 -- Medico
 -- Chefe
 
