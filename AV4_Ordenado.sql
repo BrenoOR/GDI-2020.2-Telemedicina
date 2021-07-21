@@ -1,5 +1,5 @@
 -- Script da AV4
---(PRECISA REVISAR: #25, #29, #35)
+--(PRECISA REVISAR: #35)
 --(PRECISA FAZER: #28)
 
 -- #01 ALTER TABLE
@@ -207,11 +207,11 @@ END;
 -- PRECISA FAZER
 
 -- #29 BLOCO ANÔNIMO
--- PRECISA REVISAR
+-- Armazenado o link da consulta de um paciente na variável result_link.
 DECLARE
     result_link VARCHAR2(50);
 BEGIN
-    result_link := get_link_consulta('159.738.879-12');
+    SELECT link_chamada INTO result_link FROM consulta WHERE cpf_paciente = '537.098.853-62';
     DBMS_OUTPUT.PUT_LINE('Link: ' || result_link);
 END;
 
