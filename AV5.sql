@@ -1,4 +1,4 @@
-CREATE TYPE tp_pessoa AS OBJECT (
+CREATE OR REPLACE TYPE tp_pessoa AS OBJECT (
 
 	nome VARCHAR2(100),
 	idade NUMBER,
@@ -7,14 +7,14 @@ CREATE TYPE tp_pessoa AS OBJECT (
 
 ) NOT FINAL NOT INSTANTIABLE;
 
-CREATE TYPE tp_paciente UNDER tp_pessoa (
+CREATE OR REPLACE TYPE tp_paciente UNDER tp_pessoa (
 
 	n_sus NUMBER,
 	plano_saude VARCHAR2(100)
 );
 
 
-CREATE TYPE tp_medico UNDER tp_pessoa (
+CREATE OR REPLACE TYPE tp_medico UNDER tp_pessoa (
 
 	crm NUMBER,
 	especialidade VARCHAR2(30),
