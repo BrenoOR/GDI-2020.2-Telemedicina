@@ -198,3 +198,5 @@ SELECT VALUE(p) into mb FROM tb_pessoa p WHERE p.crm='2350';
 ALTER TYPE tp_pessoa
 	ADD ATTRIBUTE (data_nascimento VARCHAR2(5)) CASCADE;
 	
+-- VARRAY para Pessoa
+-- CREATE OR REPLACE TYPE tp_pessoa AS VARRAY(5) of tp_pessoa;
