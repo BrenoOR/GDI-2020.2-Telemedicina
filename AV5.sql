@@ -3,9 +3,9 @@ CREATE OR REPLACE TYPE tp_pessoa AS OBJECT (
 	nome VARCHAR2(100),
 	idade NUMBER,
 	telefone NUMBER,
-	CPF VARCHAR2(14),	
+	CPF VARCHAR2(14)
 
-) NOT FINAL NOT INSTANTIABLE;
+) NOT FINAL;
 
 CREATE OR REPLACE TYPE tp_paciente UNDER tp_pessoa (
 
@@ -17,12 +17,10 @@ CREATE OR REPLACE TYPE tp_paciente UNDER tp_pessoa (
 CREATE OR REPLACE TYPE tp_medico UNDER tp_pessoa (
 
 	crm NUMBER,
-	especialidade VARCHAR2(30),
+	especialidade VARCHAR2(30)
 );
 
 CREATE TABLE tb_paciente OF tp_paciente;
-
-CREATE TABLE tb_medico OF tp_medico;
 
 //Referencias para endereco
 SELECT REF(e) FROM endereco e;
