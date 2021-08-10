@@ -259,7 +259,10 @@ SELECT REF(e) FROM tb_pessoa e;
 -- Valor para Pessoa
 SELECT VALUES(p) FROM tb_pessoa;
 VALUES (p) (nome,cpf);
--- Adicionando um atributo ao paciente
-ALTER TYPE tb_paciente 
-	ADD ATTRIBUTE (idade NUMBER);
+
+
+-- Adicionando um atributo ao paciente-- Acrescenta o atributo data_nascimento para o tipo tp_pessoa e  
+-- o CASCADE propaga essa alteracao para os objetos que herdam de pessoa
+ALTER TYPE tp_pessoa
+	ADD ATTRIBUTE (data_nascimento VARCHAR2(5)) CASCADE;
 	
