@@ -38,7 +38,7 @@ CREATE TABLE medico (cpf VARCHAR(14),
                      
                       
 CREATE TABLE consulta (link_chamada VARCHAR2(50),
-                       CONSTRAINT consulta_pk PRIMARY KEY (link_chamada);
+                       CONSTRAINT consulta_pk PRIMARY KEY (link_chamada));
 
 CREATE TABLE receita (cod_verificacao NUMBER NOT NULL,
                       assinatura VARCHAR2(30) NOT NULL,
@@ -50,7 +50,7 @@ CREATE TABLE exame (cod_verif_receita NUMBER NOT NULL,
                     numero NUMBER NOT NULL,
                     tipo VARCHAR2(50),
                     resultado VARCHAR2(100),
-                    CONSTRAINT exame_pk PRIMARY KEY (cod_verif_receita, numero);
+                    CONSTRAINT exame_pk PRIMARY KEY (cod_verif_receita, numero));
 
 CREATE TABLE marcacao (data_hora DATE,
                        cpf_paciente VARCHAR2(14),
