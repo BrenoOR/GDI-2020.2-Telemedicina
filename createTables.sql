@@ -7,6 +7,8 @@ DROP TABLE consulta;
 DROP TABLE medico;
 DROP TABLE paciente;
 DROP TABLE pessoa;
+DROP SEQUENCE exame_numero_seq;
+DROP SEQUENCE receita_cod_verificacao_seq;
 
 --Criação de tabelas
 
@@ -80,14 +82,14 @@ CREATE TABLE medicamento (nome VARCHAR2(30) NOT NULL,
 
 -- Criação de sequências
                         
-CREATE SEQUENCE exame_numero
+CREATE SEQUENCE exame_numero_seq
     MINVALUE 1
     START WITH 1
     INCREMENT BY 1
     ORDER
     CACHE 20;
 
-CREATE SEQUENCE receita_cod_verificacao
+CREATE SEQUENCE receita_cod_verificacao_seq
     MINVALUE 1
     START WITH 1
     INCREMENT BY 1
