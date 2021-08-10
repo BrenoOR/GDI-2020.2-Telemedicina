@@ -193,7 +193,7 @@ SELECT REF(P) FROM tb_pessoa P;
 SELECT VALUE(p) into mb FROM tb_pessoa p WHERE p.crm='2350';
 
 
--- Adicionando um atributo ao paciente-- Acrescenta o atributo data_nascimento para o tipo tp_pessoa e  
+-- Acrescenta o atributo data_nascimento para o tipo tp_pessoa e  
 -- o CASCADE propaga essa alteracao para os objetos que herdam de pessoa
 ALTER TYPE tp_pessoa
 	ADD ATTRIBUTE (data_nascimento VARCHAR2(5)) CASCADE;
