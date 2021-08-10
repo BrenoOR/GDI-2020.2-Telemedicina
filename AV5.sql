@@ -23,3 +23,14 @@ CREATE OR REPLACE TYPE tp_medico UNDER tp_pessoa (
 CREATE TABLE tb_paciente OF tp_paciente;
 
 CREATE TABLE tb_medico OF tp_medico;
+
+//Referencias para endereco
+SELECT REF(e) FROM endereco e;
+
+//Valor para
+SELECT VALUE(p) FROM tb_paciente;
+VALUE (P) (nome,cpf);
+
+ALTER TYPE tb_paciente 
+	ADD ATTRIBUTE (idade NUMBER);
+	
