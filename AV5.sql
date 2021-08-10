@@ -151,7 +151,74 @@ CREATE TABLE tb_telefone OF tp_telefone (
   num_telefone PRIMARY KEY
 
 )
+-- Inserindo dados na tabela de consulta
+INSERT INTO  consulta (link_chamada, cpf_medico, cpf_paciente)
+SELECT 'https://meet.google.com/cfp-biki-icz', medico.cpf, paciente.cpf
+FROM medico, paciente WHERE crm = 2350 AND n_sus = 4546;
 
+INSERT INTO  consulta (link_chamada, cpf_medico, cpf_paciente)
+SELECT 'https://meet.google.com/pdh-ryth-kwc', medico.cpf, paciente.cpf
+FROM medico, paciente WHERE crm = 2094 AND n_sus = 4586;
+
+INSERT INTO  consulta (link_chamada, cpf_medico, cpf_paciente)
+SELECT 'https://meet.google.com/ith-gere-kio', medico.cpf, paciente.cpf
+FROM medico, paciente WHERE crm = 3305 AND n_sus = 4510;
+
+INSERT INTO  consulta (link_chamada, cpf_medico, cpf_paciente)
+SELECT 'https://meet.google.com/tvh-sdfq-wck', medico.cpf, paciente.cpf
+FROM medico, paciente WHERE crm = 3405 AND n_sus = 4154;
+
+INSERT INTO  consulta (link_chamada, cpf_medico, cpf_paciente)
+SELECT 'https://meet.google.com/vht-bqwz-wtk', medico.cpf, paciente.cpf
+FROM medico, paciente WHERE crm = 3567 AND n_sus = 4582;
+
+INSERT INTO  consulta (link_chamada, cpf_medico, cpf_paciente)
+SELECT 'https://meet.google.com/ojh-dgad-wep', medico.cpf, paciente.cpf
+FROM medico, paciente WHERE crm = 6365 AND n_sus = 4012;
+
+INSERT INTO  consulta (link_chamada, cpf_medico, cpf_paciente)
+SELECT 'https://meet.google.com/lht-adfw-sdf', medico.cpf, paciente.cpf
+FROM medico, paciente WHERE crm = 4565 AND n_sus = 4896;
+
+INSERT INTO  consulta (link_chamada, cpf_medico, cpf_paciente)
+SELECT 'https://meet.google.com/tvh-cvbb-cas', medico.cpf, paciente.cpf
+FROM medico, paciente WHERE crm = 9633 AND n_sus = 4543;
+
+INSERT INTO  consulta (link_chamada, cpf_medico, cpf_paciente)
+SELECT 'https://meet.google.com/ath-hgjd-lok', medico.cpf, paciente.cpf
+FROM medico, paciente WHERE crm = 3565 AND n_sus = 4023;
+
+INSERT INTO  consulta (link_chamada, cpf_medico, cpf_paciente)
+SELECT 'https://meet.google.com/thz-hjgy-jhn', medico.cpf, paciente.cpf
+FROM medico, paciente WHERE crm = 3512 AND n_sus = 4151;
+
+INSERT INTO  consulta (link_chamada, cpf_medico, cpf_paciente)
+SELECT 'https://meet.google.com/ath-fgse-cfs', medico.cpf, paciente.cpf
+FROM medico, paciente WHERE crm = 3025 AND n_sus = 3241;
+
+INSERT INTO  consulta (link_chamada, cpf_medico, cpf_paciente)
+SELECT 'https://meet.google.com/bhy-asda-ujf', medico.cpf, paciente.cpf
+FROM medico, paciente WHERE crm = 3522 AND n_sus = 3247;
+
+INSERT INTO  consulta (link_chamada, cpf_medico, cpf_paciente)
+SELECT 'https://meet.google.com/cht-bsdf-qer', medico.cpf, paciente.cpf
+FROM medico, paciente WHERE crm = 6834 AND n_sus = 4896;
+
+INSERT INTO  consulta (link_chamada, cpf_medico, cpf_paciente)
+SELECT 'https://meet.google.com/has-zahg-gui', medico.cpf, paciente.cpf
+FROM medico, paciente WHERE crm = 7325 AND n_sus = 4154;
+
+INSERT INTO  consulta (link_chamada, cpf_medico, cpf_paciente)
+SELECT 'https://meet.google.com/sho-rieg-edo', medico.cpf, paciente.cpf
+FROM medico, paciente WHERE crm = 6573 AND n_sus = 4586;
+
+INSERT INTO  consulta (link_chamada, cpf_medico, cpf_paciente)
+SELECT 'https://meet.google.com/xin-zhao-jng', medico.cpf, paciente.cpf
+FROM medico, paciente WHERE crm = 8234 AND n_sus = 4546;
+
+INSERT INTO  consulta (link_chamada, cpf_medico, cpf_paciente)
+SELECT 'https://meet.google.com/sha-cori-nga', medico.cpf, paciente.cpf
+FROM medico, paciente WHERE crm = 4436 AND n_sus = 4543;
 
 -- Inserindo dados na tabela de pessoas
 INSERT INTO tb_pessoa VALUES ('053.142.336-88','Sheyla Lima', 15);
@@ -186,13 +253,13 @@ INSERT INTO tb_pessoa VALUES ('232.101.104-00','Raquel Teixeira', 63);
 INSERT INTO tb_pessoa VALUES ('400.898.482-31','Josué Matias', 82);
 
 
--- Referencias para endereco
-SELECT REF(e) FROM endereco e;
+-- Referencias para Pessoa
+SELECT REF(e) FROM tb_pessoa e;
 
--- Valor para
-SELECT VALUE(p) FROM tb_paciente;
-VALUE (P) (nome,cpf);
-
+-- Valor para Pessoa
+SELECT VALUES(p) FROM tb_pessoa;
+VALUES (p) (nome,cpf);
+-- Adicionando um atributo ao paciente
 ALTER TYPE tb_paciente 
 	ADD ATTRIBUTE (idade NUMBER);
 	
