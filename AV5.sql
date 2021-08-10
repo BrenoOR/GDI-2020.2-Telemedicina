@@ -1,11 +1,20 @@
--- Criando o tipo tp_pessoa
+DROP TABLE tb_pessoa;
+DROP TABLE tb_paciente;
+DROP TABLE tb_medico;
+DROP TABLE tb_marcacao;
+DROP TABLE tb_consulta;
+DROP TABLE tb_receita;
+DROP TABLE tb_exame;
+DROP TABLE tb_medicamento;
+DROP TABLE tb_telefone;
 
+
+-- Criando o tipo tp_pessoa
 CREATE OR REPLACE TYPE tp_pessoa AS OBJECT (
 
+	cpf VARCHAR2(14),
 	nome VARCHAR2(100),
-	idade NUMBER,
-	telefone NUMBER,
-	CPF VARCHAR2(14)
+	idade NUMBER
 
 ) NOT FINAL;
 
@@ -26,12 +35,8 @@ CREATE OR REPLACE TYPE tp_paciente UNDER tp_pessoa (
 
 );
 
--- Criando a tabela de paciente e colocando cpf como chave primária
-CREATE TABLE tb_paciente OF tp_paciente (
-
-  CPF PRIMARY KEY;
-
-);                           
+-- Criando a tabela de paciente
+CREATE TABLE tb_paciente OF tp_paciente;                          
 
 
 -- Criando o tipo tp_medico e fazendo o mesmo herdar os atributos de tp_pessoa
@@ -42,12 +47,8 @@ CREATE OR REPLACE TYPE tp_medico UNDER tp_pessoa (
 
 );
 
--- Criando a tabela de medico e colocando cpf como chave primária
-CREATE TABLE tb_medico OF tp_medico(
-
-  CPF PRIMARY KEY;
-
-);
+-- Criando a tabela de medico
+CREATE TABLE tb_medico OF tp_medico;
 
 
 -- Criando o tipo tp_marcacao
@@ -133,6 +134,21 @@ CREATE OR REPLACE TYPE tp_medicamento AS OBJECT (
 CREATE TABLE tb_medicamento OF tp_medicamento (
 
   nome_medicamento PRIMARY KEY
+
+)
+
+-- Criando o tipo tp_telefone
+CREATE OR REPLACE TYPE tp_telefone AS OBJECT (
+
+  cpf_pessoa VARCHAR2(14),
+  num_telefone NUMBER
+
+);
+
+-- Criando a tabela de telefone e colocando cpf_pessoa e num_telefone como chaves primárias
+CREATE TABLE tb_telefone OF tp_telefone (
+                                                  
+  num_telefone PRIMARY KEY
 
 )
 
