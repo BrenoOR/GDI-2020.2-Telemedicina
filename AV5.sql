@@ -145,7 +145,7 @@ CREATE OR REPLACE TYPE tp_telefone AS OBJECT (
 
 );
 
--- Criando a tabela de telefone e colocando cpf_pessoa e num_telefone como chaves primárias
+-- Criando a tabela de telefone e colocando num_telefone como chave primária
 CREATE TABLE tb_telefone OF tp_telefone (
                                                   
   num_telefone PRIMARY KEY
