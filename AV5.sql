@@ -254,11 +254,10 @@ INSERT INTO tb_pessoa VALUES ('400.898.482-31','Josué Matias', 82);
 
 
 -- Referencias para Pessoa
-SELECT REF(e) FROM tb_pessoa e;
+SELECT REF(P) FROM tb_pessoa P;
 
 -- Valor para Pessoa
-SELECT VALUES(p) FROM tb_pessoa;
-VALUES (p) (nome,cpf);
+SELECT VALUE(p) into mb FROM tb_pessoa p WHERE p.crm='2350';
 
 
 -- Adicionando um atributo ao paciente-- Acrescenta o atributo data_nascimento para o tipo tp_pessoa e  
