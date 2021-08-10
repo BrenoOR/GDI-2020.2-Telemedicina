@@ -1,8 +1,8 @@
 DROP TABLE medicamento;
-DROP TABLE receita;
-DROP TABLE exame;
 DROP TABLE telefone;
 DROP TABLE marcacao;
+DROP TABLE exame;
+DROP TABLE receita;
 DROP TABLE consulta;
 DROP TABLE medico;
 DROP TABLE paciente;
