@@ -38,7 +38,7 @@ CREATE OR REPLACE TYPE BODY tp_consulta AS
     END;
 END;
 /
--- Testando o tipocriado.
+-- Testando o tipo criado.
 DECLARE
   cons tp_consulta;
 BEGIN
@@ -46,6 +46,52 @@ BEGIN
   DBMS_OUTPUT.PUT_LINE('Link da consulta: ' || cons.getLink());
   cons.setLink('https://meet.google.com/tvh-cvbb-cas');
   DBMS_OUTPUT.PUT_LINE('Novo link da consulta: ' || cons.getLink());
+END;
+/
+
+-- 05. ORDER MEMBER FUNCTION
+-- Criando o tipo tp_pessoa.
+CREATE OR REPLACE TYPE tp_pessoa AS OBJECT (
+  cpf VARCHAR2(14),
+	nome VARCHAR2(100),
+	idade NUMBER,
+  MEMBER FUNCTION getNome RETURN VARCHAR2,
+  ORDER MEMBER FUNCTION maiorPrioridade(p tp_pessoa) RETURN INTEGER
+) NOT FINAL;
+/
+-- Definindo a função maiorPrioridade definida em tp_pessoa.
+CREATE OR REPLACE TYPE BODY tp_pessoa AS
+  MEMBER FUNCTION getNome RETURN VARCHAR2 IS
+    BEGIN
+      RETURN nome;
+    END;
+  ORDER MEMBER FUNCTION maiorPrioridade(p tp_pessoa) RETURN INTEGER IS
+    BEGIN
+      IF p.idade < self.idade THEN
+        RETURN 1;
+      ELSIF p.idade = self.idade THEN
+        RETURN 0;
+      ELSE
+        RETURN -1;
+      END IF;
+    END;
+END;
+/
+-- Testando a função maiorPrioridade.
+DECLARE
+  pess1 tp_pessoa;
+  pess2 tp_pessoa;
+BEGIN
+  pess1 := NEW tp_pessoa('053.142.336-88','Sheyla Lima', 15);
+  pess2 := NEW tp_pessoa('010.532.546-14','José Henrique', 20);
+  CASE pess1.maiorPrioridade(pess2)
+    WHEN 1 THEN
+      DBMS_OUTPUT.PUT_LINE(pess1.getNome || ' tem maior prioridade que ' || pess2.getNome || '.');
+    WHEN 0 THEN
+      DBMS_OUTPUT.PUT_LINE(pess1.getNome || ' e ' || pess2.getNome || ' possuem a mesma prioridade.');
+    WHEN -1 THEN
+      DBMS_OUTPUT.PUT_LINE(pess2.getNome || ' tem maior prioridade que ' || pess1.getNome || '.');
+  END CASE;
 END;
 /
 
