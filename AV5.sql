@@ -55,7 +55,40 @@ END;
 
 
 -- 04. MEMBER FUNCTION
+-- Criando o tipo tp_medico.
+CREATE OR REPLACE TYPE tp_medico AS OBJECT (
+    cpf varchar2(14),
+    nome varchar2(100),
+    idade NUMBER,
+    crm number,
+    especialidade varchar2(50),
+  salario NUMBER,
+  MEMBER FUNCTION getsalario RETURN NUMBER,
+  MEMBER FUNCTION salarioanual RETURN NUMBER
+);
+/
 
+-- Definindo a função declarada em  tp_medico.
+CREATE OR REPLACE TYPE BODY tp_medico AS
+  MEMBER FUNCTION getsalario RETURN NUMBER IS
+    BEGIN
+      RETURN salario;
+    END;
+ MEMBER FUNCTION salarioanual RETURN NUMBER IS
+    BEGIN
+      RETURN salario * 12;
+    END;
+END;
+/
+-- Testando a função.
+DECLARE
+  med tp_medico;
+BEGIN
+  med := NEW tp_medico('112.823.534-03','Igor Eduardo', 15, 425484, 'Dermatologia', 12000);
+  DBMS_OUTPUT.PUT_LINE(' Nome: ' || med.nome || ' Especialidade: ' || med.especialidade || ' Salario: ' || med.getsalario());
+  DBMS_OUTPUT.PUT_LINE('Salario Anual: ' || med.salarioanual());
+END;
+/
 
 
 
