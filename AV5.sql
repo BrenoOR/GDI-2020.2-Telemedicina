@@ -117,6 +117,7 @@ CREATE TABLE tb_consulta OF tp_consulta (
 CREATE OR REPLACE TYPE tp_receita AS OBJECT (
 
   cod_verificacao NUMBER,
+  cpf SCOPE IS tb_paciente, 
   assinatura VARCHAR2(30)
 
 );
@@ -164,7 +165,7 @@ CREATE TABLE tb_medicamento OF tp_medicamento (
 
   nome_medicamento PRIMARY KEY
 
-)
+) NOT INSTANTIABLE;
 
 -- Criando o tipo tp_telefone
 CREATE OR REPLACE TYPE tp_telefone AS OBJECT (
