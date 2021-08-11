@@ -53,7 +53,7 @@ END;
 -- Criando o tipo tp_pessoa.
 CREATE OR REPLACE TYPE tp_pessoa AS OBJECT (
   cpf VARCHAR2(14),
-	nome VARCHAR2(100),
+	nome VARCHAR2(30),
 	idade NUMBER,
   MEMBER FUNCTION getNome RETURN VARCHAR2,
   ORDER MEMBER FUNCTION maiorPrioridade(p tp_pessoa) RETURN INTEGER
@@ -92,6 +92,36 @@ BEGIN
     WHEN -1 THEN
       DBMS_OUTPUT.PUT_LINE(pess2.getNome || ' tem maior prioridade que ' || pess1.getNome || '.');
   END CASE;
+END;
+/
+
+-- 07. CONSTRUCTOR FUNCTION
+-- Criando o tipo tp_pessoa com um novo construtor.
+CREATE OR REPLACE TYPE tp_pessoa AS OBJECT (
+	cpf VARCHAR2(14),
+	nome VARCHAR2(30),
+	idade NUMBER,
+	CONSTRUCTOR FUNCTION tp_pessoa(nc VARCHAR2, nn VARCHAR2, nd VARCHAR2) RETURN SELF AS RESULT
+) NOT FINAL;
+/
+-- Definindo o novo construtor que calcula a idade da pessoa com base em sua data de nascimento.
+CREATE OR REPLACE TYPE BODY tp_pessoa AS
+  CONSTRUCTOR FUNCTION tp_pessoa(nc VARCHAR2, nn VARCHAR2, nd VARCHAR2) RETURN SELF AS RESULT IS
+    BEGIN
+      self.cpf := nc;
+      self.nome := nn;
+      self.idade := EXTRACT(YEAR FROM SYSDATE) - EXTRACT(YEAR FROM TO_DATE(nd, 'yyyy-mm-dd'));
+      RETURN;
+    END;
+END;
+/
+-- Testando o novo construtor.
+DECLARE
+  pess tp_pessoa;
+BEGIN
+  pess := NEW tp_pessoa('581.051.853-57','Igor Mascarenhas', '1993-02-11');
+  DBMS_OUTPUT.PUT_LINE('Pessoa: ' || pess.nome || '.');
+  DBMS_OUTPUT.PUT_LINE('Idade: ' || pess.idade || '.');
 END;
 /
 
