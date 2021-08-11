@@ -45,6 +45,7 @@ CREATE TABLE consulta (link_chamada VARCHAR2(50),
 CREATE TABLE receita (cod_verificacao NUMBER NOT NULL,
                       assinatura VARCHAR2(30) NOT NULL,
                       link_chamada_consulta VARCHAR2(50),
+                      CONSTRAINT cpf_paciente FOREIGN KEY (pessoa_pk) REFERENCES pessoa (cpf), 
                       CONSTRAINT receita_pk PRIMARY KEY (cod_verificacao),
                       CONSTRAINT receita_link_chamada_consulta_fk FOREIGN KEY (link_chamada_consulta) REFERENCES consulta (link_chamada));
                        

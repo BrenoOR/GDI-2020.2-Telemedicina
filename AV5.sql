@@ -163,6 +163,7 @@ CREATE TABLE tb_consulta OF tp_consulta (
 CREATE OR REPLACE TYPE tp_receita AS OBJECT (
 
   cod_verificacao NUMBER,
+  cpf SCOPE IS tb_paciente, 
   assinatura VARCHAR2(30)
 
 );
@@ -210,7 +211,7 @@ CREATE TABLE tb_medicamento OF tp_medicamento (
 
   nome_medicamento PRIMARY KEY
 
-)
+) NOT INSTANTIABLE;
 
 -- Criando o tipo tp_telefone
 CREATE OR REPLACE TYPE tp_telefone AS OBJECT (
@@ -226,8 +227,37 @@ CREATE TABLE tb_telefone OF tp_telefone (
   num_telefone PRIMARY KEY
 
 )
--- Inserindo dados na tabela de consulta
-
+-- Inserindo dados na tabela de telefone
+INSERT INTO tb_telefone VALUES ('053.142.336-88','(81)9 9982-5625');
+INSERT INTO tb_telefone VALUES ('010.532.546-14','(87)9 9500-0123');
+INSERT INTO tb_telefone VALUES ('839.274.863-02','(56)3 2504-6895');
+INSERT INTO tb_telefone VALUES ('153.545.987-13','(41)8 3659-6184');
+INSERT INTO tb_telefone VALUES ('986.647.000-87','(17)9 7878-2200');
+INSERT INTO tb_telefone VALUES ('923.782.185-87','(81)3 6032-5195');
+INSERT INTO tb_telefone VALUES ('159.738.879-12','(87)5 0282-1668');
+INSERT INTO tb_telefone VALUES ('025.105.198-45','(31)9 9747-4820');
+INSERT INTO tb_telefone VALUES ('012.654.574-38','(31)9 3048-2750');
+INSERT INTO tb_telefone VALUES ('145.896.745-15','(81)9 2472-5359');
+INSERT INTO tb_telefone VALUES ('256.941.852-06','(11)9 4002-8922');
+INSERT INTO tb_telefone VALUES ('985.531.992-06','(81)9 4648-5329');
+INSERT INTO tb_telefone VALUES ('723.963.381-43','(81)9 8379-9071');
+INSERT INTO tb_telefone VALUES ('301.460.684-13','(81)9 8263-8104');
+INSERT INTO tb_telefone VALUES ('743.516.623-64','(81)9 6379-4567');
+INSERT INTO tb_telefone VALUES ('997.081.354-35','(81)9 6886-3546');
+INSERT INTO tb_telefone VALUES ('581.051.853-57','(81)9 6886-3546');
+INSERT INTO tb_telefone VALUES ('375.583.690-63','(81)9 6986-3946');
+INSERT INTO tb_telefone VALUES ('537.098.853-62','(81)9 1304-6931');
+INSERT INTO tb_telefone VALUES ('864.652.931-82','(81)9 8886-3546');
+INSERT INTO tb_telefone VALUES ('583.451.591-57','(81)9 8786-3546');
+INSERT INTO tb_telefone VALUES ('841.915.678-03','(81)9 8586-3546');
+INSERT INTO tb_telefone VALUES ('642.351.905-84','(81)9 8286-3546');
+INSERT INTO tb_telefone VALUES ('158.910.538-32','(81)9 8886-1246');
+INSERT INTO tb_telefone VALUES ('689.539.958-23','(81)9 8889-3546');
+INSERT INTO tb_telefone VALUES ('786.962.193-38','(81)9 8886-1666');
+INSERT INTO tb_telefone VALUES ('135.581.486-85','(81)9 8886-2513');
+INSERT INTO tb_telefone VALUES ('440.581.784-01','(81)9 8286-1546');
+INSERT INTO tb_telefone VALUES ('232.101.104-00','(81)9 8886-6869');
+INSERT INTO tb_telefone VALUES ('400.898.482-31','(81)9 9997-2577');
 -- Inserindo dados na tabela de pessoas
 INSERT INTO tb_pessoa VALUES ('053.142.336-88','Sheyla Lima', 15);
 INSERT INTO tb_pessoa VALUES ('010.532.546-14','José Henrique', 20);
