@@ -25,7 +25,6 @@ CREATE TABLE tb_pessoa OF tp_pessoa (
   cpf PRIMARY KEY
 
 );
-                                 
 
 -- Criando o tipo tp_paciente e fazendo o mesmo herdar os atributos de tp_pessoa
 CREATE OR REPLACE TYPE tp_paciente UNDER tp_pessoa (
@@ -88,7 +87,7 @@ CREATE OR REPLACE TYPE tp_receita AS OBJECT (
 
   cod_verificacao NUMBER,
   assinatura VARCHAR2(30)
-                      
+
 );
 
 -- Criando a tabela de receita e colocando cod_verificacao como chave primária
@@ -107,7 +106,7 @@ CREATE OR REPLACE TYPE tp_exame AS OBJECT (
   tipo VARCHAR2(50),
   resultado VARCHAR2(100),
   data_hora_marcacao DATE
-                      
+
 );
 
 -- Criando a tabela de exame e colocando numero como chave primária
@@ -116,7 +115,6 @@ CREATE TABLE tb_exame OF tp_exame (
   numero PRIMARY KEY
 
 )
-
 
 -- Criando o tipo tp_medicamento
 CREATE OR REPLACE TYPE tp_medicamento AS OBJECT (
@@ -127,7 +125,7 @@ CREATE OR REPLACE TYPE tp_medicamento AS OBJECT (
   data_fabricacao DATE,
   data_validade DATE, 
   cod_verif_receita NUMBER
-                      
+
 );
 
 -- Criando a tabela de medicamento e colocando nome_medicamento como chave primária
@@ -147,7 +145,7 @@ CREATE OR REPLACE TYPE tp_telefone AS OBJECT (
 
 -- Criando a tabela de telefone e colocando num_telefone como chave primária
 CREATE TABLE tb_telefone OF tp_telefone (
-                                                  
+
   num_telefone PRIMARY KEY
 
 )
@@ -199,4 +197,35 @@ ALTER TYPE tp_pessoa
 	ADD ATTRIBUTE (data_nascimento VARCHAR2(5)) CASCADE;
 	
 -- VARRAY para Pessoa
--- CREATE OR REPLACE TYPE tp_pessoa AS VARRAY(5) of tp_pessoa;
+
+CREATE OR REPLACE TYPE tp_pessoas AS VARRAY(5) of tp_pessoa;
+
+CREATE TABLE tb_pessoas_por_medico(
+  crm NUMBER,
+  pacientes tp_pessoas);
+
+INSERT INTO tb_pessoas_por_medico VALUES(
+  50740,
+  tp_pessoas(
+    ('053.142.336-88','Sheyla Lima', 15),
+    ('010.532.546-14','José Henrique', 20),
+    ('839.274.863-02','Lucas Alfredo', 21));
+
+-- NESTED TABLE
+
+CREATE OR REPLACE TYPE tp_nt_exames AS TABLE OF tp_exame;
+
+CREATE TABLE tb_exames_solicitados(
+  crm_medico NUMBER,
+  n_sus_paciente NUMBER,
+  lista_exames tp_nt_exames)
+NESTED TABLE lista_exames STORE AS tb_lista_exames;
+
+INSERT INTO tb_exames_solicitados VALUES(
+  50740,
+  11369,
+  tp_nt_exames(
+    tp_exame('400.898.482-31', 1, 'Raio-X Perna', 'Fratura não detectada.', TO_DATE('11/08/2021', 'dd/mm/yyyy')),
+    tp_exame('400.898.482-31', 2, 'Raio-X Pé', 'Fratura não detectada.', TO_DATE('11/08/2021', 'dd/mm/yyyy')),
+    tp_exame('400.898.482-31', 3, 'Raio-X Joelho', 'Fratura não detectada.', TO_DATE('11/08/2021', 'dd/mm/yyyy')),
+  ));
