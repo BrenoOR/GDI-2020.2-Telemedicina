@@ -9,6 +9,7 @@ DROP TABLE tb_medicamento;
 DROP TABLE tb_telefone;
 
 
+--01. CREATE OR REPLACE TYPE
 -- Criando o tipo tp_pessoa
 CREATE OR REPLACE TYPE tp_pessoa AS OBJECT (
 
@@ -18,7 +19,6 @@ CREATE OR REPLACE TYPE tp_pessoa AS OBJECT (
 
 ) NOT FINAL;
 
--- 02. CREATE OR REPLACE TYPE BODY
 -- Criando o tipo tp_consulta.
 CREATE OR REPLACE TYPE tp_consulta AS OBJECT (
   link VARCHAR2(50),
@@ -26,6 +26,8 @@ CREATE OR REPLACE TYPE tp_consulta AS OBJECT (
   MEMBER PROCEDURE setLink(l VARCHAR2)
 );
 /
+
+-- 02. CREATE OR REPLACE TYPE BODY
 -- Definindo a função e o método declarado em  tp_consulta.
 CREATE OR REPLACE TYPE BODY tp_consulta AS
   MEMBER FUNCTION getLink RETURN VARCHAR2 IS
@@ -48,6 +50,15 @@ BEGIN
   DBMS_OUTPUT.PUT_LINE('Novo link da consulta: ' || cons.getLink());
 END;
 /
+
+-- 03. MEMBER PROCEDURE
+
+
+-- 04. MEMBER FUNCTION
+
+
+
+
 
 -- 05. ORDER MEMBER FUNCTION
 -- Criando o tipo tp_pessoa.
@@ -94,6 +105,9 @@ BEGIN
   END CASE;
 END;
 /
+
+-- 06. MAP MEMBER FUNCTION
+
 
 -- Criando a tabela de pessoa
 
