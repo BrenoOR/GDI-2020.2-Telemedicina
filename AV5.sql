@@ -378,6 +378,10 @@ SELECT VALUE(p) into mb FROM tb_pessoa p WHERE p.crm='2350';
 -- o CASCADE propaga essa alteracao para os objetos que herdam de pessoa
 ALTER TYPE tp_pessoa
 	ADD ATTRIBUTE (data_nascimento VARCHAR2(5)) CASCADE;
+
+-- Removendo o atributo data_nascimento do tipo tp_pessoa
+ALTER TYPE tp_pessoa 
+	DROP ATTRIBUTE (data_nascimento VARCHAR2(5)) CASCADE;
 	
 -- VARRAY para Pessoa
 
