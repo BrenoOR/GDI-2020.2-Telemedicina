@@ -18,6 +18,37 @@ CREATE OR REPLACE TYPE tp_pessoa AS OBJECT (
 
 ) NOT FINAL;
 
+-- 02. CREATE OR REPLACE TYPE BODY
+-- Criando o tipo tp_consulta.
+CREATE OR REPLACE TYPE tp_consulta AS OBJECT (
+  link VARCHAR2(50),
+  MEMBER FUNCTION getLink RETURN VARCHAR2,
+  MEMBER PROCEDURE setLink(l VARCHAR2)
+);
+/
+-- Definindo a função e o método declarado em  tp_consulta.
+CREATE OR REPLACE TYPE BODY tp_consulta AS
+  MEMBER FUNCTION getLink RETURN VARCHAR2 IS
+    BEGIN
+      RETURN link;
+    END;
+  MEMBER PROCEDURE setLink(l VARCHAR2) IS
+    BEGIN
+      link := l;
+    END;
+END;
+/
+-- Testando o tipocriado.
+DECLARE
+  cons tp_consulta;
+BEGIN
+  cons := NEW tp_consulta('https://meet.google.com/lht-adfw-sdf');
+  DBMS_OUTPUT.PUT_LINE('Link da consulta: ' || cons.getLink());
+  cons.setLink('https://meet.google.com/tvh-cvbb-cas');
+  DBMS_OUTPUT.PUT_LINE('Novo link da consulta: ' || cons.getLink());
+END;
+/
+
 -- Criando a tabela de pessoa
 
 CREATE TABLE tb_pessoa OF tp_pessoa (
