@@ -51,7 +51,35 @@ BEGIN
 END;
 /
 
--- 03. MEMBER PROCEDURE
+-- 03. MEMBER PROCEDURE 
+
+CREATE OR REPLACE TYPE exam_tp AS OBJECT (
+  tipo    VARCHAR2(50),
+  resultado    VARCHAR2(50),
+  dataex    VARCHAR2(50),
+  MEMBER PROCEDURE remarcar(r VARCHAR2)
+);
+/
+
+--MUDA O VALOR DE RESULTADO PARA REMARCAR
+CREATE OR REPLACE TYPE BODY exam_tp AS
+
+  MEMBER PROCEDURE remarcar(r VARCHAR2) IS
+    BEGIN
+      resultado := r;
+    END;
+END;
+/
+
+DECLARE
+  exam exam_tp;
+BEGIN
+  exam := NEW exam_tp('Glicemia em jejum', 'Ok', '2020-09-21 09:30');
+  DBMS_OUTPUT.PUT_LINE('Resultado: ' || exam.resultado);
+  exam.remarcar('Remarcar');
+  DBMS_OUTPUT.PUT_LINE('Resultado ' || exam.resultado);
+END;
+/
 
 
 -- 04. MEMBER FUNCTION
@@ -68,7 +96,7 @@ CREATE OR REPLACE TYPE tp_medico AS OBJECT (
 );
 /
 
--- Definindo a função declarada em  tp_medico.
+-- Definindo a função declarada em  tp_medico. SALARIO ANUAL
 CREATE OR REPLACE TYPE BODY tp_medico AS
   MEMBER FUNCTION getsalario RETURN NUMBER IS
     BEGIN
