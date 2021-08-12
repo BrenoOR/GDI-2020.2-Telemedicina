@@ -190,6 +190,54 @@ BEGIN
 END;
 /
 
+-- 09. FINAL MEMBER
+--Criamos um type tp_pessoa
+--aqui declaramos 1 função em tp_pessoa que é FINAL
+--ou seja, ela não pode ser sobrescrita pelos tipos derivados
+CREATE OR REPLACE TYPE tp_pessoa AS OBJECT (
+
+	cpf VARCHAR2(14),
+	nome VARCHAR2(100),
+	idade NUMBER,
+	FINAL MEMBER FUNCTION getNome RETURN VARCHAR2
+
+) NOT FINAL;
+/
+CREATE OR REPLACE TYPE BODY tp_pessoa AS
+    FINAL MEMBER FUNCTION getNome RETURN VARCHAR2 IS
+        BEGIN
+            RETURN nome;
+        END;
+END;
+/
+
+--Criamos um type tp_medico derivando de tp_pessoa
+CREATE OR REPLACE TYPE tp_medico UNDER tp_pessoa (
+	crm NUMBER,
+	especialidade VARCHAR2(30),
+	FINAL MEMBER FUNCTION getCRM RETURN NUMBER
+);
+/
+
+CREATE OR REPLACE TYPE BODY tp_medico AS
+    FINAL MEMBER FUNCTION getCRM RETURN NUMBER IS
+        BEGIN
+            RETURN crm;
+        END;
+END;
+/
+
+--Testando a implementação das funções
+--Obs.: Caso tentássemos sobrescrever a função
+-- getNome de tp_pessoa em tp_medico, teríamos um erro de tipo
+-- em tp_medico
+DECLARE
+    med1 tp_medico;
+BEGIN
+    med1 := NEW tp_medico('010.532.546-14','José Henrique', 20, 5613, 'Cardiologia');
+    DBMS_OUTPUT.PUT_LINE('CRM de ' || med1.getNome || ' é: ' || med1.getCRM);
+END;
+/
 
 -- 11. HERANÇA DE TIPOS (UNDER/NOT FINAL)
 -- Criando o tipo tp_pessoa
