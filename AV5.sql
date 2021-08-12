@@ -10,15 +10,6 @@ DROP TABLE tb_telefone;
 
 
 --01. CREATE OR REPLACE TYPE
--- Criando o tipo tp_pessoa
-CREATE OR REPLACE TYPE tp_pessoa AS OBJECT (
-
-	cpf VARCHAR2(14),
-	nome VARCHAR2(100),
-	idade NUMBER
-
-) NOT FINAL;
-
 -- Criando o tipo tp_consulta.
 CREATE OR REPLACE TYPE tp_consulta AS OBJECT (
   link VARCHAR2(50),
@@ -51,11 +42,72 @@ BEGIN
 END;
 /
 
--- 03. MEMBER PROCEDURE
+-- 03. MEMBER PROCEDURE 
+
+CREATE OR REPLACE TYPE exam_tp AS OBJECT (
+  tipo    VARCHAR2(50),
+  resultado    VARCHAR2(50),
+  dataex    VARCHAR2(50),
+  MEMBER PROCEDURE remarcar(r VARCHAR2)
+);
+/
+
+--MUDA O VALOR DE RESULTADO PARA REMARCAR
+CREATE OR REPLACE TYPE BODY exam_tp AS
+
+  MEMBER PROCEDURE remarcar(r VARCHAR2) IS
+    BEGIN
+      resultado := r;
+    END;
+END;
+/
+
+DECLARE
+  exam exam_tp;
+BEGIN
+  exam := NEW exam_tp('Glicemia em jejum', 'Ok', '2020-09-21 09:30');
+  DBMS_OUTPUT.PUT_LINE('Resultado: ' || exam.resultado);
+  exam.remarcar('Remarcar');
+  DBMS_OUTPUT.PUT_LINE('Resultado ' || exam.resultado);
+END;
+/
 
 
 -- 04. MEMBER FUNCTION
+-- Criando o tipo tp_medico.
+CREATE OR REPLACE TYPE tp_medico AS OBJECT (
+    cpf varchar2(14),
+    nome varchar2(100),
+    idade NUMBER,
+    crm number,
+    especialidade varchar2(50),
+  salario NUMBER,
+  MEMBER FUNCTION getsalario RETURN NUMBER,
+  MEMBER FUNCTION salarioanual RETURN NUMBER
+);
+/
 
+-- Definindo a função declarada em  tp_medico. SALARIO ANUAL
+CREATE OR REPLACE TYPE BODY tp_medico AS
+  MEMBER FUNCTION getsalario RETURN NUMBER IS
+    BEGIN
+      RETURN salario;
+    END;
+ MEMBER FUNCTION salarioanual RETURN NUMBER IS
+    BEGIN
+      RETURN salario * 12;
+    END;
+END;
+/
+-- Testando a função.
+DECLARE
+  med tp_medico;
+BEGIN
+  med := NEW tp_medico('112.823.534-03','Igor Eduardo', 15, 425484, 'Dermatologia', 12000);
+  DBMS_OUTPUT.PUT_LINE(' Nome: ' || med.nome || ' Especialidade: ' || med.especialidade || ' Salario: ' || med.getsalario());
+  DBMS_OUTPUT.PUT_LINE('Salario Anual: ' || med.salarioanual());
+END;
+/
 
 
 
@@ -182,6 +234,66 @@ BEGIN
   DBMS_OUTPUT.PUT_LINE(med.getIdentificacao);
 END;
 /
+
+-- 09. FINAL MEMBER
+--Criamos um type tp_pessoa
+--aqui declaramos 1 função em tp_pessoa que é FINAL
+--ou seja, ela não pode ser sobrescrita pelos tipos derivados
+CREATE OR REPLACE TYPE tp_pessoa AS OBJECT (
+
+	cpf VARCHAR2(14),
+	nome VARCHAR2(100),
+	idade NUMBER,
+	FINAL MEMBER FUNCTION getNome RETURN VARCHAR2
+
+) NOT FINAL;
+/
+CREATE OR REPLACE TYPE BODY tp_pessoa AS
+    FINAL MEMBER FUNCTION getNome RETURN VARCHAR2 IS
+        BEGIN
+            RETURN nome;
+        END;
+END;
+/
+
+--Criamos um type tp_medico derivando de tp_pessoa
+CREATE OR REPLACE TYPE tp_medico UNDER tp_pessoa (
+	crm NUMBER,
+	especialidade VARCHAR2(30),
+	FINAL MEMBER FUNCTION getCRM RETURN NUMBER
+);
+/
+
+CREATE OR REPLACE TYPE BODY tp_medico AS
+    FINAL MEMBER FUNCTION getCRM RETURN NUMBER IS
+        BEGIN
+            RETURN crm;
+        END;
+END;
+/
+
+--Testando a implementação das funções
+--Obs.: Caso tentássemos sobrescrever a função
+-- getNome de tp_pessoa em tp_medico, teríamos um erro de tipo
+-- em tp_medico
+DECLARE
+    med1 tp_medico;
+BEGIN
+    med1 := NEW tp_medico('010.532.546-14','José Henrique', 20, 5613, 'Cardiologia');
+    DBMS_OUTPUT.PUT_LINE('CRM de ' || med1.getNome || ' é: ' || med1.getCRM);
+END;
+/
+
+-- 11. HERANÇA DE TIPOS (UNDER/NOT FINAL)
+-- Criando o tipo tp_pessoa
+CREATE OR REPLACE TYPE tp_pessoa AS OBJECT (
+
+	cpf VARCHAR2(14),
+	nome VARCHAR2(100),
+	idade NUMBER
+
+) NOT FINAL;
+
 
 -- Criando a tabela de pessoa
 
@@ -390,6 +502,10 @@ SELECT VALUE(p) into mb FROM tb_pessoa p WHERE p.crm='2350';
 -- o CASCADE propaga essa alteracao para os objetos que herdam de pessoa
 ALTER TYPE tp_pessoa
 	ADD ATTRIBUTE (data_nascimento VARCHAR2(5)) CASCADE;
+
+-- Removendo o atributo data_nascimento do tipo tp_pessoa
+ALTER TYPE tp_pessoa 
+	DROP ATTRIBUTE (data_nascimento VARCHAR2(5)) CASCADE;
 	
 -- VARRAY para Pessoa
 
