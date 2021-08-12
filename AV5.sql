@@ -110,8 +110,6 @@ END;
 /
 
 
-
-
 -- 05. ORDER MEMBER FUNCTION
 -- Criando o tipo tp_pessoa.
 CREATE OR REPLACE TYPE tp_pessoa AS OBJECT (
@@ -387,8 +385,9 @@ CREATE TABLE tb_consulta OF tp_consulta (
   link_chamada PRIMARY KEY
 
 )
+/
 
-
+-- 16. SCOPE IS
 -- Criando o tipo tp_receita
 CREATE OR REPLACE TYPE tp_receita AS OBJECT (
 
@@ -397,6 +396,8 @@ CREATE OR REPLACE TYPE tp_receita AS OBJECT (
   assinatura VARCHAR2(30)
 
 );
+/
+
 
 -- Criando a tabela de receita e colocando cod_verificacao como chave primária
 CREATE TABLE tb_receita OF tp_receita (
@@ -404,6 +405,7 @@ CREATE TABLE tb_receita OF tp_receita (
   cod_verificacao PRIMARY KEY
 
 )
+/
 
 
 -- Criando o tipo tp_exame
@@ -416,6 +418,8 @@ CREATE OR REPLACE TYPE tp_exame AS OBJECT (
   data_hora_marcacao DATE
 
 );
+/
+
 
 -- Criando a tabela de exame e colocando numero como chave primária
 CREATE TABLE tb_exame OF tp_exame (
@@ -449,11 +453,37 @@ CREATE TABLE tb_medicamento OF tp_medicamento (
 
 -- Criando o tipo tp_telefone
 CREATE OR REPLACE TYPE tp_telefone AS OBJECT (
-
-  cpf_pessoa VARCHAR2(14),
-  num_telefone NUMBER
-
+  num_telefone VARCHAR2(14),
+  CONSTRUCTOR FUNCTION tp_telefone(numero NUMBER) RETURN SELF AS RESULT,
+  CONSTRUCTOR FUNCTION tp_telefone(ddd VARCHAR2, numero VARCHAR2) RETURN SELF AS RESULT
 );
+/
+
+CREATE OR REPLACE TYPE BODY tp_telefone AS
+  CONSTRUCTOR FUNCTION tp_telefone (numero NUMBER)
+  RETURN SELF AS RESULT IS
+  BEGIN
+    SELF.num_telefone := '(81)' || SUBSTR(TO_CHAR(numero), 1, 5) || '-' || SUBSTR(TO_CHAR(numero), 6, 9);
+    RETURN;
+  END;
+  CONSTRUCTOR FUNCTION tp_telefone (ddd VARCHAR2, numero VARCHAR2)
+  RETURN SELF AS RESULT IS
+  BEGIN
+    SELF.num_telefone := ddd||numero;
+    RETURN;
+  END;
+END;
+/
+
+DECLARE
+    tel1 tp_telefone;
+    tel2 tp_telefone;
+BEGIN
+    tel1 := NEW tp_telefone('(87)','99898-0707');
+    DBMS_OUTPUT.PUT_LINE(tel1.num_telefone);
+    tel2 := NEW tp_telefone(984950555);
+    DBMS_OUTPUT.PUT_LINE(tel2.num_telefone);
+END;
 /
 
 
@@ -462,8 +492,9 @@ CREATE TABLE tb_telefone OF tp_telefone (
 
   num_telefone PRIMARY KEY
 
-)
+);
 /
+
 
 -- 17. INSERT INTO
 -- Inserindo dados na tabela de telefone
