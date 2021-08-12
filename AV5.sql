@@ -423,6 +423,7 @@ CREATE TABLE tb_exame OF tp_exame (
   numero PRIMARY KEY
 
 )
+/
 
 -- Criando o tipo tp_medicamento
 CREATE OR REPLACE TYPE tp_medicamento AS OBJECT (
@@ -435,13 +436,16 @@ CREATE OR REPLACE TYPE tp_medicamento AS OBJECT (
   cod_verif_receita NUMBER
 
 );
+/
 
+-- 10. NOT INSTANTIABLE
 -- Criando a tabela de medicamento e colocando nome_medicamento como chave primária
 CREATE TABLE tb_medicamento OF tp_medicamento (
 
   nome_medicamento PRIMARY KEY
 
 ) NOT INSTANTIABLE;
+/
 
 -- Criando o tipo tp_telefone
 CREATE OR REPLACE TYPE tp_telefone AS OBJECT (
@@ -450,6 +454,8 @@ CREATE OR REPLACE TYPE tp_telefone AS OBJECT (
   num_telefone NUMBER
 
 );
+/
+
 
 -- Criando a tabela de telefone e colocando num_telefone como chave primária
 CREATE TABLE tb_telefone OF tp_telefone (
@@ -457,6 +463,9 @@ CREATE TABLE tb_telefone OF tp_telefone (
   num_telefone PRIMARY KEY
 
 )
+/
+
+-- 17. INSERT INTO
 -- Inserindo dados na tabela de telefone
 INSERT INTO tb_telefone VALUES ('053.142.336-88','(81)9 9982-5625');
 INSERT INTO tb_telefone VALUES ('010.532.546-14','(87)9 9500-0123');
@@ -520,30 +529,37 @@ INSERT INTO tb_pessoa VALUES ('440.581.784-01','Isaque Farias', 30);
 INSERT INTO tb_pessoa VALUES ('232.101.104-00','Raquel Teixeira', 63);
 INSERT INTO tb_pessoa VALUES ('400.898.482-31','Josué Matias', 82);
 
-
+-- 15. REF
 -- Referencias para Pessoa
 SELECT REF(P) FROM tb_pessoa P;
 
+-- 18. VALUE
 -- Valor para Pessoa
 SELECT VALUE(p) into mb FROM tb_pessoa p WHERE p.crm='2350';
+/
 
 
+-- 12. ALTER TYPE
 -- Acrescenta o atributo data_nascimento para o tipo tp_pessoa e  
 -- o CASCADE propaga essa alteracao para os objetos que herdam de pessoa
 ALTER TYPE tp_pessoa
 	ADD ATTRIBUTE (data_nascimento VARCHAR2(5)) CASCADE;
+/
 
 -- Removendo o atributo data_nascimento do tipo tp_pessoa
 ALTER TYPE tp_pessoa 
 	DROP ATTRIBUTE (data_nascimento VARCHAR2(5)) CASCADE;
-	
--- VARRAY para Pessoa
+/
 
+
+-- 19. VARRAY para Pessoa
 CREATE OR REPLACE TYPE tp_pessoas AS VARRAY(5) of tp_pessoa;
+/
 
 CREATE TABLE tb_pessoas_por_medico(
   crm NUMBER,
   pacientes tp_pessoas);
+/
 
 INSERT INTO tb_pessoas_por_medico VALUES(
   50740,
@@ -551,9 +567,9 @@ INSERT INTO tb_pessoas_por_medico VALUES(
     ('053.142.336-88','Sheyla Lima', 15),
     ('010.532.546-14','José Henrique', 20),
     ('839.274.863-02','Lucas Alfredo', 21));
+/	
 
--- NESTED TABLE
-
+-- 20. NESTED TABLE
 CREATE OR REPLACE TYPE tp_nt_exames AS TABLE OF tp_exame;
 
 CREATE TABLE tb_exames_solicitados(
@@ -570,3 +586,4 @@ INSERT INTO tb_exames_solicitados VALUES(
     tp_exame('400.898.482-31', 2, 'Raio-X Pé', 'Fratura não detectada.', TO_DATE('11/08/2021', 'dd/mm/yyyy')),
     tp_exame('400.898.482-31', 3, 'Raio-X Joelho', 'Fratura não detectada.', TO_DATE('11/08/2021', 'dd/mm/yyyy')),
   ));
+/
