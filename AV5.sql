@@ -10,15 +10,6 @@ DROP TABLE tb_telefone;
 
 
 --01. CREATE OR REPLACE TYPE
--- Criando o tipo tp_pessoa
-CREATE OR REPLACE TYPE tp_pessoa AS OBJECT (
-
-	cpf VARCHAR2(14),
-	nome VARCHAR2(100),
-	idade NUMBER
-
-) NOT FINAL;
-
 -- Criando o tipo tp_consulta.
 CREATE OR REPLACE TYPE tp_consulta AS OBJECT (
   link VARCHAR2(50),
@@ -198,6 +189,18 @@ BEGIN
   DBMS_OUTPUT.PUT_LINE('Idade: ' || pess.idade || '.');
 END;
 /
+
+
+-- 11. HERANÇA DE TIPOS (UNDER/NOT FINAL)
+-- Criando o tipo tp_pessoa
+CREATE OR REPLACE TYPE tp_pessoa AS OBJECT (
+
+	cpf VARCHAR2(14),
+	nome VARCHAR2(100),
+	idade NUMBER
+
+) NOT FINAL;
+
 
 -- Criando a tabela de pessoa
 
