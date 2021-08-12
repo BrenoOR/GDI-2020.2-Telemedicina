@@ -223,7 +223,7 @@ CREATE OR REPLACE TYPE BODY tp_medico AS
     END;
 END;
 /
--- Testando o comprtamento da função em um tipo pessoa e em um tipo médico.
+-- Testando o comportamento da função em um tipo pessoa e em um tipo médico.
 DECLARE
   pess tp_pessoa;
   med tp_medico;
