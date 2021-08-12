@@ -159,6 +159,36 @@ END;
 /
 
 -- 06. MAP MEMBER FUNCTION
+CREATE OR REPLACE TYPE tp_medicamento AS OBJECT (
+
+  nome_medicamento VARCHAR2(30),
+  laboratorio VARCHAR2(30),
+  contraindicacao VARCHAR2(50),
+  data_fabricacao varchar2(51),
+  data_validade varchar2(51), 
+  cod_verif_receita NUMBER,
+  cod INTEGER,
+  MAP MEMBER FUNCTION medToInt RETURN INTEGER
+);
+/
+
+CREATE OR REPLACE TYPE BODY tp_medicamento AS 
+  MAP MEMBER FUNCTION medToInt RETURN INTEGER IS
+  BEGIN
+     RETURN cod;
+  END medToInt;
+END;
+/
+
+DECLARE
+ mto tp_medicamento;
+ 
+BEGIN
+  mto :=NEW tp_medicamento('Paracetamol','Medley','Dengue','21-08-2020','21-08-2022',457,1);
+ 
+DBMS_OUTPUT.PUT_LINE('COD:' || mto.medToInt()); 
+  END;
+/
 
 -- 07. CONSTRUCTOR FUNCTION
 -- Criando o tipo tp_pessoa com um novo construtor.
