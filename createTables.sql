@@ -32,9 +32,9 @@ CREATE TABLE medico (cpf VARCHAR(14),
                      idade NUMBER NOT NULL,
                      crm NUMBER,
                      especialidade VARCHAR2(50),
-                     cpf_medico VARCHAR2(14),
+                     cpf_chefe VARCHAR2(14),
                      CONSTRAINT medico_pk PRIMARY KEY (cpf), 
-                     CONSTRAINT medico_cpf_medico_fk FOREIGN KEY (cpf_medico) REFERENCES medico (cpf),
+                     CONSTRAINT medico_cpf_chefe_fk FOREIGN KEY (cpf_chefe) REFERENCES medico (cpf),
                      CONSTRAINT medico_cpf_ck CHECK (cpf LIKE ('___.___.___-__')),
                      CONSTRAINT medico_cpf_medico_ck CHECK (cpf_medico LIKE ('___.___.___-__')));
                      

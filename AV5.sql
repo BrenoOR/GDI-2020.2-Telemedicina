@@ -28,7 +28,7 @@ CREATE OR REPLACE TYPE tp_consulta AS OBJECT (
 /
 
 -- 02. CREATE OR REPLACE TYPE BODY
--- Definindo a função e o método declarado em  tp_consulta.
+-- Implementando a função e o método declarado em  tp_consulta.
 CREATE OR REPLACE TYPE BODY tp_consulta AS
   MEMBER FUNCTION getLink RETURN VARCHAR2 IS
     BEGIN
@@ -70,7 +70,7 @@ CREATE OR REPLACE TYPE tp_pessoa AS OBJECT (
   ORDER MEMBER FUNCTION maiorPrioridade(p tp_pessoa) RETURN INTEGER
 ) NOT FINAL;
 /
--- Definindo a função maiorPrioridade definida em tp_pessoa.
+-- Implementando a função maiorPrioridade definida em tp_pessoa.
 CREATE OR REPLACE TYPE BODY tp_pessoa AS
   MEMBER FUNCTION getNome RETURN VARCHAR2 IS
     BEGIN
@@ -117,7 +117,7 @@ CREATE OR REPLACE TYPE tp_pessoa AS OBJECT (
 	CONSTRUCTOR FUNCTION tp_pessoa(nc VARCHAR2, nn VARCHAR2, nd VARCHAR2) RETURN SELF AS RESULT
 ) NOT FINAL;
 /
--- Definindo o novo construtor que calcula a idade da pessoa com base em sua data de nascimento.
+-- Implementando o novo construtor que calcula a idade da pessoa com base em sua data de nascimento.
 CREATE OR REPLACE TYPE BODY tp_pessoa AS
   CONSTRUCTOR FUNCTION tp_pessoa(nc VARCHAR2, nn VARCHAR2, nd VARCHAR2) RETURN SELF AS RESULT IS
     BEGIN
@@ -135,6 +135,51 @@ BEGIN
   pess := NEW tp_pessoa('581.051.853-57','Igor Mascarenhas', '1993-02-11');
   DBMS_OUTPUT.PUT_LINE('Pessoa: ' || pess.nome || '.');
   DBMS_OUTPUT.PUT_LINE('Idade: ' || pess.idade || '.');
+END;
+/
+
+-- 08. OVERRIDING MEMBER
+-- Criando um tipo pessoa.
+CREATE OR REPLACE TYPE tp_pessoa AS OBJECT (
+  cpf VARCHAR2(14),
+	nome VARCHAR2(30),
+	idade NUMBER,
+  MEMBER FUNCTION getIdentificacao RETURN VARCHAR2
+) NOT FINAL;
+/
+-- Implementando a função getIdentificacao;
+CREATE OR REPLACE TYPE BODY tp_pessoa AS
+  MEMBER FUNCTION getIdentificacao RETURN VARCHAR2 IS
+    BEGIN
+      RETURN nome || ' - ' || idade || ' anos.';
+    END;
+END;
+/
+-- Criando um tipo médico que herda a função getIdentificacao de tp_pessoa e sobrescreve ela.
+CREATE OR REPLACE TYPE tp_medico UNDER tp_pessoa (
+  crm NUMBER,
+  especialidade VARCHAR2(50),
+  cpf_chefe VARCHAR2(14),
+  OVERRIDING MEMBER FUNCTION getIdentificacao RETURN VARCHAR2
+);
+/
+-- Implementando a função getIdentificacao para o tipo tp_medico.
+CREATE OR REPLACE TYPE BODY tp_medico AS
+  OVERRIDING MEMBER FUNCTION getIdentificacao RETURN VARCHAR2 IS
+    BEGIN
+      RETURN 'Dr. ' || nome || ' - CRM: ' || crm || '.';
+    END;
+END;
+/
+-- Testando o comprtamento da função em um tipo pessoa e em um tipo médico.
+DECLARE
+  pess tp_pessoa;
+  med tp_medico;
+BEGIN
+  pess := NEW tp_pessoa('581.051.853-57','Igor Mascarenhas', 20);
+  DBMS_OUTPUT.PUT_LINE(pess.getIdentificacao);
+  med := NEW tp_medico('025.105.198-45', 'João Kléber', 50, 3305, 'Endocrinologia', '256.941.852-06');
+  DBMS_OUTPUT.PUT_LINE(med.getIdentificacao);
 END;
 /
 
