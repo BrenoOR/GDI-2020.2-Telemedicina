@@ -365,6 +365,7 @@ CREATE TABLE tb_medico OF tp_medico;
 CREATE OR REPLACE TYPE tp_marcacao AS OBJECT (
 
   data_hora DATE
+  paciente WITH ROWID REFERENCES tb_paciente --14. ROWID
 
 );
 /
@@ -395,12 +396,11 @@ CREATE TABLE tb_consulta OF tp_consulta (
 )
 /
 
--- 16. SCOPE IS
+-- 16. SCOPE I
 -- Criando o tipo tp_receita
 CREATE OR REPLACE TYPE tp_receita AS OBJECT (
 
   cod_verificacao NUMBER,
-  cpf SCOPE IS tb_paciente, 
   assinatura VARCHAR2(30)
 
 );
