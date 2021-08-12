@@ -110,8 +110,6 @@ END;
 /
 
 
-
-
 -- 05. ORDER MEMBER FUNCTION
 -- Criando o tipo tp_pessoa.
 CREATE OR REPLACE TYPE tp_pessoa AS OBJECT (
@@ -278,6 +276,7 @@ CREATE OR REPLACE TYPE tp_pessoa AS OBJECT (
 
 ) NOT FINAL;
 /
+
 CREATE OR REPLACE TYPE BODY tp_pessoa AS
     FINAL MEMBER FUNCTION getNome RETURN VARCHAR2 IS
         BEGIN
@@ -323,15 +322,17 @@ CREATE OR REPLACE TYPE tp_pessoa AS OBJECT (
 	idade NUMBER
 
 ) NOT FINAL;
+/
 
-
+-- 13. CREATE TABLE OF
 -- Criando a tabela de pessoa
-
 CREATE TABLE tb_pessoa OF tp_pessoa (
 
   cpf PRIMARY KEY
 
 );
+/
+
 
 -- Criando o tipo tp_paciente e fazendo o mesmo herdar os atributos de tp_pessoa
 CREATE OR REPLACE TYPE tp_paciente UNDER tp_pessoa (
@@ -340,22 +341,25 @@ CREATE OR REPLACE TYPE tp_paciente UNDER tp_pessoa (
 	plano_saude VARCHAR2(100)
 
 );
+/
+
 
 -- Criando a tabela de paciente
 CREATE TABLE tb_paciente OF tp_paciente;                          
-
+/
 
 -- Criando o tipo tp_medico e fazendo o mesmo herdar os atributos de tp_pessoa
 CREATE OR REPLACE TYPE tp_medico UNDER tp_pessoa (
-
+/
 	crm NUMBER,
 	especialidade VARCHAR2(30)
 
 );
+/
 
 -- Criando a tabela de medico
 CREATE TABLE tb_medico OF tp_medico;
-
+/
 
 -- Criando o tipo tp_marcacao
 CREATE OR REPLACE TYPE tp_marcacao AS OBJECT (
@@ -363,6 +367,7 @@ CREATE OR REPLACE TYPE tp_marcacao AS OBJECT (
   data_hora DATE
 
 );
+/
 
 -- Criando a tabela de marcacao e colocando data_hora como chave primária
 CREATE TABLE tb_marcacao OF tp_marcacao (
@@ -370,7 +375,7 @@ CREATE TABLE tb_marcacao OF tp_marcacao (
   data_hora PRIMARY KEY
 
 )
-
+/
 
 -- Criando o tipo tp_consulta
 CREATE OR REPLACE TYPE tp_consulta AS OBJECT (
@@ -380,6 +385,7 @@ CREATE OR REPLACE TYPE tp_consulta AS OBJECT (
   cpf_paciente VARCHAR2(14)
 
 );
+/
 
 -- Criando a tabela de consulta e colocando link_chamada como chave primária
 CREATE TABLE tb_consulta OF tp_consulta (
@@ -387,8 +393,9 @@ CREATE TABLE tb_consulta OF tp_consulta (
   link_chamada PRIMARY KEY
 
 )
+/
 
-
+-- 16. SCOPE IS
 -- Criando o tipo tp_receita
 CREATE OR REPLACE TYPE tp_receita AS OBJECT (
 
@@ -397,6 +404,8 @@ CREATE OR REPLACE TYPE tp_receita AS OBJECT (
   assinatura VARCHAR2(30)
 
 );
+/
+
 
 -- Criando a tabela de receita e colocando cod_verificacao como chave primária
 CREATE TABLE tb_receita OF tp_receita (
@@ -404,6 +413,7 @@ CREATE TABLE tb_receita OF tp_receita (
   cod_verificacao PRIMARY KEY
 
 )
+/
 
 
 -- Criando o tipo tp_exame
@@ -416,6 +426,8 @@ CREATE OR REPLACE TYPE tp_exame AS OBJECT (
   data_hora_marcacao DATE
 
 );
+/
+
 
 -- Criando a tabela de exame e colocando numero como chave primária
 CREATE TABLE tb_exame OF tp_exame (
@@ -449,11 +461,37 @@ CREATE TABLE tb_medicamento OF tp_medicamento (
 
 -- Criando o tipo tp_telefone
 CREATE OR REPLACE TYPE tp_telefone AS OBJECT (
-
-  cpf_pessoa VARCHAR2(14),
-  num_telefone NUMBER
-
+  num_telefone VARCHAR2(14),
+  CONSTRUCTOR FUNCTION tp_telefone(numero NUMBER) RETURN SELF AS RESULT,
+  CONSTRUCTOR FUNCTION tp_telefone(ddd VARCHAR2, numero VARCHAR2) RETURN SELF AS RESULT
 );
+/
+
+CREATE OR REPLACE TYPE BODY tp_telefone AS
+  CONSTRUCTOR FUNCTION tp_telefone (numero NUMBER)
+  RETURN SELF AS RESULT IS
+  BEGIN
+    SELF.num_telefone := '(81)' || SUBSTR(TO_CHAR(numero), 1, 5) || '-' || SUBSTR(TO_CHAR(numero), 6, 9);
+    RETURN;
+  END;
+  CONSTRUCTOR FUNCTION tp_telefone (ddd VARCHAR2, numero VARCHAR2)
+  RETURN SELF AS RESULT IS
+  BEGIN
+    SELF.num_telefone := ddd||numero;
+    RETURN;
+  END;
+END;
+/
+
+DECLARE
+    tel1 tp_telefone;
+    tel2 tp_telefone;
+BEGIN
+    tel1 := NEW tp_telefone('(87)','99898-0707');
+    DBMS_OUTPUT.PUT_LINE(tel1.num_telefone);
+    tel2 := NEW tp_telefone(984950555);
+    DBMS_OUTPUT.PUT_LINE(tel2.num_telefone);
+END;
 /
 
 
@@ -462,8 +500,9 @@ CREATE TABLE tb_telefone OF tp_telefone (
 
   num_telefone PRIMARY KEY
 
-)
+);
 /
+
 
 -- 17. INSERT INTO
 -- Inserindo dados na tabela de telefone
@@ -528,10 +567,12 @@ INSERT INTO tb_pessoa VALUES ('135.581.486-85','Abraão Bezerra', 24);
 INSERT INTO tb_pessoa VALUES ('440.581.784-01','Isaque Farias', 30);
 INSERT INTO tb_pessoa VALUES ('232.101.104-00','Raquel Teixeira', 63);
 INSERT INTO tb_pessoa VALUES ('400.898.482-31','Josué Matias', 82);
+/
 
 -- 15. REF
 -- Referencias para Pessoa
 SELECT REF(P) FROM tb_pessoa P;
+/
 
 -- 18. VALUE
 -- Valor para Pessoa
@@ -571,7 +612,8 @@ INSERT INTO tb_pessoas_por_medico VALUES(
 
 -- 20. NESTED TABLE
 CREATE OR REPLACE TYPE tp_nt_exames AS TABLE OF tp_exame;
-
+/
+	
 CREATE TABLE tb_exames_solicitados(
   crm_medico NUMBER,
   n_sus_paciente NUMBER,
