@@ -74,13 +74,15 @@ CREATE type tp_paciente UNDER tp_pessoa(
 /
 
 -- Criando as tabelas que serão usadas.
-CREATE TABLE tb_pacientes OF tp_pessoa(
+CREATE TABLE tb_pacientes OF tp_paciente(
+    UNIQUE (sus),
     PRIMARY KEY (cpf)
-    --UNIQUE (sus)
 );
 
 -- Povoando as tabelas.
-INSERT INTO tb_pacientes VALUES (tp_paciente('13215654844', 'João da Silva', TO_DATE('27/05/1993', 'dd/mm/yyyy'), null, null, '2541', 'Bradesco'));
+INSERT INTO tb_pacientes VALUES (tp_paciente('13215654844', 'João da Silva', TO_DATE('27/05/1993', 'dd/mm/yyyy'),
+                                                tp_telefones(tp_telefone('81', '34458888'), tp_telefone('81', '988775456')),
+                                                tp_endereco('Rua Fernando Pessoa', '42', 'casa b', 'Centro', 'São Macaparana', 'RO', '51843450'),
+                                                '2541', 'Bradesco'));
 
 -- Manipulando as tabelas.
-
