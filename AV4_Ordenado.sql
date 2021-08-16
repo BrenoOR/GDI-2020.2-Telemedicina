@@ -4,6 +4,7 @@
 
 -- #01 ALTER TABLE
 -- Alterar a coluna nome para nome2 e vice-versa.
+-- SELECT * FROM paciente;
 ALTER TABLE paciente RENAME COLUMN nome TO nome2;
 ALTER TABLE paciente RENAME COLUMN nome2 TO nome;
 
@@ -14,10 +15,12 @@ CREATE INDEX cpf_paciente ON paciente (cpf, nome);
 
 -- #03 INSERT INTO 
 -- Inserir um um ou mais registro.
+-- SELECT * FROM pessoa WHERE cpf = '499.898.482-85';
 INSERT INTO pessoa VALUES ('499.898.482-85', 'Josué Matias', 82);
 
 -- #04 UPDATE
 -- Atualizar o plano de saúde de Igor Mascarenhas.
+-- SELECT * FROM paciente WHERE cpf = '581.051.853-57';
 UPDATE paciente SET nome_plano = 'Unimed' WHERE cpf = '581.051.853-57';
 
 -- #05 DELETE
@@ -160,17 +163,25 @@ SELECT cpf_pessoa
 FROM telefone;
 
 -- #25 CREATE VIEW
+<<<<<<< Updated upstream
 -- Criaando uma view que mostra os médicos que também são pacientes.
 -- DROP VIEW medicoP;
+=======
+-- Criar views.
+/*Review it*/
+>>>>>>> Stashed changes
 CREATE VIEW medicoP AS
     SELECT medico.nome, medico.crm
     FROM medico
     INNER JOIN paciente
     ON (medico.cpf = paciente.cpf);
+<<<<<<< Updated upstream
 -- Testando a view.
 INSERT INTO paciente (cpf, nome, idade, n_sus, nome_plano)
 SELECT cpf, nome, idade, 2222, 'Unimed' FROM pessoa WHERE cpf = '256.941.852-06';
 SELECT * FROM medicoP;
+=======
+>>>>>>> Stashed changes
 
 -- #26 GRANTE / REVOKE
 -- Dando permissão publica para deletar na tabela telefone e depois revogando essa permissão.
@@ -209,7 +220,7 @@ END;
 -- #29 BLOCO ANÔNIMO
 -- Armazenado o link da consulta de um paciente na variável result_link.
 DECLARE
-    result_link VARCHAR2(50);
+    result_link 
 BEGIN
     SELECT link_chamada INTO result_link FROM consulta WHERE cpf_paciente = '537.098.853-62';
     DBMS_OUTPUT.PUT_LINE('Link: ' || result_link);

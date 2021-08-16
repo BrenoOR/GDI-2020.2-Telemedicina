@@ -147,7 +147,7 @@ END;
 /
 -- Cria um indice
 -- CREATE INDEX
-CREATE INDEX cpf_paciente ON paciente
+CREATE INDEX cpf_paciente ON paciente (nome,cpf);
 -- Inserir um um ou mais registro
 -- INSERT INTO 
 INSERT INTO pessoa VALUES ('499.898.482-85', 'Josué Matias', '82');
