@@ -55,6 +55,9 @@ INSERT INTO tb_telefone VALUES ('81 9 9197-1377');
 INSERT INTO tb_telefone VALUES ('81 9 8897-2577');
 INSERT INTO tb_telefone VALUES ('81 9 8887-2577');
 INSERT INTO tb_telefone VALUES ('81 9 8867-5577');
+INSERT INTO tb_telefone VALUES ('81 9 3302-1565');
+INSERT INTO tb_telefone VALUES ('81 9 3202-1565');
+
 /
 SELECT num_telefone FROM tb_telefone ORDER BY num_telefone;
 /
