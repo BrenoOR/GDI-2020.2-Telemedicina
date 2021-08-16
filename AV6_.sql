@@ -1,6 +1,11 @@
 -- Resetando a sessão.
+DROP TABLE tb_medicamento;
 DROP TABLE tb_medicos;
 DROP TABLE tb_pacientes;
+DROP TYPE nt_medicamentos;
+DROP TYPE tp_medicamento;
+DROP TYPE nt_substancias;
+DROP TYPE tp_substancia;
 DROP TYPE tp_medico;
 DROP TYPE tp_paciente;
 DROP TYPE tp_pessoa;
@@ -125,6 +130,28 @@ CREATE TYPE BODY tp_medico AS
 END;
 /
 
+CREATE TYPE tp_substancia AS OBJECT(
+    nome VARCHAR2(30),
+    quantidade NUMBER,
+    unidade VARCHAR2(5)
+);
+/
+
+CREATE TYPE nt_substancias AS TABLE OF tp_substancia;
+/
+
+CREATE TYPE tp_medicamento AS OBJECT(
+    codigo VARCHAR2(5),
+    nome VARCHAR2(30),
+    laboratorio VARCHAR2(15),
+    substancias nt_substancias,
+    disponibilidade CHAR(1)
+);
+/
+
+CREATE TYPE nt_medicamentos AS TABLE OF tp_medicamento;
+/
+
 -- Criando as tabelas que serão usadas.
 CREATE TABLE tb_pacientes OF tp_paciente(
     UNIQUE (sus),
@@ -135,6 +162,10 @@ CREATE TABLE tb_medicos OF tp_medico(
     UNIQUE (crm),
     PRIMARY KEY (cpf)
 );
+
+CREATE TABLE tb_medicamentos OF tp_medicamento(
+    PRIMARY KEY (codigo)
+)NESTED TABLE substancias STORE AS tb_substancias;
 
 -- Povoando as tabelas.
 INSERT INTO tb_pacientes VALUES (tp_paciente('13215654844', 'João da Silva', 'M', TO_DATE('27/05/1993', 'dd/mm/yyyy'),
