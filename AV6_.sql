@@ -1,13 +1,17 @@
 -- Resetando a sessão.
-DROP TABLE tb_medicamento;
+DROP TABLE tb_receitas;
+DROP TABLE tb_consultas;
+DROP TABLE tb_medicamentos;
 DROP TABLE tb_medicos;
 DROP TABLE tb_pacientes;
+DROP TYPE tp_receita;
+DROP TYPE tp_consulta;
+DROP TYPE tp_medico;
+DROP TYPE tp_paciente;
 DROP TYPE nt_medicamentos;
 DROP TYPE tp_medicamento;
 DROP TYPE nt_substancias;
 DROP TYPE tp_substancia;
-DROP TYPE tp_medico;
-DROP TYPE tp_paciente;
 DROP TYPE tp_pessoa;
 DROP TYPE tp_telefones;
 DROP TYPE tp_telefone;
@@ -130,6 +134,18 @@ CREATE TYPE BODY tp_medico AS
 END;
 /
 
+ALTER TYPE tp_medico
+    ADD ATTRIBUTE (chefe REF tp_medico)
+CASCADE;
+
+CREATE TYPE tp_consulta AS OBJECT(
+    medico REF tp_medico,
+    paciente REF tp_paciente,
+    linkChamada VARCHAR2(50),
+    dataHora DATE
+);
+/
+
 CREATE TYPE tp_substancia AS OBJECT(
     nome VARCHAR2(30),
     quantidade NUMBER,
@@ -152,6 +168,15 @@ CREATE TYPE tp_medicamento AS OBJECT(
 CREATE TYPE nt_medicamentos AS TABLE OF tp_medicamento;
 /
 
+CREATE TYPE tp_receita AS OBJECT(
+    codVerificacao VARCHAR2(8),
+    dataPrescricao DATE,
+    dataValidade DATE,
+    medicamentos nt_medicamentos,
+    consulta REF tp_consulta
+);
+/
+
 -- Criando as tabelas que serão usadas.
 CREATE TABLE tb_pacientes OF tp_paciente(
     UNIQUE (sus),
@@ -163,9 +188,18 @@ CREATE TABLE tb_medicos OF tp_medico(
     PRIMARY KEY (cpf)
 );
 
+CREATE TABLE tb_consultas OF tp_consulta(
+    PRIMARY KEY (linkChamada, dataHora)
+);
+
 CREATE TABLE tb_medicamentos OF tp_medicamento(
     PRIMARY KEY (codigo)
 )NESTED TABLE substancias STORE AS tb_substancias;
+
+CREATE TABLE tb_receitas OF tp_receita(
+    PRIMARY KEY (codVerificacao)
+)NESTED TABLE medicamentos STORE AS tb_nt_medicamentos
+(NESTED TABLE substancias STORE AS tb_nt_substancias);
 
 -- Povoando as tabelas.
 INSERT INTO tb_pacientes VALUES (tp_paciente('13215654844', 'João da Silva', 'M', TO_DATE('27/05/1993', 'dd/mm/yyyy'),
@@ -176,7 +210,13 @@ INSERT INTO tb_pacientes VALUES (tp_paciente('13215654844', 'João da Silva', 'M
 INSERT INTO tb_medicos VALUES (tp_medico('55643389715', 'Marina Cabral', 'F', TO_DATE('15/09/1984', 'dd/mm/yyyy'),
                                             tp_telefones(tp_telefone('87', '21263014'), tp_telefone('87', '994172114')),
                                             tp_endereco('Avenida São Cristovão', '84', 'apt 2001', 'Barra Grande', 'Juracema', 'RN', '58940052'),
-                                            '5017', 'Cardiologista'));
+                                            '5017', 'Cardiologista', null));
+
+INSERT INTO tb_medicamentos VALUES ('0001', 'Dorflex', 'Sanofi',
+                                    nt_substancias(tp_substancia('Dipirona Monoidratada', 300, 'mg'),
+                                                    tp_substancia('Citrato de Orfenadrina', 35, 'mg'),
+                                                    tp_substancia('Cafeína Anidra', 50, 'mg')),
+                                    'S');
 
 -- Manipulando as tabelas.
 SELECT p.prettyPac() AS Dados_do_Paciente FROM tb_pacientes p;
