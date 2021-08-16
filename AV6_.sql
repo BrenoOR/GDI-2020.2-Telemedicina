@@ -222,3 +222,5 @@ INSERT INTO tb_medicamentos VALUES ('0001', 'Dorflex', 'Sanofi',
 SELECT p.prettyPac() AS Dados_do_Paciente FROM tb_pacientes p;
 
 SELECT m.prettyMed() AS Dados_do_Medico FROM tb_medicos m;
+
+SELECT s.* FROM tb_medicamentos m, TABLE (m.substancias) s WHERE m.nome = 'Dorflex';
