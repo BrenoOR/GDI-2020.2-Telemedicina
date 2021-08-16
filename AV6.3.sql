@@ -1,1 +1,0 @@
--- CONSULTA À VARRAY
