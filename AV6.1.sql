@@ -29,10 +29,10 @@ CREATE TABLE tb_pessoa OF tp_pessoa (
 
 );
 
-INSERT INTO tb_telefone VALUES ('(81)99966-7641');
+INSERT INTO tb_telefone VALUES ('(81)99999-7641');
 INSERT INTO tb_telefone VALUES ('(81)99999-7777');
 
 
-INSERT INTO tb_pessoa VALUES ('053.142.336-88','Sheyla Lima', 15, (SELECT REF(V) FROM tb_telefone V WHERE num_telefone = '(81)99966-7641'));
+INSERT INTO tb_pessoa VALUES ('053.142.336-88','Sheyla Lima', 15, (SELECT REF(V) FROM tb_telefone V WHERE num_telefone = '(81)99999-7641'));
 
 select deref(P.num_telefone).num_telefone from tb_pessoa P;
