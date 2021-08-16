@@ -1,5 +1,7 @@
 -- Resetando a sessão.
+DROP TABLE tb_medicos;
 DROP TABLE tb_pacientes;
+DROP TYPE tp_medico;
 DROP TYPE tp_paciente;
 DROP TYPE tp_pessoa;
 DROP TYPE tp_telefones;
@@ -61,16 +63,66 @@ END;
 CREATE TYPE tp_pessoa AS OBJECT(
     cpf VARCHAR2(11),
     nome VARCHAR2(30),
+    sexo VARCHAR2(1),
     dataNascimento DATE,
     telefones tp_telefones,
-    endereco tp_endereco
+    endereco tp_endereco,
+    MEMBER FUNCTION getIdade RETURN NUMBER
 )NOT FINAL;
 /
 
-CREATE type tp_paciente UNDER tp_pessoa(
+CREATE TYPE BODY tp_pessoa AS
+    MEMBER FUNCTION getIdade RETURN NUMBER IS
+        BEGIN
+            RETURN TRUNC((MONTHS_BETWEEN(SYSDATE, dataNascimento)/12), 0);
+        END;
+END;
+/
+
+CREATE TYPE tp_paciente UNDER tp_pessoa(
     sus VARCHAR2(4),
-    plano VARCHAR2(15)
+    plano VARCHAR2(15),
+    MEMBER FUNCTION prettyPac RETURN VARCHAR2
 );
+/
+
+CREATE TYPE BODY tp_paciente AS
+    MEMBER FUNCTION prettyPac RETURN VARCHAR2 IS
+        ident VARCHAR2(500);
+        BEGIN
+            ident := nome || '. CPF: ' || cpf || '. Idade: ' || self.getIdade() ||
+                        '. Fones: ' || telefones(1).prettyTel() || ', ' || telefones(2).prettyTel() ||
+                        '. Endereço: ' || endereco.prettyEnd() || ' Número do SUS: ' || sus ||
+                        '. Plano de Saúde: ' || plano || '.';
+            IF sexo = 'M' THEN
+                RETURN 'Sr. ' || ident;
+            ELSE
+                RETURN 'Sra. ' || ident;
+            END IF;
+        END;
+END;
+/
+
+CREATE TYPE tp_medico UNDER tp_pessoa(
+    crm VARCHAR2(4),
+    especialidade VARCHAR2(15),
+    MEMBER FUNCTION prettyMed RETURN VARCHAR2
+);
+/
+
+CREATE TYPE BODY tp_medico AS
+    MEMBER FUNCTION prettyMed RETURN VARCHAR2 IS
+        ident VARCHAR2(500);
+        BEGIN
+            ident := nome || ' - ' || especialidade || '. CRM: ' || crm || '. Fones: ' ||
+                        telefones(1).prettyTel() || ', ' || telefones(2).prettyTel();
+            IF sexo = 'M' THEN
+                RETURN 'Dr. ' || ident;
+            ELSE
+                RETURN 'Dra. ' || ident;
+            END IF;
+        END;
+END;
 /
 
 -- Criando as tabelas que serão usadas.
@@ -79,10 +131,23 @@ CREATE TABLE tb_pacientes OF tp_paciente(
     PRIMARY KEY (cpf)
 );
 
+CREATE TABLE tb_medicos OF tp_medico(
+    UNIQUE (crm),
+    PRIMARY KEY (cpf)
+);
+
 -- Povoando as tabelas.
-INSERT INTO tb_pacientes VALUES (tp_paciente('13215654844', 'João da Silva', TO_DATE('27/05/1993', 'dd/mm/yyyy'),
+INSERT INTO tb_pacientes VALUES (tp_paciente('13215654844', 'João da Silva', 'M', TO_DATE('27/05/1993', 'dd/mm/yyyy'),
                                                 tp_telefones(tp_telefone('81', '34458888'), tp_telefone('81', '988775456')),
                                                 tp_endereco('Rua Fernando Pessoa', '42', 'casa b', 'Centro', 'São Macaparana', 'RO', '51843450'),
                                                 '2541', 'Bradesco'));
 
+INSERT INTO tb_medicos VALUES (tp_medico('55643389715', 'Marina Cabral', 'F', TO_DATE('15/09/1984', 'dd/mm/yyyy'),
+                                            tp_telefones(tp_telefone('87', '21263014'), tp_telefone('87', '994172114')),
+                                            tp_endereco('Avenida São Cristovão', '84', 'apt 2001', 'Barra Grande', 'Juracema', 'RN', '58940052'),
+                                            '5017', 'Cardiologista'));
+
 -- Manipulando as tabelas.
+SELECT p.prettyPac() AS Dados_do_Paciente FROM tb_pacientes p;
+
+SELECT m.prettyMed() AS Dados_do_Medico FROM tb_medicos m;
