@@ -31,10 +31,10 @@ CREATE TYPE BODY tp_telefone AS
         BEGIN
             IF LENGTH(numero) = 9 THEN
                 RETURN '(' || ddd || ') ' || SUBSTR(numero, 1, 1) || ' ' ||
-                        SUBSTR(numero, 2, 5) || '-' || SUBSTR(numero, 6, 9);
+                        SUBSTR(numero, 2, 4) || '-' || SUBSTR(numero, 6, 4);
             ELSE
                 RETURN '(' || ddd || ') ' || SUBSTR(numero, 1, 4) || '-' ||
-                        SUBSTR(numero, 5, 8);
+                        SUBSTR(numero, 5, 4);
             END IF;
         END;
     MAP MEMBER FUNCTION rawTel RETURN VARCHAR2 IS
@@ -67,8 +67,8 @@ CREATE TYPE BODY tp_endereco AS
             IF complemento IS NOT NULL THEN
                 ender := ender || ' (' || complemento || ')';
             END IF;
-            ender := ender || ', ' || bairro || ', ' || cidade || ' - ' || estado || '. CEP: ' ||
-                        SUBSTR(cep, 1, 3) || '.' || SUBSTR(cep, 4, 6) || SUBSTR(cep, 7, 8) || '.';
+            ender := ender || ', ' || bairro || ' - ' || cidade || '/' || estado || '. CEP: ' ||
+                        SUBSTR(cep, 1, 2) || '.' || SUBSTR(cep, 3, 3)|| '-' || SUBSTR(cep, 6, 3) || '.';
             RETURN ender;
         END;
 END;
@@ -104,7 +104,9 @@ CREATE TYPE BODY tp_paciente AS
     MEMBER FUNCTION prettyPac RETURN VARCHAR2 IS
         ident VARCHAR2(500);
         BEGIN
-            ident := nome || '. CPF: ' || cpf || '. Idade: ' || self.getIdade() ||
+            ident := nome || '. CPF: ' ||
+                        SUBSTR(self.cpf, 1, 3) || '.' || SUBSTR(self.cpf, 4, 3) || '.' || SUBSTR(self.cpf, 7, 3) || '-' || SUBSTR(self.cpf, 10, 2) ||
+                        '. Idade: ' || self.getIdade() ||
                         '. Fones: ' || telefones(1).prettyTel() || ', ' || telefones(2).prettyTel() ||
                         '. Endereço: ' || endereco.prettyEnd() || ' Número do SUS: ' || sus ||
                         '. Plano de Saúde: ' || plano || '.';
