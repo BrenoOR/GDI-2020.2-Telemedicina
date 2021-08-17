@@ -61,10 +61,15 @@ CREATE TYPE tp_endereco AS OBJECT(
 
 CREATE TYPE BODY tp_endereco AS
     MEMBER FUNCTION prettyEnd RETURN VARCHAR2 IS
+        ender VARCHAR2(500);
         BEGIN
-            RETURN logradouro || ' - nº ' || numero || ' (' || complemento || '), ' ||
-                    bairro || ', ' || cidade || ' - ' || estado || '. CEP: ' ||
-                    SUBSTR(cep, 1, 3) || '.' || SUBSTR(cep, 4, 6) || SUBSTR(cep, 7, 8) || '.';
+            ender := logradouro || ' - nº ' || numero;
+            IF complemento IS NOT NULL THEN
+                ender := ender || ' (' || complemento || ')';
+            END IF;
+            ender := ender || ', ' || bairro || ', ' || cidade || ' - ' || estado || '. CEP: ' ||
+                        SUBSTR(cep, 1, 3) || '.' || SUBSTR(cep, 4, 6) || SUBSTR(cep, 7, 8) || '.';
+            RETURN ender;
         END;
 END;
 /
@@ -208,7 +213,7 @@ INSERT INTO tb_pacientes VALUES (tp_paciente('56815654844', 'João da Silva', 'M
                                                 '2541', 'Bradesco'));
 INSERT INTO tb_pacientes VALUES (tp_paciente('16545654844', 'Anderson Pereira', 'M', TO_DATE('17/02/1973', 'dd/mm/yyyy'),
                                                 tp_telefones(tp_telefone('81', '34499988'), tp_telefone('81', '977775456')),
-                                                tp_endereco('Rua Domingos Rocha', '200', '--', 'Fundão', 'Maracanã', 'TO', '51849950'),
+                                                tp_endereco('Rua Domingos Rocha', '200', null, 'Fundão', 'Maracanã', 'TO', '51849950'),
                                                 '1341', 'Unimed'));
 INSERT INTO tb_pacientes VALUES (tp_paciente('13339654844', 'Carlos Andrade', 'M', TO_DATE('02/11/2002', 'dd/mm/yyyy'),
                                                 tp_telefones(tp_telefone('87', '33798888'), tp_telefone('87', '988763356')),
@@ -220,7 +225,7 @@ INSERT INTO tb_pacientes VALUES (tp_paciente('13278554844', 'Ricardo Meira', 'M'
                                                 '3331', 'Hapvida'));
 INSERT INTO tb_pacientes VALUES (tp_paciente('13219634844', 'André Poveda', 'M', TO_DATE('13/04/1990', 'dd/mm/yyyy'),
                                                 tp_telefones(tp_telefone('41', '34459748'), tp_telefone('41', '999975456')),
-                                                tp_endereco('Rua Tony Goes', '1', '--', 'Dunas', 'São Jorge', 'PR', '51842250'),
+                                                tp_endereco('Rua Tony Goes', '1', null, 'Dunas', 'São Jorge', 'PR', '51842250'),
                                                 '2599', 'Amil'));
 INSERT INTO tb_pacientes VALUES (tp_paciente('13215654154', 'Ana Carvalho', 'F', TO_DATE('27/05/1993', 'dd/mm/yyyy'),
                                                 tp_telefones(tp_telefone('71', '34452288'), tp_telefone('71', '986695456')),
@@ -246,7 +251,23 @@ INSERT INTO tb_pacientes VALUES (tp_paciente('13310654844', 'Karen Joffer', 'F',
 INSERT INTO tb_medicos VALUES (tp_medico('55643389715', 'Marina Cabral', 'F', TO_DATE('15/09/1984', 'dd/mm/yyyy'),
                                             tp_telefones(tp_telefone('87', '21263014'), tp_telefone('87', '994172114')),
                                             tp_endereco('Avenida São Cristovão', '84', 'apt 2001', 'Barra Grande', 'Juracema', 'RN', '58940052'),
-                                            '5017', 'Cardiologista', null));
+                                            '5016', 'Cardiologista', null));
+INSERT INTO tb_medicos VALUES (tp_medico('52293389715', 'Paulo Cabral', 'M', TO_DATE('25/10/1983', 'dd/mm/yyyy'),
+                                            tp_telefones(tp_telefone('87', '21263014'), tp_telefone('87', '988272114')),
+                                            tp_endereco('Avenida São Cristovão', '84', 'apt 2001', 'Barra Grande', 'Juracema', 'RN', '58940052'),
+                                            '5015', 'Cardiologista', (SELECT REF(M) FROM tb_medicos M WHERE M.cpf = '55643389715')));
+INSERT INTO tb_medicos VALUES (tp_medico('55643389844', 'Paula Andora', 'F', TO_DATE('01/01/1995', 'dd/mm/yyyy'),
+                                            tp_telefones(tp_telefone('27', '33363014'), tp_telefone('27', '998272114')),
+                                            tp_endereco('Rua Paulo Nunes', '144', null, 'Centro', 'Cosmo', 'SC', '58944452'),
+                                            '1017', 'Cardiologista', (SELECT REF(M) FROM tb_medicos M WHERE M.cpf = '55643389715')));
+INSERT INTO tb_medicos VALUES (tp_medico('09043389715', 'Mauro Oliveira', 'M', TO_DATE('25/06/1989', 'dd/mm/yyyy'),
+                                            tp_telefones(tp_telefone('18', '21263000'), tp_telefone('18', '988882114')),
+                                            tp_endereco('Avenida Clovis Moura', '500', 'apt 201', 'Alvorada', 'Tucumã', 'RJ', '59942252'),
+                                            '2217', 'Dermatologista', null));
+INSERT INTO tb_medicos VALUES (tp_medico('10443389715', 'Pedro Duarte', 'M', TO_DATE('13/03/1971', 'dd/mm/yyyy'),
+                                            tp_telefones(tp_telefone('31', '21290014'), tp_telefone('31', '994382114')),
+                                            tp_endereco('Rua Aurora', '1', 'quadra 4', 'Salgadinho', 'Praia Grande', 'PR', '58011052'),
+                                            '5997', 'Dermatologista', (SELECT REF(M) FROM tb_medicos M WHERE M.cpf = '09043389715')));
 
 INSERT INTO tb_medicamentos VALUES ('0001', 'Dorflex', 'Sanofi',
                                     nt_substancias(tp_substancia('Dipirona Monoidratada', 300, 'mg'),
