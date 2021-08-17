@@ -124,12 +124,24 @@ CREATE TYPE tp_medico UNDER tp_pessoa(
 );
 /
 
+ALTER TYPE tp_medico
+    ADD ATTRIBUTE (chefe REF tp_medico)
+CASCADE;
+
 CREATE TYPE BODY tp_medico AS
     MEMBER FUNCTION prettyMed RETURN VARCHAR2 IS
         ident VARCHAR2(500);
+        cNome VARCHAR2(30);
+        cCrm VARCHAR2(4);
         BEGIN
             ident := nome || ' - ' || especialidade || '. CRM: ' || crm || '. Fones: ' ||
-                        telefones(1).prettyTel() || ', ' || telefones(2).prettyTel();
+                        telefones(1).prettyTel() || ', ' || telefones(2).prettyTel() || '.';
+            IF chefe IS NOT NULL THEN
+                SELECT DEREF(M.chefe).nome INTO cNome FROM tb_medicos M WHERE M.cpf = self.cpf;
+                SELECT DEREF(M.chefe).crm INTO cCrm FROM tb_medicos M WHERE M.cpf = self.cpf;
+                ident := ident || ' Médico responsável: ' || cNome ||
+                            ', CRM ' || cCrm || '.';
+            END IF;
             IF sexo = 'M' THEN
                 RETURN 'Dr. ' || ident;
             ELSE
@@ -138,10 +150,6 @@ CREATE TYPE BODY tp_medico AS
         END;
 END;
 /
-
-ALTER TYPE tp_medico
-    ADD ATTRIBUTE (chefe REF tp_medico)
-CASCADE;
 
 CREATE TYPE tp_consulta AS OBJECT(
     medico REF tp_medico,
